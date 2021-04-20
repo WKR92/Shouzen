@@ -1,0 +1,572 @@
+// global variables
+
+* {
+  font-family: "Nunito", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// hide arrows in input number
+input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// scale up little checkbox
+input[type=checkbox] {
+  transform: scale(2);
+}
+
+$primaryLayout: radial-gradient(
+  ellipse at left bottom,
+  rgb(148, 29, 35) 0%,
+  rgba(38, 20, 72, 0.9) 59%,
+  rgba(17, 27, 75, 0.9) 100%
+);
+
+$auroraLayout: radial-gradient(
+  ellipse at left bottom,
+  rgb(148, 29, 35) 0%,
+  rgba(38, 20, 72, 0.9) 70%,
+  rgba(255, 255, 255, 0.9) 100%
+);
+
+$primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+
+@mixin flex-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-center-spaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// product mixin
+
+@mixin shoes($firstBackgroundImg, $secondBackgroundImg, $headlineColor, $textColor){
+  position: relative;
+  padding: 60px;
+  width: 80vw;
+  height: 80vh;
+  background: url($firstBackgroundImg) no-repeat center fixed;
+  box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: $textColor;
+  line-height: 35px;
+  transition: background 1s ease-in;
+
+
+  h2 {
+    transform: translateY(50px);
+    transition: transform 2s;
+  }
+
+  p {
+    transform: translateX(-100px);
+    visibility: none;
+    opacity: 0;
+    transition: visibility 3s, opacity 1s, transform 1s;
+  }
+
+  .headlineSpan {
+    color: $headlineColor;
+  }
+
+  img {
+    max-height: 100%;
+    margin-left: 5%;
+    transform: rotateX(13deg) rotateY(-20deg) rotateZ(10deg);
+    box-shadow: 50px 50px 70px -20px rgba(0, 0, 0, 0.8);
+    transition: transform 1s, box-shadow 1s;
+  }
+
+  &:hover {
+    background: url($secondBackgroundImg) no-repeat center fixed;
+    transition: background 1s ease-in;
+
+    h2 {
+      transform: translateY(0px);
+      transition: transform 1s;
+    }
+    
+
+    p {
+      transform: translateX(0px);
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 3s, opacity 3s, transform 2s;
+    }
+
+    img{
+      transform: rotateZ(-5deg);
+      box-shadow: none;
+    }
+  }
+}
+
+@mixin mediaQueryForProduct($headlineColor) {
+  flex-direction: column;
+  line-height: 24px;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  .headlineSpan {
+    color: $headlineColor;
+  }
+
+  img{
+    max-height: 60%;
+    margin-left: 0%;
+    max-width: 100%;
+  }
+}
+
+// login panel login.tsx
+
+.loginSection {
+    width: 100%;
+    height: 92vh;
+    padding: 0 20px;
+    background: #e9e9e9;
+    display: flex;
+    background: $primaryLayout;
+
+  .loginContainer {
+      padding: 60px;
+      margin: auto;
+      width: 100%;
+      max-width: 520px;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: $primaryLayout;
+      box-shadow: $primaryShadow;
+
+    label{
+      margin-top: 20px;
+      color: white;
+      margin: 14px 0;
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    input{
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 19px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .errorMsg {
+      padding-top: 5px;
+      color: red;
+      font-size: 16px;
+    }
+
+    .btnContainer {
+      width: 100%;
+      padding: 24px 0;
+          
+      button {
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 15px 0;
+        color: #fff;
+        font-size: 16px;
+        letter-spacing: 1px;
+        background: #603bbb;
+        cursor: pointer;
+      }
+
+      span {
+        color: yellow;
+        width: 100%;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        margin-left: 5px;
+        cursor: pointer;
+        transition: all 400ms ease-in-out;
+        &:hover{
+          color: red;
+        }
+      }
+
+      p {
+        margin: 14px 0 0 0;
+        text-align: right;
+        color: #fff;
+      }
+    }
+  }
+}
+
+// account.tsx styles
+
+.accountSection {
+  width: 100%;
+  min-height: 100vh;
+  background: $primaryLayout;
+
+  nav {
+    background: #603bbb;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h2 {
+    color: #fff;
+  }
+
+  button {
+    width: 86px;
+    padding: 8px 0;
+    background: #3a2b58;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
+// product - home.tsx
+
+.homeSection {
+  min-height: 92vh;
+  background: $primaryLayout;
+}
+
+.cartSpan {
+  cursor: pointer;
+  text-decoration: underline;
+  color: red;
+}
+
+.cartBtn {
+  cursor: pointer;
+  font-weight: bold;
+  color: red;
+  height: 30px;
+  width: 50px;
+  outline: none;
+  background: none;
+  font-size: 16px;
+}
+
+.productBg{
+  height: 90vh;
+  width: 100%;
+  @include flex-centered;
+
+  .productContainer {
+    @include flex-centered;
+
+    .Blue_Nikes__container {
+      @include shoes("../photos/sky.jpg", "../photos/water.jpg", rgb(0, 195, 255), black);
+    }
+    @media only screen and (max-width: 1200px) {
+      .Blue_Nikes__container {
+        @include mediaQueryForProduct(rgb(68, 0, 255))
+      } 
+    }
+
+    .Orange_Nikes__container {
+      @include shoes("../photos/cityBg.jpg", "../photos/orangeCity.jpg", rgb(255, 136, 0), white);
+    }
+    @media only screen and (max-width: 1200px) {
+      .Orange_Nikes__container {
+        @include mediaQueryForProduct(rgb(255, 136, 0))
+      } 
+    }
+
+    .Black_and_White_Nikes__container {
+      @include shoes("../photos/cityCenter.jpg", "../photos/city.jpg", white, white);
+    }
+    @media only screen and (max-width: 1200px) {
+      .Black_and_White_Nikes__container {
+        @include mediaQueryForProduct(white)
+      } 
+    }
+
+    .Red_Nikes__container {
+      @include shoes("../photos/darkCity.jpg", "../photos/redConcert.jpg", red, white);
+    }
+    @media only screen and (max-width: 1200px) {
+      .Red_Nikes__container {
+        @include mediaQueryForProduct(rgb(255, 0, 0))
+      } 
+    }
+
+    @media only screen and (max-width: 500px) {
+      .Red_Nikes__container, .Black_and_White_Nikes__container, .Orange_Nikes__container, .Blue_Nikes__container {
+        .product__info {
+          width: 70vw;
+        }
+      } 
+    }
+  }
+}
+
+// navbar nav.tsx //
+
+.mainNavBar {
+  max-width: 100vw;
+  min-height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: slateblue;
+  list-style: none;
+
+  .nav_links {
+    width: 40%;
+    display: flex;
+    @include flex-center-spaceBetween;
+  }
+  
+  .linkHolder {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    @include flex-center-spaceBetween;
+    white-space: nowrap;
+    margin-right: .5rem;
+  }
+
+  .icon {
+    max-height: 2.5vh;
+    margin-right: .5rem;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .mainNavBar {
+
+    .nav_links {
+      width: auto;
+    }
+
+    h3 {
+      margin-left: .5rem;
+    }
+  } 
+}
+
+//about about.tsx 
+
+.aboutSection {
+  background: $primaryLayout;
+  height: 100vh;
+}
+
+// cart section cart.tsx
+
+.cartSection {
+  background: $primaryLayout;
+  min-height: 92vh;
+  @include flex-centered;
+
+  .cartOuterContainer {
+    width: 80vw; 
+    min-height: 80vh;
+    background: $primaryLayout;
+    box-shadow: $primaryShadow;
+    @include flex-centered;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .cartInnerContainer {
+      width: 60vw; 
+      min-height: 60vh;
+      max-height: 90%;
+      margin-top: auto;
+      color: white;
+      margin-top: 20px;
+      text-align: center;
+
+      h2 {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .proceedToPayment {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 40px;
+        float: right;
+        height: 30px;
+
+        div {
+          padding-top: 4px;
+        }
+        
+        button {
+          height: 100%;
+          width: 120px;
+          background-color: orange;
+          outline: none;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .productContainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid red;
+
+        button {
+          margin-left: auto;
+        }
+
+        .removeProductBtnHolder {
+          margin-left: auto;
+
+          img {
+            height: 40px;
+            cursor: pointer;
+            margin-left: -40px;
+
+            &:hover {
+              animation: shake 1s linear;
+            }
+          }
+          
+        }
+
+        @media only screen and (max-width: 500px) {
+          .removeProductBtnHolder {
+            display: none;
+          }
+        }
+
+        .productInnerContainer {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+          gap: 15px;
+
+          .imgHolder {
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            
+
+            img {
+              height: 60px;
+            }
+          }
+
+          .headlineHolder {
+            width: 200px;
+
+              h3 {
+                width: 200px;
+              }
+            
+              @media only screen and (max-width: 1000px) {
+                #headlineSpanToHideOnResize {
+                  display: none;
+                }
+              }
+          }
+
+          .priceHolder {
+            width: 200px;
+            text-align: center;
+          }
+          
+          .amountToOderHolder {
+            @include flex-centered;
+            width: 200px;
+            gap: 10px;
+
+
+            .amountToOder {
+              // margin-left: 10px;
+              // margin-right: 10px;
+              font-size: 18px;
+            }
+
+            img {
+              height: 20px;
+              cursor: pointer;
+            }
+
+            button {
+              width: 40px;
+              border: none;
+              outline: none;
+              background: transparent;
+              cursor: pointer;
+
+              img {
+                height: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 335px) {
+  input[type=checkbox] {
+
+    margin-right: -10px;
+  }
+}
+
+
+// keyframes
+
+@keyframes shake {
+  10%, 90% {
+    transform: translateX(1px);
+  }
+  
+  20%, 80% {
+    transform: translateX(-2px);
+  }
+
+  30%, 50%, 70% {
+    transform: translateX(3px);
+  }
+
+  40%, 60% {
+    transform: translateX(-4px);
+  }
+}
