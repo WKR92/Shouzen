@@ -407,6 +407,42 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
       margin-top: 20px;
       text-align: center;
 
+      .removeItemsBox {
+        display: flex;
+        flex-wrap: wrap;
+        float: right;
+        gap: 20px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        height: 100%;
+
+        .radioHolder {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          input[type=radio]:checked ~ label{
+            color: orange;
+          }
+
+          label, input {
+            cursor: pointer;
+          }
+        }
+
+        button {
+          height: 25px;
+          width: 80px;
+          background-color: orange;
+          outline: none;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
       h2 {
         text-align: center;
         margin-bottom: 40px;
@@ -545,7 +581,6 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 
 @media only screen and (max-width: 335px) {
   input[type=checkbox] {
-
     margin-right: -10px;
   }
 }

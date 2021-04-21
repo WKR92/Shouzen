@@ -570,6 +570,42 @@ input[type=checkbox] {
   text-align: center;
 }
 
+.cartSection .cartOuterContainer .cartInnerContainer .removeItemsBox {
+  display: flex;
+  flex-wrap: wrap;
+  float: right;
+  gap: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  height: 100%;
+}
+
+.cartSection .cartOuterContainer .cartInnerContainer .removeItemsBox .radioHolder {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cartSection .cartOuterContainer .cartInnerContainer .removeItemsBox .radioHolder input[type=radio]:checked ~ label {
+  color: orange;
+}
+
+.cartSection .cartOuterContainer .cartInnerContainer .removeItemsBox .radioHolder label, .cartSection .cartOuterContainer .cartInnerContainer .removeItemsBox .radioHolder input {
+  cursor: pointer;
+}
+
+.cartSection .cartOuterContainer .cartInnerContainer .removeItemsBox button {
+  height: 25px;
+  width: 80px;
+  background-color: orange;
+  outline: none;
+  cursor: pointer;
+}
+
+.cartSection .cartOuterContainer .cartInnerContainer .removeItemsBox button:hover {
+  text-decoration: underline;
+}
+
 .cartSection .cartOuterContainer .cartInnerContainer h2 {
   text-align: center;
   margin-bottom: 40px;

@@ -1,4 +1,4 @@
-import React, {} from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import * as productAction from '../store/productsActions';
 import {Products, PropsFromStateForCart, ChangeUnitsInStoreInterface} from '../store/storeInterfaces';
@@ -8,6 +8,22 @@ import minusIcon from '../icons/minus.png'
 
 const Cart = (props: PropsFromStateForCart) => {
 
+    useEffect(() => {
+        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
+        const allProductsInput= document.getElementById('allProducts') as HTMLInputElement;
+        const onlyCheckedInput= document.getElementById('onlyChecked') as HTMLInputElement;
+        Object.values(checkboxList).map(e => e.addEventListener('click', () => {
+            const allCheckedProducts = Object.values(checkboxList).filter(e => e.checked === true)
+            if(allCheckedProducts.length === props.listOfProductsInCart.length){
+                allProductsInput.checked = true;
+                onlyCheckedInput.checked = false;
+            }else{
+                allProductsInput.checked = false;
+                onlyCheckedInput.checked = true;
+            }
+        }))
+    }, [props])
+
     const handleSubmit = (event: MouseEvent) => {
         event.preventDefault();
     }
@@ -16,29 +32,91 @@ const Cart = (props: PropsFromStateForCart) => {
         props.removeProduct(product);
     }
 
-    const incrementOrder = (event: React.MouseEvent<HTMLImageElement>, productName: string, amountToOrder: number) => {
+    const incrementOrder = (
+        event: React.MouseEvent<HTMLImageElement>,
+        productName: string,
+        amountToOrder: number
+    ) => {
         event.preventDefault();
         amountToOrder++
         props.changeAmountToOrder({productName, amountToOrder})
     }
 
-    const decrementOrder = (event: React.MouseEvent<HTMLImageElement>, productName: string, amountToOrder: number) => {
+    const decrementOrder = (
+        event: React.MouseEvent<HTMLImageElement>, 
+        productName: string, 
+        amountToOrder: number
+        ) => {
         event.preventDefault();
         if(amountToOrder <= 0){ return; }
         amountToOrder--
         props.changeAmountToOrder({productName, amountToOrder})
     }
+
+    const handleCheckbox = (
+        event: React.ChangeEvent<HTMLInputElement>, 
+        product: object
+        ) => {
+        let isChecked = event.target.checked;
+        if(isChecked){
+            // console.log(product)
+        }
+      }
+
+    const handleAllRadioBtn = () => {
+        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
+        Object.values(checkboxList).map(e => e.checked = true);
+    }
+
+    const handleOnlyCheckedRadioBtn = () => {
+        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
+        const checkedProductsNodeList = Object.values(checkboxList).filter(e => e.checked === true);
+        const checkedProductsIds = checkedProductsNodeList.map(e => e.id);
+        const checkedProducts: object[] = [];
+
+        for (let i of checkedProductsIds) {
+            checkedProducts.push(props.listOfProductsInCart.filter(e => e.id === i)[0]);
+        }
+        return checkedProducts;
+    }
+
+    const handleRemoveBtn = (
+        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+        ) => {
+        event.preventDefault();
+        const allProductsInput= document.getElementById('allProducts') as HTMLInputElement;
+        if(allProductsInput.checked) {
+            props.listOfProductsInCart.forEach(e => props.removeProduct(e));
+        } else {
+            handleOnlyCheckedRadioBtn().forEach(e => props.removeProduct(e));
+        }
+    }
      
     return (
         <section className="cartSection">
             <div className="cartOuterContainer">
-                <form onSubmit={() => handleSubmit} className="cartInnerContainer">
+                <form  className="cartInnerContainer">
                     <h2>Your cart:</h2>
+                    {props.listOfProductsInCart.length > 0
+                    ? <div className="removeItemsBox">
+                        <div onChange={handleAllRadioBtn} className="radioHolder">
+                            <input type="radio" id="allProducts" name="removeItems" defaultChecked />
+                            <label htmlFor="allProducts">All</label>
+                        </div>
+                        <div className="radioHolder">
+                            <input type="radio" id="onlyChecked" name="removeItems" />
+                            <label htmlFor="onlyChecked">Only checked</label>
+                        </div>
+                        <button onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleRemoveBtn(event)}>
+                            Remove
+                        </button>
+                    </div> : null}
                     {props.listOfProductsInCart.length > 0
                     ? props.listOfProductsInCart.map(elem => {return (
                     <div key={elem.id} className="productContainer">
-                        <input className="checkbox" type="checkbox" id={elem.id} name="product" defaultChecked />
-                        <label htmlFor="scales">
+                        <input className="checkbox" type="checkbox" id={elem.id} name="product" defaultChecked
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleCheckbox(event, elem)} />
+                        <label htmlFor={elem.id}>
                             <div className="productInnerContainer">
                                 <div className="imgHolder">
                                     <img src={elem.picture} alt="nike_shoes"/>  
@@ -62,11 +140,12 @@ const Cart = (props: PropsFromStateForCart) => {
                         <div className="removeProductBtnHolder" id="removeProductBtnHolder">
                             <img alt="delete_icon" src={deleteIcon} onClick={() => removeProductFromCart(elem)} />
                         </div>
-                    </div>)})
+                    </div>
+                    )})
                     : <div style={{textAlign: 'center'}}>Your cart is empty</div>}
                     {props.listOfProductsInCart.length > 0
                     ? <div className="proceedToPayment">
-                        <div>Razem: 0</div>
+                        <div>Total: 0$</div>
                         <button>Go to payment</button>
                         </div>
                     : null}

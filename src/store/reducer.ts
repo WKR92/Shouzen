@@ -17,11 +17,7 @@ export const reducer = (state: any, action: any) => {
         ];
       case actionTypes.UPDATE_CART_UNITS:
         const productToChange = state.filter((elem: any) => elem.name === action.payload.productName)
-        console.log(action.payload)
-        console.log(productToChange)
-
         productToChange[0].amountToOrder = action.payload.amountToOrder
-        console.log(state)
         return [
           ...state
         ]
