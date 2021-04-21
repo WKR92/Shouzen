@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import * as productAction from '../store/productsActions';
 import {Products, PropsFromStateForCart, ChangeUnitsInStoreInterface} from '../store/storeInterfaces';
@@ -8,20 +8,13 @@ import minusIcon from '../icons/minus.png'
 
 const Cart = (props: PropsFromStateForCart) => {
 
+    const [total, setTotal] = useState(0)
+
     useEffect(() => {
-        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
-        const allProductsInput= document.getElementById('allProducts') as HTMLInputElement;
-        const onlyCheckedInput= document.getElementById('onlyChecked') as HTMLInputElement;
-        Object.values(checkboxList).map(e => e.addEventListener('click', () => {
-            const allCheckedProducts = Object.values(checkboxList).filter(e => e.checked === true)
-            if(allCheckedProducts.length === props.listOfProductsInCart.length){
-                allProductsInput.checked = true;
-                onlyCheckedInput.checked = false;
-            }else{
-                allProductsInput.checked = false;
-                onlyCheckedInput.checked = true;
-            }
-        }))
+        // set total value of order
+        let totalValue = 0;
+        props.listOfProductsInCart.forEach(e => totalValue = totalValue + (e.amountToOrder * e.price))
+        setTotal(totalValue)
     }, [props])
 
     const handleSubmit = (event: MouseEvent) => {
@@ -54,14 +47,19 @@ const Cart = (props: PropsFromStateForCart) => {
     }
 
     const handleCheckbox = (
-        event: React.ChangeEvent<HTMLInputElement>, 
-        product: object
         ) => {
-        let isChecked = event.target.checked;
-        if(isChecked){
-            // console.log(product)
+        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
+        const allProductsInput= document.getElementById('allProducts') as HTMLInputElement;
+        const onlyCheckedInput= document.getElementById('onlyChecked') as HTMLInputElement;
+        const allCheckedProducts = Object.values(checkboxList).filter(e => e.checked === true)
+        if(allCheckedProducts.length === props.listOfProductsInCart.length){
+            allProductsInput.checked = true;
+            onlyCheckedInput.checked = false;
+        }else{
+            allProductsInput.checked = false;
+            onlyCheckedInput.checked = true;
         }
-      }
+    }
 
     const handleAllRadioBtn = () => {
         const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
@@ -115,28 +113,26 @@ const Cart = (props: PropsFromStateForCart) => {
                     ? props.listOfProductsInCart.map(elem => {return (
                     <div key={elem.id} className="productContainer">
                         <input className="checkbox" type="checkbox" id={elem.id} name="product" defaultChecked
-                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleCheckbox(event, elem)} />
-                        <label htmlFor={elem.id}>
-                            <div className="productInnerContainer">
-                                <div className="imgHolder">
-                                    <img src={elem.picture} alt="nike_shoes"/>  
-                                </div>
-                                <div className="headlineHolder">
-                                    <h3>{elem.name}.</h3>
-                                    <span id="headlineSpanToHideOnResize"> {elem.headline}</span>
-                                </div>
-                                <div className="priceHolder">
-                                    <p>{elem.price}$</p>
-                                </div>
-                                <div className="amountToOderHolder">
-                                    <img alt="plus_icon" src={plusIcon} 
-                                    onClick={(event: React.MouseEvent<HTMLImageElement>) => incrementOrder(event, elem.name, elem.amountToOrder)}/>
-                                    <div className="amountToOder">{elem.amountToOrder}</div>
-                                    <img alt="minus_icon" src={minusIcon} 
-                                    onClick={(event: React.MouseEvent<HTMLImageElement>) => decrementOrder(event, elem.name, elem.amountToOrder)}/>
-                                </div>
+                        onChange={handleCheckbox} />
+                        <div className="productInnerContainer">
+                            <div className="imgHolder">
+                                <img src={elem.picture} alt="nike_shoes"/>  
                             </div>
-                        </label>
+                            <div className="headlineHolder">
+                                <h3>{elem.name}.</h3>
+                                <span id="headlineSpanToHideOnResize"> {elem.headline}</span>
+                            </div>
+                            <div className="priceHolder">
+                                <p>{elem.price}$</p>
+                            </div>
+                            <div className="amountToOderHolder">
+                                <img alt="plus_icon" src={plusIcon} 
+                                onClick={(event: React.MouseEvent<HTMLImageElement>) => incrementOrder(event, elem.name, elem.amountToOrder)}/>
+                                <div className="amountToOder">{elem.amountToOrder}</div>
+                                <img alt="minus_icon" src={minusIcon} 
+                                onClick={(event: React.MouseEvent<HTMLImageElement>) => decrementOrder(event, elem.name, elem.amountToOrder)}/>
+                            </div>
+                        </div>
                         <div className="removeProductBtnHolder" id="removeProductBtnHolder">
                             <img alt="delete_icon" src={deleteIcon} onClick={() => removeProductFromCart(elem)} />
                         </div>
@@ -145,7 +141,7 @@ const Cart = (props: PropsFromStateForCart) => {
                     : <div style={{textAlign: 'center'}}>Your cart is empty</div>}
                     {props.listOfProductsInCart.length > 0
                     ? <div className="proceedToPayment">
-                        <div>Total: 0$</div>
+                        <div>Total: {total}$</div>
                         <button>Go to payment</button>
                         </div>
                     : null}

@@ -10,7 +10,7 @@ const products =[
         "price"         : 73,
         "picture"       : blueNike,
         "amount"        : 90,
-        "amountToOrder" : 0,
+        "amountToOrder" : 1,
         "headline"      : "For those who measure higher",
         "description"   : "Become skywalker and run for your dreams in those light as cloud sneakers.",
         "callToAction"  : "Try them now."
@@ -21,7 +21,7 @@ const products =[
         "price"         : 81,
         "picture"       : orangeNikes,
         "amount"        : 40,
-        "amountToOrder" : 0,
+        "amountToOrder" : 1,
         "headline"      : "Better known as urban legends.",
         "description"   : "If you fit them, you will become the spirit of the city.",
         "callToAction"  : "Fear no concrete jungle. Make the city yours."
@@ -33,7 +33,7 @@ const products =[
         "price"         : 92,
         "picture"       : redNikes,
         "amount"        : 120,
-        "amountToOrder" : 0,
+        "amountToOrder" : 1,
         "headline"      : "Make your city life intense.",
         "description"   : "The night is coming. Bring the fire to your everyday reality.",
         "callToAction"  : "Put them on. Light it up."
@@ -44,7 +44,7 @@ const products =[
         "price"         : 67,
         "picture"       : blackAndWhiteNikes,
         "amount"        : 83,
-        "amountToOrder" : 0,
+        "amountToOrder" : 1,
         "headline"      : "To combine comfort and elegance.",
         "description"   : "Almost like your second feet - but classy. Be ready wherever you go.",
         "callToAction"  : "Just slide in them."
