@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
-import {Products, ProductActionInterface} from '../store/storeInterfaces'
+import {Products, ProductActionInterface} from './interfaces'
 
-export const reducer = (state: any, action: any) => {
+export const cartReducer = (state: any = [], action: any) => {
     switch(action.type) {
       case actionTypes.ADD_PRODUCT_TO_CART:
+        console.log(state)
         if (state.filter((elem: any)=> elem.name === action.payload.name).length < 1) {
           return [
             ...state,
@@ -23,5 +24,17 @@ export const reducer = (state: any, action: any) => {
         ]
       default:
         return state;
-    } 
+    }
+};
+
+export const userReducer = (state: any = [], action: any) => {
+  switch(action.type) {
+    case actionTypes.ADD_USER:
+      return [
+        ...state,
+        Object.assign({}, action.payload)
+      ]
+    default:
+      return state;
+  } 
 };

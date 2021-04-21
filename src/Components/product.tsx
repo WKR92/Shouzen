@@ -2,7 +2,7 @@ import React, {} from 'react';
 import products from './products';
 import { connect } from 'react-redux';
 import * as productAction from '../store/productsActions';
-import {Products, PropsFromStateForBoots} from '../store/storeInterfaces'
+import {Products, PropsFromStateForBoots} from '../store/interfaces'
 import {store} from '../store/store'
 
 const Boots = (props: PropsFromStateForBoots) => {
@@ -28,24 +28,18 @@ const Boots = (props: PropsFromStateForBoots) => {
                 </div>
             </div>
             {/* to check state from localStore */}
-            {/* <button style={{height: 60, width: 60}} onClick={() => console.log(store.getState())}> show state</button>
-            <button style={{height: 60, width: 60}} onClick={() => localStorage.clear()}>clear local storage</button> */}
+            <button style={{height: 60, width: 60}} onClick={() => console.log(store.getState())}> show state</button>
+            <button style={{height: 60, width: 60}} onClick={() => localStorage.clear()}>clear local storage</button>
         </div>)})
         : null}
         </>  
     )
 }
 
-const mapStateToProps = (state: Products[]) => {
+const mapDispatchToProps = (dispatch: Function) => {
     return {
-      listOfProductsInCart: state
+        getProduct: (product: Products) => dispatch(productAction.addProductToCart(product))
     }
-  };
-  
-  const mapDispatchToProps = (dispatch: Function) => {
-    return {
-      getProduct: (product: Products) => dispatch(productAction.addProductToCart(product))
-    }
-  };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Boots);
+};
+
+export default connect(undefined , mapDispatchToProps)(Boots);

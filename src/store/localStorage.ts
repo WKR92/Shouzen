@@ -1,6 +1,6 @@
-import {Products} from '../store/storeInterfaces'
+// import {Products} from './storeInterfaces'
 
-const state: Products[] = []
+// const state: Products[] = []
 
 export const loadState = () => {
     try {

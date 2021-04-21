@@ -1,4 +1,5 @@
 import React from 'react';
+import axiosSettings from './axiosSettings';
 
 interface PropsPassedToAccount {
     handleLogout: Function;
@@ -15,6 +16,18 @@ const Account = (props: PropsPassedToAccount) => {
         deleteAccount
     } = props;
 
+
+    const doPost = (event: React.MouseEvent) => {
+        event.preventDefault();
+    
+        const data = {
+            'name': "bob",
+            'surname': 'Kamiński'
+        }
+    
+        axiosSettings.post('/data.json', data).then(res => console.log(res)).catch(err => console.log(err));
+    }
+
     return(
         <section className="accountSection">
             <nav>
@@ -24,6 +37,7 @@ const Account = (props: PropsPassedToAccount) => {
             <main>
                 <button className="resetPasswordBtn" onClick={sendResetPasswordEmail}>Reset password</button>
                 <button className="deleteAccountBtn" onClick={deleteAccount}>Delete account</button>
+                <button onClick={doPost}>doPost</button>
             </main>
         </section>
     )

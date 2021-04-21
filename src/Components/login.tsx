@@ -1,17 +1,6 @@
 import React from 'react';
+import {PropsPassedToLogin} from '../store/interfaces'
 
-interface PropsPassedToLogin {
-    email: string;
-    setEmail: Function;
-    password: string;
-    setPassword: Function;
-    handleLogin: Function;
-    handleSignUp: Function;
-    hasAccount: boolean;
-    setHasAccount: Function;
-    emailError: string;
-    passwordError: string;
-}
 
 const Login = (props: PropsPassedToLogin) => {
 

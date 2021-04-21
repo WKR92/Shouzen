@@ -12,7 +12,6 @@ export interface Products {
 
 export interface PropsFromStateForBoots {
     getProduct: Function,
-    listOfProductsInCart: Products[]
 }
 
 export interface PropsFromStateForCart {
@@ -29,5 +28,18 @@ export interface ChangeUnitsInStoreInterface {
 export interface ProductActionInterface {
     type: string,
     payload: Products | ChangeUnitsInStoreInterface
+}
+
+export interface PropsPassedToLogin {
+    email: string;
+    setEmail: Function;
+    password: string;
+    setPassword: Function;
+    handleLogin: Function;
+    handleSignUp: Function;
+    hasAccount: boolean;
+    setHasAccount: Function;
+    emailError: string;
+    passwordError: string;
 }
 

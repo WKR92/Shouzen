@@ -1,16 +1,19 @@
-import React, {useState, useEffect, useCallback } from 'react'
-import fire from '../fire'
-import Login from './login'
-import Account from './account'
+import React, {useState, useEffect, useCallback } from 'react';
+import fire from '../fire';
+import Login from './login';
+import Account from './account';
+import { connect } from 'react-redux';
+import * as userActions from '../store/userActions';
 
 
-function LoginPanel() {
+function LoginPanel(props: any) {
     const [user, setUser] = useState({} as any);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [hasAccount, setHasAccount] = useState(false);
+    
 
     const clearInput = () => {
         setEmail("");
@@ -97,7 +100,7 @@ function LoginPanel() {
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
                 clearInput();
-                setUser(user);
+                setUser(user);                
             } else {
                 setUser("");
             }
@@ -110,6 +113,7 @@ function LoginPanel() {
 
     return (
         <div className="LoginPanel">
+
             {user ? (
                 <Account
                 handleLogout={handleLogout}
@@ -134,5 +138,10 @@ function LoginPanel() {
         </div>
     );
 }
+const mapDispatchToProps = (dispatch: Function) => {
+    return {
+        getUser: (user: object) => dispatch(userActions.addUserToStore(user))
+    }
+}; 
 
-export default LoginPanel; 
+export default connect(null, mapDispatchToProps)(LoginPanel);

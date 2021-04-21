@@ -1,21 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import { connect } from 'react-redux';
 import * as productAction from '../store/productsActions';
-import {Products, PropsFromStateForCart, ChangeUnitsInStoreInterface} from '../store/storeInterfaces';
+import {Products, PropsFromStateForCart, ChangeUnitsInStoreInterface} from '../store/interfaces';
 import deleteIcon from '../icons/delete.png'
 import plusIcon from '../icons/plus.png';
 import minusIcon from '../icons/minus.png'
+import {RootState} from '../store/store'
 
 const Cart = (props: PropsFromStateForCart) => {
 
     const [total, setTotal] = useState(0)
-
-    useEffect(() => {
-        // set total value of order
-        let totalValue = 0;
-        props.listOfProductsInCart.forEach(e => totalValue = totalValue + (e.amountToOrder * e.price))
-        setTotal(totalValue)
-    }, [props])
 
     const handleSubmit = (event: MouseEvent) => {
         event.preventDefault();
@@ -46,36 +40,34 @@ const Cart = (props: PropsFromStateForCart) => {
         props.changeAmountToOrder({productName, amountToOrder})
     }
 
-    const handleCheckbox = (
-        ) => {
+    const handleAllRadioBtn = () => {
+        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
+        Object.values(checkboxList).map(e => e.checked = true);
+    }
+
+    const handleCheckbox = () => {
         const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
         const allProductsInput= document.getElementById('allProducts') as HTMLInputElement;
         const onlyCheckedInput= document.getElementById('onlyChecked') as HTMLInputElement;
-        const allCheckedProducts = Object.values(checkboxList).filter(e => e.checked === true)
-        if(allCheckedProducts.length === props.listOfProductsInCart.length){
+        const checkedProductsNodeList = Object.values(checkboxList).filter(e => e.checked === true)
+
+        if(checkedProductsNodeList.length === props.listOfProductsInCart.length){
             allProductsInput.checked = true;
             onlyCheckedInput.checked = false;
         }else{
             allProductsInput.checked = false;
             onlyCheckedInput.checked = true;
         }
-    }
 
-    const handleAllRadioBtn = () => {
-        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
-        Object.values(checkboxList).map(e => e.checked = true);
-    }
-
-    const handleOnlyCheckedRadioBtn = () => {
-        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
-        const checkedProductsNodeList = Object.values(checkboxList).filter(e => e.checked === true);
         const checkedProductsIds = checkedProductsNodeList.map(e => e.id);
-        const checkedProducts: object[] = [];
-
+        const checkedProducts: any[] = [];
+        
         for (let i of checkedProductsIds) {
             checkedProducts.push(props.listOfProductsInCart.filter(e => e.id === i)[0]);
         }
-        return checkedProducts;
+        let totalValue = 0;
+        checkedProducts.forEach(e => totalValue = totalValue + (e.amountToOrder * e.price))
+        setTotal(totalValue)
     }
 
     const handleRemoveBtn = (
@@ -89,6 +81,25 @@ const Cart = (props: PropsFromStateForCart) => {
             handleOnlyCheckedRadioBtn().forEach(e => props.removeProduct(e));
         }
     }
+
+    const handleOnlyCheckedRadioBtn = useCallback(() => {
+        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
+        const checkedProductsNodeList = Object.values(checkboxList).filter(e => e.checked === true);
+        const checkedProductsIds = checkedProductsNodeList.map(e => e.id);
+        const checkedProducts: any[] = [];
+
+        for (let i of checkedProductsIds) {
+            checkedProducts.push(props.listOfProductsInCart.filter(e => e.id === i)[0]);
+        }
+        return checkedProducts;
+    }, [props])
+
+    useEffect(() => {
+        // set total value of order
+        let totalValue = 0;
+        handleOnlyCheckedRadioBtn().forEach(e => totalValue = totalValue + (e.amountToOrder * e.price))
+        setTotal(totalValue)
+    }, [handleOnlyCheckedRadioBtn])
      
     return (
         <section className="cartSection">
@@ -142,7 +153,7 @@ const Cart = (props: PropsFromStateForCart) => {
                     {props.listOfProductsInCart.length > 0
                     ? <div className="proceedToPayment">
                         <div>Total: {total}$</div>
-                        <button>Go to payment</button>
+                        <button onClick={() => handleSubmit}>Go to payment</button>
                         </div>
                     : null}
                 </form>
@@ -151,17 +162,17 @@ const Cart = (props: PropsFromStateForCart) => {
      )
 }
 
-const mapStateToProps = (state: Products[]) => {
+const mapStateToProps = (state: RootState) => {
     return {
-      listOfProductsInCart: state
+        listOfProductsInCart: state.cartReducer
     }
-  };
-  
-  const mapDispatchToProps = (dispatch: Function) => {
+};
+
+const mapDispatchToProps = (dispatch: Function) => {
     return {
-      removeProduct: (product: Products) => dispatch(productAction.removeProductFormCart(product)),
-      changeAmountToOrder: (productUnits: ChangeUnitsInStoreInterface) => dispatch(productAction.updateCartUnits(productUnits))
+        removeProduct: (product: Products) => dispatch(productAction.removeProductFormCart(product)),
+        changeAmountToOrder: (productUnits: ChangeUnitsInStoreInterface) => dispatch(productAction.updateCartUnits(productUnits))
     }
-  };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
