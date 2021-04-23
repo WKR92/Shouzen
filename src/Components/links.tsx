@@ -25,7 +25,7 @@ const Links = (props: PropsFromStateForLinks) => {
             Object.values(cartSpan).map(e => e.classList.add("itemsInCartNumber"))
             setTimeout(() => {
                 Object.values(cartSpan).map(e => e.classList.remove("itemsInCartNumber"))
-            }, 2000)
+            }, 1500)
             setPrevState(itemsInCart)
         }
         return() => {

@@ -9,6 +9,14 @@ const Boots = (props: PropsFromStateForBoots) => {
 
     const addProductToCart = (product: Products) => {     
         props.getProduct(product);
+        const cartBtn = document.querySelectorAll('.cartBtn') as NodeListOf<HTMLButtonElement>;
+        const loader = document.querySelectorAll('.loaderHolder') as NodeListOf<HTMLDivElement>;
+        Object.values(cartBtn).map(e => e.style['display'] = "none");
+        Object.values(loader).map(e => e.style['display'] = "inline-block");
+        setTimeout(() => {
+            Object.values(cartBtn).map(e => e.style['display'] = "inline");
+            Object.values(loader).map(e => e.style['display'] = "none");
+        }, 1500)
     }
 
     return (
@@ -22,7 +30,11 @@ const Boots = (props: PropsFromStateForBoots) => {
                         <h2><span className="headlineSpan">{elem.name}.</span> {elem.headline}</h2>
                         <p>{elem.description}</p>
                         <p>price: {elem.price}$</p>
-                        <p>{elem.callToAction} <button onClick={() => addProductToCart(elem)} className="cartBtn">Add</button> to cart.</p>
+                        <div className="btnAndLoaderContainer">{elem.callToAction} <button onClick={() => addProductToCart(elem)} className="cartBtn">Add</button> 
+                            <div className="loaderHolder">
+                                <button className="loader"></button>
+                            </div> to cart.
+                        </div>
                     </div>
                     <img src={elem.picture} alt="nike_shoes"/>
                 </div>

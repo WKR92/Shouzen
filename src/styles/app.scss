@@ -66,14 +66,13 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
   color: $textColor;
   line-height: 35px;
   transition: background 1s ease-in;
-
-
+    
   h2 {
     transform: translateY(50px);
     transition: transform 2s;
   }
 
-  p {
+  p, .btnAndLoaderContainer {
     transform: translateX(-100px);
     visibility: none;
     opacity: 0;
@@ -82,6 +81,42 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 
   .headlineSpan {
     color: $headlineColor;
+  }
+
+  .btnAndLoaderContainer {
+
+    .cartBtn {
+      cursor: pointer;
+      font-weight: bold;
+      height: 30px;
+      width: 50px;
+      outline: none;
+      background: none;
+      font-size: 16px;
+      color: red;
+    }
+
+    .loaderHolder {
+      display: none;
+      width: 50px;
+      height: 30px;
+      text-align: center;
+
+      .loader {
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        border: 5px solid transparent;
+        border-top: 5px solid $headlineColor; 
+        border-bottom: 5px solid $headlineColor;
+        background-color: transparent;
+  
+        animation-name: circle;
+        animation-duration: 1.5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+    }
   }
 
   img {
@@ -102,7 +137,7 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
     }
     
 
-    p {
+    p, .btnAndLoaderContainer {
       transform: translateX(0px);
       visibility: visible;
       opacity: 1;
@@ -258,23 +293,6 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
   background: $primaryLayout;
 }
 
-.cartSpan {
-  cursor: pointer;
-  text-decoration: underline;
-  color: red;
-}
-
-.cartBtn {
-  cursor: pointer;
-  font-weight: bold;
-  color: red;
-  height: 30px;
-  width: 50px;
-  outline: none;
-  background: none;
-  font-size: 16px;
-}
-
 .productBg{
   height: 90vh;
   width: 100%;
@@ -284,7 +302,7 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
     @include flex-centered;
 
     .Blue_Nikes__container {
-      @include shoes("../photos/sky.jpg", "../photos/water.jpg", rgb(0, 195, 255), black);
+      @include shoes("../photos/sky.jpg", "../photos/water.jpg", rgb(68, 0, 255), black);
     }
     @media only screen and (max-width: 1200px) {
       .Blue_Nikes__container {
@@ -435,13 +453,12 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
     
           .itemsInCartNumber{
             @include flex-centered;
-            animation: scale 2s linear;
+            animation: scale 1.5s linear;
           }
         }
     
         .icon {
           max-height: 2.5vh;
-          margin-right: .5rem;
         }
       }
     }
@@ -491,7 +508,8 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 .cartSection {
   background: $primaryLayout;
   min-height: 92vh;
-  @include flex-centered;
+  // @include flex-centered;
+  display: inline-block;
 
   .cartOuterContainer {
     width: 80vw; 
@@ -500,8 +518,10 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
     box-shadow: $primaryShadow;
     @include flex-centered;
     color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
 
     .cartInnerContainer {
       width: 60vw; 
@@ -510,7 +530,6 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
       margin-top: auto;
       color: white;
       margin-top: 20px;
-      text-align: center;
 
       .removeItemsBox {
         display: flex;
@@ -654,6 +673,21 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
             width: 200px;
             gap: 10px;
 
+            .loader{
+              display: none;
+              height: 20px;
+              width: 20px;
+              border-radius: 50%;
+              border: 5px solid transparent;
+              border-top: 5px solid orange; 
+              border-bottom: 5px solid orange;
+              background-color: transparent;
+        
+              animation-name: circle;
+              animation-duration: 1.5s;
+              animation-timing-function: linear;
+              animation-iteration-count: infinite;
+            }
 
             .amountToOder {
               // margin-left: 10px;
@@ -678,6 +712,70 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  .userInfoTableOuterContainer {
+    width: 80vw; 
+    min-height: 80vh;
+    background: $primaryLayout;
+    box-shadow: $primaryShadow;
+    @include flex-centered;
+    color: white;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+
+    .userInfoTableForm {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 30vw; 
+      min-height: 60vh;
+      max-height: 90%;
+      margin-top: auto;
+      color: white;
+      margin-top: 20px;
+      gap: 20px;
+
+      input {
+        height: 35px;
+        text-indent: 20px;
+        outline: none;
+
+        // &:focus {
+        //   box-shadow: 0px 7px 12px 0px rgba(255, 255, 255, 0.8);
+        // }
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      button {
+        height: 35px;
+        background-color: orange;
+      }
+
+      .postAndTownInputsContainer {
+        gap: 2px;
+
+        input {
+          width: 49.5%;
+          height: 35px;
+          border: none;
+        }
+
+        .postCode {
+          margin-right: 2px;
+        }
+
+        .town {
+          margin-left: 2px;
         }
       }
     }
@@ -747,4 +845,9 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
     border-radius: 50%;
     opacity: 1;
   }
+}
+
+@keyframes circle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

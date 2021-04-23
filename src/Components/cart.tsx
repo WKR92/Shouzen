@@ -2,10 +2,11 @@ import React, {useEffect, useState, useCallback} from 'react';
 import { connect } from 'react-redux';
 import * as productAction from '../store/productsActions';
 import {Products, PropsFromStateForCart, ChangeUnitsInStoreInterface} from '../store/interfaces';
-import deleteIcon from '../icons/delete.png'
+import deleteIcon from '../icons/delete.png';
 import plusIcon from '../icons/plus.png';
-import minusIcon from '../icons/minus.png'
-import {RootState} from '../store/store'
+import minusIcon from '../icons/minus.png';
+import {RootState} from '../store/store';
+import UserInfoTable from './userInfoTable';
 
 const Cart = (props: PropsFromStateForCart) => {
 
@@ -28,6 +29,14 @@ const Cart = (props: PropsFromStateForCart) => {
         let amountToOrder = product.amountToOrder;
         amountToOrder++
         props.changeAmountToOrder({productName, amountToOrder})
+        const plusIcon = document.querySelectorAll('.plusIcon') as NodeListOf<HTMLButtonElement>;
+        const loader = document.querySelectorAll('.loader') as NodeListOf<HTMLDivElement>;
+        Object.values(plusIcon).map(e => e.style['display'] = "none");
+        Object.values(loader).map(e => e.style['display'] = "inline-block");
+        setTimeout(() => {
+            Object.values(plusIcon).map(e => e.style['display'] = "inline");
+            Object.values(loader).map(e => e.style['display'] = "none");
+        }, 1500)
     }
 
     const decrementOrder = (
@@ -147,8 +156,9 @@ const Cart = (props: PropsFromStateForCart) => {
                                 <p>{elem.price}$</p>
                             </div>
                             <div className="amountToOderHolder">
-                                <img alt="plus_icon" src={plusIcon} 
+                                <img className="plusIcon" alt="plus_icon" src={plusIcon} 
                                 onClick={(event: React.MouseEvent<HTMLImageElement>) => incrementOrder(event, elem)}/>
+                                <div className="loader"></div>
                                 <div className="amountToOder">{elem.amountToOrder}</div>
                                 <img alt="minus_icon" src={minusIcon} 
                                 onClick={(event: React.MouseEvent<HTMLImageElement>) => decrementOrder(event, elem)}/>
@@ -168,6 +178,7 @@ const Cart = (props: PropsFromStateForCart) => {
                     : null}
                 </form>
             </div>
+            <UserInfoTable />
         </section>
      )
 }
