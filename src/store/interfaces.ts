@@ -20,6 +20,10 @@ export interface PropsFromStateForCart {
     changeAmountToOrder: Function
 }
 
+export interface PropsFromStateForLinks {
+    listOfProductsInCart?: Products[],
+}
+
 export interface ChangeUnitsInStoreInterface {
     name: string,
     amountToOrder: number

@@ -492,42 +492,154 @@ input[type=checkbox] {
 }
 
 .mainNavBar {
-  max-width: 100vw;
-  min-height: 8vh;
+  background-color: slateblue;
+  list-style: none;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+.mainNavBar .preResize {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: slateblue;
-  list-style: none;
+  max-width: 100vw;
+  min-height: 8vh;
 }
 
-.mainNavBar .nav_links {
+.mainNavBar .preResize .nav_links {
   width: 40%;
-  display: flex;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.mainNavBar .linkHolder {
+.mainNavBar .preResize .linkHolder {
   text-decoration: none;
   list-style: none;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  white-space: nowrap;
+  margin-right: .5rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.mainNavBar .preResize .linkHolder:hover {
+  border-bottom: 1px solid rgba(180, 61, 67, 0.8);
+}
+
+.mainNavBar .preResize .linkHolder li {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+.mainNavBar .preResize .linkHolder li .preAnimationCartSpan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainNavBar .preResize .linkHolder li .itemsInCartNumber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: scale 2s linear;
+}
+
+.mainNavBar .preResize .linkHolder .icon {
+  max-height: 2.5vh;
   margin-right: .5rem;
 }
 
-.mainNavBar .icon {
+.mainNavBar .preResize .navToggle {
+  display: none;
+  height: 30px;
+  cursor: pointer;
+}
+
+.mainNavBar .preResize .navToggle:hover {
+  border: 1px solid transparent;
+}
+
+.mainNavBar .afterResize {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  max-width: 100vw;
+  min-height: 6vh;
+}
+
+.mainNavBar .afterResize .nav_links {
+  width: 80vw;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  border-top: 1px solid rgba(180, 61, 67, 0.8);
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.mainNavBar .afterResize .nav_links .linkHolder {
+  text-decoration: none;
+  list-style: none;
+  color: white;
+  text-align: center;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.mainNavBar .afterResize .nav_links .linkHolder:hover {
+  border-bottom: 1px solid rgba(180, 61, 67, 0.8);
+}
+
+.mainNavBar .afterResize .nav_links .linkHolder li {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+.mainNavBar .afterResize .nav_links .linkHolder li .preAnimationCartSpan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainNavBar .afterResize .nav_links .linkHolder li .itemsInCartNumber {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: scale 2s linear;
+}
+
+.mainNavBar .afterResize .nav_links .linkHolder .icon {
   max-height: 2.5vh;
   margin-right: .5rem;
 }
 
 @media only screen and (max-width: 650px) {
-  .mainNavBar .nav_links {
-    width: auto;
+  .mainNavBar {
+    display: grid;
+    justify-content: center;
+  }
+  .mainNavBar .preResize {
+    justify-content: space-between;
+    width: 80vw;
+  }
+  .mainNavBar .preResize .navToggle {
+    display: block;
+  }
+  .mainNavBar .preResize .nav_links {
+    display: none;
+  }
+  .mainNavBar .navToggle {
+    margin-right: 10px;
+  }
+  .mainNavBar .afterResize {
+    display: flex;
   }
   .mainNavBar h3 {
     margin-left: .5rem;
@@ -754,5 +866,43 @@ input[type=checkbox] {
   }
   40%, 60% {
     transform: translateX(-4px);
+  }
+}
+
+@keyframes scale {
+  10% {
+    width: 10px;
+    transform: scale(1.1);
+    border-radius: 50%;
+    background-color: 10%;
+    border-radius: 50%;
+    background-color: #b43d43;
+    opacity: 0.8;
+  }
+  25% {
+    width: 15px;
+    transform: scale(1.2);
+    border-radius: 50%;
+    background-color: #b43d43;
+  }
+  50% {
+    width: 20px;
+    transform: scale(1.3);
+    border-radius: 50%;
+    background-color: #b43d43;
+    opacity: 1;
+  }
+  75% {
+    width: 15px;
+    transform: scale(1.1);
+    border-radius: 50%;
+    background-color: #b43d43;
+    opacity: 0.8;
+  }
+  100% {
+    width: 10px;
+    transform: scale(1);
+    border-radius: 50%;
+    opacity: 1;
   }
 }

@@ -21,21 +21,33 @@ const Cart = (props: PropsFromStateForCart) => {
 
     const incrementOrder = (
         event: React.MouseEvent<HTMLImageElement>,
-        productName: string,
-        amountToOrder: number
+        product: Products
     ) => {
         event.preventDefault();
+        const productName = product.name
+        let amountToOrder = product.amountToOrder;
         amountToOrder++
         props.changeAmountToOrder({productName, amountToOrder})
     }
 
     const decrementOrder = (
         event: React.MouseEvent<HTMLImageElement>, 
-        productName: string, 
-        amountToOrder: number
+        product: Products
         ) => {
         event.preventDefault();
-        if(amountToOrder <= 0){ return; }
+        const productName = product.name
+        let amountToOrder = product.amountToOrder;
+        console.log(amountToOrder)
+        
+        if(amountToOrder === 1) { 
+            const confirm = window.confirm("Are you sure? It will remove product from the cart completely.")
+            if(confirm) {
+                props.removeProduct(product);
+                return;
+            } else {
+                amountToOrder++
+            }
+        }
         amountToOrder--
         props.changeAmountToOrder({productName, amountToOrder})
     }
@@ -138,10 +150,10 @@ const Cart = (props: PropsFromStateForCart) => {
                             </div>
                             <div className="amountToOderHolder">
                                 <img alt="plus_icon" src={plusIcon} 
-                                onClick={(event: React.MouseEvent<HTMLImageElement>) => incrementOrder(event, elem.name, elem.amountToOrder)}/>
+                                onClick={(event: React.MouseEvent<HTMLImageElement>) => incrementOrder(event, elem)}/>
                                 <div className="amountToOder">{elem.amountToOrder}</div>
                                 <img alt="minus_icon" src={minusIcon} 
-                                onClick={(event: React.MouseEvent<HTMLImageElement>) => decrementOrder(event, elem.name, elem.amountToOrder)}/>
+                                onClick={(event: React.MouseEvent<HTMLImageElement>) => decrementOrder(event, elem)}/>
                             </div>
                         </div>
                         <div className="removeProductBtnHolder" id="removeProductBtnHolder">

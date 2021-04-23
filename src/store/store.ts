@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 import { combineReducers } from 'redux';
-import {cartReducer, userReducer} from './reducer';
+import {cartReducer, userReducer} from './reducers';
 import {loadState, saveState} from './localStorage';
 import throttle from 'lodash.throttle';
 

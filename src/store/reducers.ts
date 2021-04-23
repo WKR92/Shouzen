@@ -4,14 +4,19 @@ import {Products, ProductActionInterface} from './interfaces'
 export const cartReducer = (state: any = [], action: any) => {
     switch(action.type) {
       case actionTypes.ADD_PRODUCT_TO_CART:
-        console.log(state)
         if (state.filter((elem: any)=> elem.name === action.payload.name).length < 1) {
           return [
             ...state,
             Object.assign({}, action.payload)
           ]
+        } else {
+          // increase amountToOrder of product that is already in cart
+          const productToChange = state.filter((e: any) => e.id === action.payload.id);
+          productToChange[0].amountToOrder++;
+          const indexOfProductToChange = state.indexOf(productToChange[0]);
+          state[indexOfProductToChange] = productToChange[0];
+          return [...state]
         }
-        return state
       case actionTypes.REMOVE_PRODUCT_FROM_CART:
         return [
           ...state.filter((elem: any) => elem.name !== action.payload.name)

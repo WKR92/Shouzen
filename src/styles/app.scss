@@ -331,41 +331,146 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 
 // navbar nav.tsx //
 
-.mainNavBar {
-  max-width: 100vw;
-  min-height: 8vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+.mainNavBar { 
   background-color: slateblue;
   list-style: none;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  white-space: nowrap;
 
-  .nav_links {
-    width: 40%;
+  .preResize {
     display: flex;
-    @include flex-center-spaceBetween;
-  }
+    align-items: center;
+    justify-content: space-around;
+    max-width: 100vw;
+    min-height: 8vh;
+
+    .nav_links {
+      width: 40%;
+      @include flex-center-spaceBetween;
+    }
   
-  .linkHolder {
-    text-decoration: none;
-    list-style: none;
-    color: white;
-    @include flex-center-spaceBetween;
-    white-space: nowrap;
-    margin-right: .5rem;
+    .linkHolder {
+      text-decoration: none;
+      list-style: none;
+      color: white;
+      @include flex-center-spaceBetween;
+      margin-right: .5rem;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+
+      &:hover {
+        border-bottom: 1px solid rgba(180, 61, 67, 0.8);
+      }
+  
+      li {
+        display: flex;
+        align-items: center;
+        width: auto;
+  
+        .preAnimationCartSpan {
+          @include flex-centered;
+        }
+  
+        .itemsInCartNumber{
+          @include flex-centered;
+          animation: scale 2s linear;
+        }
+      }
+  
+      .icon {
+        max-height: 2.5vh;
+        margin-right: .5rem;
+      }
+    }
+  
+    .navToggle {
+      display: none;
+      height: 30px;
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid transparent;
+      }
+    }
   }
 
-  .icon {
-    max-height: 2.5vh;
-    margin-right: .5rem;
+  .afterResize {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    max-width: 100vw;
+    min-height: 6vh;
+    
+    .nav_links {
+      width: 80vw;
+      display: flex;
+      align-content: center;
+      justify-content: space-around;
+      border-top: 1px solid rgba(180, 61, 67, 0.8);
+      padding-top: 15px;
+      padding-bottom: 15px;
+
+      .linkHolder {
+        text-decoration: none;
+        list-style: none;
+        color: white;
+        text-align: center;
+        padding-bottom: 2px;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+          border-bottom: 1px solid rgba(180, 61, 67, 0.8);
+        }
+    
+        li {
+          display: flex;
+          align-items: center;
+          width: auto;
+    
+          .preAnimationCartSpan {
+            @include flex-centered;
+          }
+    
+          .itemsInCartNumber{
+            @include flex-centered;
+            animation: scale 2s linear;
+          }
+        }
+    
+        .icon {
+          max-height: 2.5vh;
+          margin-right: .5rem;
+        }
+      }
+    }
   }
 }
 
 @media only screen and (max-width: 650px) {
   .mainNavBar {
+    display: grid;
+    justify-content: center;
 
-    .nav_links {
-      width: auto;
+    .preResize {
+      justify-content: space-between;
+      width: 80vw;
+
+      .navToggle{
+        display: block;
+      }
+      .nav_links {
+        display: none;
+      }
+    }
+
+    .navToggle {
+      margin-right: 10px;
+    }
+
+    .afterResize{
+      display: flex;
     }
 
     h3 {
@@ -603,5 +708,43 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 
   40%, 60% {
     transform: translateX(-4px);
+  }
+}
+
+@keyframes scale {
+  10% {
+    width: 10px;
+    transform: scale(1.1);
+    border-radius: 50%;
+    background-color: 10%;
+    border-radius: 50%;
+    background-color: rgb(180, 61, 67);
+    opacity: 0.8;
+  }
+  25% {
+    width: 15px;
+    transform: scale(1.2);
+    border-radius: 50%;
+    background-color: rgb(180, 61, 67);
+  }
+  50% {
+    width: 20px;
+    transform: scale(1.3);
+    border-radius: 50%;
+    background-color: rgb(180, 61, 67);
+    opacity: 1;
+  }
+  75% {
+    width: 15px;
+    transform: scale(1.1);
+    border-radius: 50%;
+    background-color: rgb(180, 61, 67);
+    opacity: 0.8;
+  }
+  100%{
+    width: 10px;
+    transform: scale(1);
+    border-radius: 50%;
+    opacity: 1;
   }
 }
