@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import menu from '../icons/menu.png'
 import {Link} from 'react-router-dom';
 import Links from './links'
@@ -11,6 +11,19 @@ const Nav = () => {
         event.preventDefault();
         setIsToggleOn(!isToggleOn);
     }
+
+    useLayoutEffect(() => {
+        window.addEventListener('resize', () => {
+            if(window.innerWidth >= 650){
+                setIsToggleOn(false)
+            }
+        });
+        return () => window.addEventListener('resize', () => {
+            if(window.innerWidth >= 650){
+                setIsToggleOn(false)
+            }
+        });
+    }, []);
 
     return (
         <nav className="mainNavBar">

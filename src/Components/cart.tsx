@@ -37,8 +37,6 @@ const Cart = (props: PropsFromStateForCart) => {
         event.preventDefault();
         const productName = product.name
         let amountToOrder = product.amountToOrder;
-        console.log(amountToOrder)
-        
         if(amountToOrder === 1) { 
             const confirm = window.confirm("Are you sure? It will remove product from the cart completely.")
             if(confirm) {
