@@ -29,6 +29,7 @@ const Nav = () => {
         <nav className="mainNavBar">
             <div className="preResize">
             <Link className="linkHolder" to={"/"} >
+                <i className="fas fa-shoe-prints foot-prints-icon"></i>
                 <h3>Shouzen</h3>
             </Link>
             <Links />

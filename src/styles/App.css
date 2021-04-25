@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 input[type=number] {
   -moz-appearance: textfield;
   -webkit-appearance: none;
@@ -638,6 +642,10 @@ input[type=checkbox] {
   border-bottom: 1px solid transparent;
 }
 
+.mainNavBar .preResize .linkHolder .foot-prints-icon {
+  margin-right: 5px;
+}
+
 .mainNavBar .preResize .linkHolder:hover {
   border-bottom: 1px solid rgba(180, 61, 67, 0.8);
 }
@@ -765,6 +773,7 @@ input[type=checkbox] {
   background: radial-gradient(ellipse at left bottom, #941d23 0%, rgba(38, 20, 72, 0.9) 59%, rgba(17, 27, 75, 0.9) 100%);
   min-height: 92vh;
   display: inline-block;
+  position: relative;
 }
 
 .cartSection .cartOuterContainer {
@@ -985,19 +994,21 @@ input[type=checkbox] {
   margin-bottom: 6vh;
   margin-left: 10vw;
   margin-right: 10vw;
+  transform: translateY(-100%);
 }
 
 .cartSection .userInfoTableOuterContainer .userInfoTableForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30vw;
+  max-width: 450px;
   min-height: 60vh;
   max-height: 90%;
-  margin-top: auto;
   color: white;
   margin-top: 20px;
   gap: 20px;
+  margin-right: 40px;
+  margin-left: 40px;
 }
 
 .cartSection .userInfoTableOuterContainer .userInfoTableForm input {
@@ -1009,11 +1020,19 @@ input[type=checkbox] {
 .cartSection .userInfoTableOuterContainer .userInfoTableForm h2 {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .cartSection .userInfoTableOuterContainer .userInfoTableForm button {
   height: 35px;
   background-color: orange;
+  margin-bottom: 30px;
+  cursor: pointer;
+  outline: none;
+}
+
+.cartSection .userInfoTableOuterContainer .userInfoTableForm button:hover {
+  text-decoration: underline;
 }
 
 .cartSection .userInfoTableOuterContainer .userInfoTableForm .postAndTownInputsContainer {
@@ -1026,12 +1045,63 @@ input[type=checkbox] {
   border: none;
 }
 
-.cartSection .userInfoTableOuterContainer .userInfoTableForm .postAndTownInputsContainer .postCode {
-  margin-right: 2px;
+.cartSection .paymentOuterContainer {
+  width: 80vw;
+  min-height: 80vh;
+  background: radial-gradient(ellipse at left bottom, #941d23 0%, rgba(38, 20, 72, 0.9) 59%, rgba(17, 27, 75, 0.9) 100%);
+  box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-top: 6vh;
+  margin-bottom: 6vh;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  transform: translateY(-100%);
 }
 
-.cartSection .userInfoTableOuterContainer .userInfoTableForm .postAndTownInputsContainer .town {
-  margin-left: 2px;
+.cartSection .paymentOuterContainer .paymentInnerContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  min-height: 60vh;
+  max-height: 90%;
+  color: white;
+  margin-top: 20px;
+  gap: 20px;
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer h2 {
+  text-align: center;
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer label {
+  margin-left: 20px;
+}
+
+.cartSection .modal {
+  position: fixed;
+  height: 100%;
+  width: 100vw;
+  top: 0px;
+  left: 0px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartSection .modal .innerModalContainer {
+  margin-top: 8vh;
+  width: 80vw;
+  height: 80vh;
+  border-radius: 10px;
+  background-color: white;
 }
 
 @media only screen and (max-width: 335px) {

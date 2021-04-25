@@ -47,3 +47,18 @@ export interface PropsPassedToLogin {
     passwordError: string;
 }
 
+export interface UserInfo {
+    name: string,
+    surname: string,
+    address: string,
+    postCode: string,
+    town: string,
+    country: string,
+    telephone: string
+}
+
+export interface UserInfoAction {
+    type: string,
+    payload: UserInfo
+}
+

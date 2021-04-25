@@ -7,13 +7,55 @@ import plusIcon from '../icons/plus.png';
 import minusIcon from '../icons/minus.png';
 import {RootState} from '../store/store';
 import UserInfoTable from './userInfoTable';
+import Payment from './payment';
+import Modal from './modal';
 
 const Cart = (props: PropsFromStateForCart) => {
 
     const [total, setTotal] = useState(0)
+    const [showUserInfoTable, setShowUserInfoTable] = useState(false);
+    const [showPaymentForm, setShowPaymentForm] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-    const handleSubmit = (event: MouseEvent) => {
+    const closeNExtSteps = () => {
+        setShowUserInfoTable(false)
+        setShowPaymentForm(false)
+        setShowModal(false)
+    }
+
+    // open UserInfoTable on state change
+    useEffect(() => {
+        if(showUserInfoTable){
+            const continueBtn = document.querySelector('.continueBtn') as HTMLButtonElement;
+            const userInfoTable = document.getElementById('userInfoTable') as HTMLDivElement;
+            userInfoTable.style['transform'] = 'translateY(0)'
+            userInfoTable.style['transition'] = 'transform 800ms'
+            window.scrollBy(0, userInfoTable.scrollHeight);
+            continueBtn.style['display'] = 'none';
+        }      
+    }, [showUserInfoTable])
+
+    // open Payment on state change
+    useEffect(() => {
+        if(showPaymentForm){
+            const userInfoTableSubmitBtn = document.querySelector('.userInfoTableSubmitBtn') as HTMLButtonElement;
+            const paymentOuterContainer = document.querySelector('.paymentOuterContainer') as HTMLDivElement;
+            window.scrollBy(0, paymentOuterContainer.scrollHeight);
+            userInfoTableSubmitBtn.style['display'] = 'none';
+            paymentOuterContainer.style['transform'] = 'translateY(0)'
+            paymentOuterContainer.style['transition'] = 'transform 800ms'
+        }      
+    }, [showPaymentForm])
+
+    useEffect(() => {
+        if(props.listOfProductsInCart.length < 1){
+            closeNExtSteps();
+        }
+    }, [props])
+
+    const openUserInfoTable = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+        setShowUserInfoTable(!showUserInfoTable);      
     }
 
     const removeProductFromCart = (product: Products) => {
@@ -68,6 +110,7 @@ const Cart = (props: PropsFromStateForCart) => {
         const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
         const allProductsInput= document.getElementById('allProducts') as HTMLInputElement;
         const onlyCheckedInput= document.getElementById('onlyChecked') as HTMLInputElement;
+        const continueBtn = document.querySelector('.continueBtn') as HTMLButtonElement;
         const checkedProductsNodeList = Object.values(checkboxList).filter(e => e.checked === true)
 
         if(checkedProductsNodeList.length === props.listOfProductsInCart.length){
@@ -87,6 +130,13 @@ const Cart = (props: PropsFromStateForCart) => {
         let totalValue = 0;
         checkedProducts.forEach(e => totalValue = totalValue + (e.amountToOrder * e.price))
         setTotal(totalValue)
+
+        if(checkedProductsNodeList.length < 1){
+            closeNExtSteps();
+            continueBtn.style['display'] = 'none';
+        } else {
+            continueBtn.style['display'] = '';
+        }
     }
 
     const handleRemoveBtn = (
@@ -117,7 +167,7 @@ const Cart = (props: PropsFromStateForCart) => {
         // set total value of order
         let totalValue = 0;
         handleOnlyCheckedRadioBtn().forEach(e => totalValue = totalValue + (e.amountToOrder * e.price))
-        setTotal(totalValue)
+        setTotal(totalValue);
     }, [handleOnlyCheckedRadioBtn])
      
     return (
@@ -173,12 +223,21 @@ const Cart = (props: PropsFromStateForCart) => {
                     {props.listOfProductsInCart.length > 0
                     ? <div className="proceedToPayment">
                         <div>Total: {total}$</div>
-                        <button onClick={() => handleSubmit}>Go to payment</button>
+                        <button className="continueBtn" 
+                        onClick={(event: React.MouseEvent<HTMLButtonElement>) => openUserInfoTable(event)}>Continue</button>
                         </div>
                     : null}
                 </form>
             </div>
-            <UserInfoTable />
+            {showUserInfoTable
+            ? <UserInfoTable setShowPaymentForm={setShowPaymentForm}/>
+            : null}
+            {showPaymentForm
+            ? <Payment setShowModal={setShowModal} showModal={showModal} />
+            : null}
+            {showModal
+            ? <Modal setShowModal={setShowModal} showModal={showModal} />
+            : null}
         </section>
      )
 }

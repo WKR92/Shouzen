@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import {Products, ProductActionInterface} from './interfaces'
+import {Products, ProductActionInterface, UserInfo, UserInfoAction} from './interfaces'
 
 export const cartReducer = (state: any = [], action: any) => {
     switch(action.type) {
@@ -24,22 +24,19 @@ export const cartReducer = (state: any = [], action: any) => {
       case actionTypes.UPDATE_CART_UNITS:
         const productToChange = state.filter((elem: any) => elem.name === action.payload.productName)
         productToChange[0].amountToOrder = action.payload.amountToOrder
-        return [
-          ...state
-        ]
+        return [...state]
       default:
         return state;
     }
 };
 
-export const userReducer = (state: any = [], action: any) => {
+export const userReducer = (state: UserInfo[] = [], action: UserInfoAction) => {
   switch(action.type) {
-    case actionTypes.ADD_USER:
-      return [
-        ...state,
-        Object.assign({}, action.payload)
-      ]
+    case actionTypes.MANAGE_USER_INFO:
+      state = [action.payload]
+      console.log(state)
+      return [...state]
     default:
       return state;
-  } 
+  }
 };
