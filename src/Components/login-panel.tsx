@@ -138,10 +138,10 @@ function LoginPanel(props: any) {
         </div>
     );
 }
-const mapDispatchToProps = (dispatch: Function) => {
-    return {
-        getUser: (user: object) => dispatch(userActions.addUserToStore(user))
-    }
-}; 
+// const mapDispatchToProps = (dispatch: Function) => {
+//     return {
+//         getUser: (user: object) => dispatch(userActions.addUserToStore(user))
+//     }
+// }; 
 
-export default connect(null, mapDispatchToProps)(LoginPanel);
+export default connect(null, null)(LoginPanel);

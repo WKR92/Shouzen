@@ -8,7 +8,7 @@ export const addProductToCart = (product: Products) => {
   }
 };
 
-export const removeProductFormCart = (product: Products) => {
+export const removeProductFromCart = (product: Products) => {
   return {
     type: actionTypes.REMOVE_PRODUCT_FROM_CART,
     payload: product

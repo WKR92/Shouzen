@@ -8,7 +8,7 @@ import minusIcon from '../icons/minus.png';
 import {RootState} from '../store/store';
 import UserInfoTable from './userInfoTable';
 import Payment from './payment';
-import Modal from './modal';
+import ThankYouModal from './thankYouModal';
 
 const Cart = (props: PropsFromStateForCart) => {
 
@@ -17,7 +17,7 @@ const Cart = (props: PropsFromStateForCart) => {
     const [showPaymentForm, setShowPaymentForm] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
-    const closeNExtSteps = () => {
+    const closeNextSteps = () => {
         setShowUserInfoTable(false)
         setShowPaymentForm(false)
         setShowModal(false)
@@ -29,8 +29,9 @@ const Cart = (props: PropsFromStateForCart) => {
             const continueBtn = document.querySelector('.continueBtn') as HTMLButtonElement;
             const userInfoTable = document.getElementById('userInfoTable') as HTMLDivElement;
             userInfoTable.style['transform'] = 'translateY(0)'
-            userInfoTable.style['transition'] = 'transform 800ms'
-            window.scrollBy(0, userInfoTable.scrollHeight);
+            userInfoTable.style['opacity'] = '1'
+            userInfoTable.style['transition'] = 'all 800ms'
+            window.scrollBy(0, (userInfoTable.scrollHeight + 50));
             continueBtn.style['display'] = 'none';
         }      
     }, [showUserInfoTable])
@@ -40,22 +41,31 @@ const Cart = (props: PropsFromStateForCart) => {
         if(showPaymentForm){
             const userInfoTableSubmitBtn = document.querySelector('.userInfoTableSubmitBtn') as HTMLButtonElement;
             const paymentOuterContainer = document.querySelector('.paymentOuterContainer') as HTMLDivElement;
-            window.scrollBy(0, paymentOuterContainer.scrollHeight);
+            window.scrollBy(0, (paymentOuterContainer.scrollHeight + 50));
             userInfoTableSubmitBtn.style['display'] = 'none';
             paymentOuterContainer.style['transform'] = 'translateY(0)'
-            paymentOuterContainer.style['transition'] = 'transform 800ms'
+            paymentOuterContainer.style['opacity'] = '1'
+            paymentOuterContainer.style['transition'] = 'all 800ms'
         }      
     }, [showPaymentForm])
 
     useEffect(() => {
         if(props.listOfProductsInCart.length < 1){
-            closeNExtSteps();
+            closeNextSteps();
         }
     }, [props])
 
     const openUserInfoTable = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        setShowUserInfoTable(!showUserInfoTable);      
+        setShowUserInfoTable(!showUserInfoTable);
+        const removeItemsBox = document.querySelector('.removeItemsBox') as HTMLDivElement;
+        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
+        const removeProductBtnHolderList = document.querySelectorAll('.removeProductBtnHolder') as NodeListOf<HTMLDivElement>;
+        const amountToOderHolderList = document.querySelectorAll('.amountToOderHolder') as NodeListOf<HTMLDivElement>;
+        removeItemsBox.style['display'] = 'none';
+        checkboxList.forEach(e => e.disabled = true)
+        removeProductBtnHolderList.forEach(e => e.style['display'] = 'none')
+        amountToOderHolderList.forEach(e => e.style['display'] = 'none')
     }
 
     const removeProductFromCart = (product: Products) => {
@@ -132,7 +142,7 @@ const Cart = (props: PropsFromStateForCart) => {
         setTotal(totalValue)
 
         if(checkedProductsNodeList.length < 1){
-            closeNExtSteps();
+                closeNextSteps();            
             continueBtn.style['display'] = 'none';
         } else {
             continueBtn.style['display'] = '';
@@ -206,12 +216,12 @@ const Cart = (props: PropsFromStateForCart) => {
                                 <p>{elem.price}$</p>
                             </div>
                             <div className="amountToOderHolder">
+                                <img alt="minus_icon" src={minusIcon} 
+                                onClick={(event: React.MouseEvent<HTMLImageElement>) => decrementOrder(event, elem)}/>
+                                <div className="amountToOder">{elem.amountToOrder}</div>
                                 <img className="plusIcon" alt="plus_icon" src={plusIcon} 
                                 onClick={(event: React.MouseEvent<HTMLImageElement>) => incrementOrder(event, elem)}/>
                                 <div className="loader"></div>
-                                <div className="amountToOder">{elem.amountToOrder}</div>
-                                <img alt="minus_icon" src={minusIcon} 
-                                onClick={(event: React.MouseEvent<HTMLImageElement>) => decrementOrder(event, elem)}/>
                             </div>
                         </div>
                         <div className="removeProductBtnHolder" id="removeProductBtnHolder">
@@ -230,13 +240,13 @@ const Cart = (props: PropsFromStateForCart) => {
                 </form>
             </div>
             {showUserInfoTable
-            ? <UserInfoTable setShowPaymentForm={setShowPaymentForm}/>
+            ? <UserInfoTable setShowPaymentForm={setShowPaymentForm} setShowUserInfoTable={setShowUserInfoTable} />
             : null}
             {showPaymentForm
-            ? <Payment setShowModal={setShowModal} showModal={showModal} />
+            ? <Payment setShowModal={setShowModal} total={total} setShowPaymentForm={setShowPaymentForm} />
             : null}
             {showModal
-            ? <Modal setShowModal={setShowModal} showModal={showModal} />
+            ? <ThankYouModal setShowModal={setShowModal} />
             : null}
         </section>
      )
@@ -250,7 +260,7 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
     return {
-        removeProduct: (product: Products) => dispatch(productAction.removeProductFormCart(product)),
+        removeProduct: (product: Products) => dispatch(productAction.removeProductFromCart(product)),
         changeAmountToOrder: (productUnits: ChangeUnitsInStoreInterface) => dispatch(productAction.updateCartUnits(productUnits))
     }
 };

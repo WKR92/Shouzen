@@ -5,9 +5,9 @@ import logInIcon from '../icons/log-in.png';
 import infoIcon from '../icons/information-button.png';
 import { connect } from 'react-redux';
 import {RootState} from '../store/store'
-import {PropsFromStateForLinks} from '../store/interfaces';
+import {PropsForLinks} from '../store/interfaces';
 
-const Links = (props: PropsFromStateForLinks) => {
+const Links = (props: PropsForLinks) => {
     let amountOfProductsInCart = 0
     props.listOfProductsInCart?.forEach(e => amountOfProductsInCart = amountOfProductsInCart + e.amountToOrder)
     

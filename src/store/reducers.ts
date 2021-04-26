@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import {Products, ProductActionInterface, UserInfo, UserInfoAction} from './interfaces'
+import {Products, ProductActionInterface, UserInfo, UserInfoAction, Order, OrderAction} from './interfaces'
 
 export const cartReducer = (state: any = [], action: any) => {
     switch(action.type) {
@@ -34,9 +34,21 @@ export const userReducer = (state: UserInfo[] = [], action: UserInfoAction) => {
   switch(action.type) {
     case actionTypes.MANAGE_USER_INFO:
       state = [action.payload]
-      console.log(state)
       return [...state]
     default:
       return state;
   }
 };
+
+
+export const orderReducer = (state: Order[] = [], action: OrderAction) => {
+  switch(action.type) {
+    case actionTypes.SET_ORDER:
+      return [
+        ...state,
+        Object.assign({}, action.payload)
+      ]
+    default:
+      return state;
+  }
+}

@@ -20,7 +20,7 @@ export interface PropsFromStateForCart {
     changeAmountToOrder: Function
 }
 
-export interface PropsFromStateForLinks {
+export interface PropsForLinks {
     listOfProductsInCart?: Products[],
 }
 
@@ -60,5 +60,33 @@ export interface UserInfo {
 export interface UserInfoAction {
     type: string,
     payload: UserInfo
+}
+
+export interface PaymentProps {
+    setShowModal: Function,
+    total: number,
+    listOfProductsInCart: Products[],
+    userInfo: UserInfo[],
+    setOrder: Function,
+    setShowPaymentForm: Function
+}
+
+export interface Order {
+    id: string,
+    whatIsOrdered: [string, number][],
+    whoIsOrdering: UserInfo,
+    costOfOrder:  number
+}
+
+export interface OrderAction {
+    type: string,
+    payload: Order
+}
+
+export interface UserInfoTableProps {
+    setShowPaymentForm: Function,
+    userInfo: any,
+    getUserInfo: Function,
+    setShowUserInfoTable: Function
 }
 
