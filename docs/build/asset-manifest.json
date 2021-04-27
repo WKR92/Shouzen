@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Shouzen/static/css/main.feed7280.chunk.css",
-    "main.js": "/Shouzen/static/js/main.5cb8ecf1.chunk.js",
-    "main.js.map": "/Shouzen/static/js/main.5cb8ecf1.chunk.js.map",
+    "main.css": "/Shouzen/static/css/main.1a65d183.chunk.css",
+    "main.js": "/Shouzen/static/js/main.d33ec2b0.chunk.js",
+    "main.js.map": "/Shouzen/static/js/main.d33ec2b0.chunk.js.map",
     "runtime-main.js": "/Shouzen/static/js/runtime-main.fd403f63.js",
     "runtime-main.js.map": "/Shouzen/static/js/runtime-main.fd403f63.js.map",
     "static/js/2.a9aaa2b2.chunk.js": "/Shouzen/static/js/2.a9aaa2b2.chunk.js",
     "static/js/2.a9aaa2b2.chunk.js.map": "/Shouzen/static/js/2.a9aaa2b2.chunk.js.map",
     "index.html": "/Shouzen/index.html",
-    "static/css/main.feed7280.chunk.css.map": "/Shouzen/static/css/main.feed7280.chunk.css.map",
+    "static/css/main.1a65d183.chunk.css.map": "/Shouzen/static/css/main.1a65d183.chunk.css.map",
     "static/js/2.a9aaa2b2.chunk.js.LICENSE.txt": "/Shouzen/static/js/2.a9aaa2b2.chunk.js.LICENSE.txt",
     "static/media/black_nike.f03e5f7b.png": "/Shouzen/static/media/black_nike.f03e5f7b.png",
     "static/media/blueNike.b777c3a0.png": "/Shouzen/static/media/blueNike.b777c3a0.png",
@@ -20,7 +20,7 @@
   "entrypoints": [
     "static/js/runtime-main.fd403f63.js",
     "static/js/2.a9aaa2b2.chunk.js",
-    "static/css/main.feed7280.chunk.css",
-    "static/js/main.5cb8ecf1.chunk.js"
+    "static/css/main.1a65d183.chunk.css",
+    "static/js/main.d33ec2b0.chunk.js"
   ]
 }

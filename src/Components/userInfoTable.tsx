@@ -57,7 +57,8 @@ const UserInfoTable = (props: UserInfoTableProps) => {
         }, 800);
     }
 
-    const goBackToCart = () => {
+    const goBackToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
         const continueBtn = document.querySelector('.continueBtn') as HTMLButtonElement;
         const userInfoTable = document.getElementById('userInfoTable') as HTMLDivElement;
         const removeItemsBox = document.querySelector('.removeItemsBox') as HTMLDivElement;
@@ -72,7 +73,7 @@ const UserInfoTable = (props: UserInfoTableProps) => {
         userInfoTable.style['opacity'] = '0'
         userInfoTable.style['transition'] = 'all 800ms'
         continueBtn.style['display'] = '';
-        window.scrollBy(0, -(userInfoTable.scrollHeight + 100));
+        window.scrollBy(0, -(userInfoTable.scrollHeight + 50));
         setTimeout(() => {
             props.setShowUserInfoTable(false);
         }, 800) 
@@ -80,7 +81,7 @@ const UserInfoTable = (props: UserInfoTableProps) => {
 
     return(
         <div id="userInfoTable" className="userInfoTableOuterContainer">
-            <button onClick={goBackToCart} className="goBackToCartBtn">Go back to cart</button>
+            
             <form onSubmit={handleSubmit} className="userInfoTableForm"> 
                 <h2>Where and to whom should we deliver the shoes?</h2>
                 <input type="text" minLength={3} className="name" placeholder="name" required />
@@ -94,7 +95,14 @@ const UserInfoTable = (props: UserInfoTableProps) => {
                 <input type="text" minLength={3} className="country" placeholder="country" required />
                 <input type="tel" minLength={3} className="telephone" placeholder="telephone in format xxx-xxx-xxx" 
                 pattern="\d{3}-\d{3}-\d{3}" required />
-                <button type="submit" className="userInfoTableSubmitBtn">Go to payment</button>
+                <div className="btnsContainer">
+                    <button type="button" onClick={(event: React.MouseEvent<HTMLButtonElement>) => goBackToCart(event)} 
+                    className="goBackToCartBtn">
+                        Change cart
+                    </button>
+                    <button type="submit" className="userInfoTableSubmitBtn">Go to payment</button>
+                </div>
+                
             </form>
         </div>
     )

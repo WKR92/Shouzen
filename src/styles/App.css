@@ -1027,12 +1027,6 @@ input[type=checkbox] {
   position: relative;
 }
 
-.cartSection .userInfoTableOuterContainer .goBackToCartBtn {
-  position: absolute;
-  top: 25%;
-  right: 20%;
-}
-
 .cartSection .userInfoTableOuterContainer .userInfoTableForm {
   display: flex;
   flex-direction: column;
@@ -1065,7 +1059,20 @@ input[type=checkbox] {
   margin-top: 20px;
 }
 
-.cartSection .userInfoTableOuterContainer .userInfoTableForm button {
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .btnsContainer {
+  display: flex;
+}
+
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .btnsContainer .goBackToCartBtn {
+  width: 30%;
+  color: rgba(180, 61, 67, 0.8);
+}
+
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .btnsContainer .userInfoTableSubmitBtn {
+  width: 70%;
+}
+
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .btnsContainer button {
   height: 35px;
   background-color: orange;
   margin-bottom: 30px;
@@ -1073,7 +1080,7 @@ input[type=checkbox] {
   outline: none;
 }
 
-.cartSection .userInfoTableOuterContainer .userInfoTableForm button:hover {
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .btnsContainer button:hover {
   text-decoration: underline;
 }
 
@@ -1113,6 +1120,32 @@ input[type=checkbox] {
   margin-left: 40px;
 }
 
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer {
+  display: flex;
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer .goBackToCartBtn {
+  width: 30%;
+  color: rgba(180, 61, 67, 0.8);
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer .finalizeOrderBtn {
+  width: 70%;
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer button {
+  height: 35px;
+  background-color: orange;
+  margin-bottom: 30px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 20px;
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer button:hover {
+  text-decoration: underline;
+}
+
 .cartSection .paymentOuterContainer .paymentInnerContainer h2 {
   text-align: center;
 }
@@ -1124,20 +1157,6 @@ input[type=checkbox] {
 
 .cartSection .paymentOuterContainer .paymentInnerContainer label .inLabelSpan {
   color: rgba(180, 61, 67, 0.8);
-}
-
-.cartSection .paymentOuterContainer .paymentInnerContainer .finalizeOrderBtn {
-  height: 35px;
-  background-color: orange;
-  margin-bottom: 30px;
-  cursor: pointer;
-  outline: none;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.cartSection .paymentOuterContainer .paymentInnerContainer .finalizeOrderBtn:hover {
-  text-decoration: underline;
 }
 
 .cartSection .modal {
@@ -1198,8 +1217,8 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: #53204b;
-  max-height: 30vh;
-  gap: 10px;
+  max-height: 12vh;
+  gap: 20px;
 }
 
 footer .logoHolder {
@@ -1207,11 +1226,11 @@ footer .logoHolder {
   justify-content: center;
   align-items: center;
   height: 6vh;
-  margin-left: 22px;
 }
 
 footer .logoHolder h4 {
   color: white;
+  margin-right: 10px;
 }
 
 footer .logoHolder i {
@@ -1219,16 +1238,18 @@ footer .logoHolder i {
 }
 
 footer .contact {
-  align-items: center;
   color: white;
 }
 
 @media only screen and (max-width: 650px) {
   footer {
     flex-direction: column;
+    gap: 0px;
   }
   footer .logoHolder {
-    margin-top: 15px;
+    margin-top: 10px;
+    text-align: center;
+    margin-bottom: 5px;
   }
   footer .contact {
     margin-bottom: 15px;

@@ -40,8 +40,8 @@ const Boots = (props: PropsFromStateForBoots) => {
                 </div>
             </div>
             {/* to check state from localStore */}
-            <button style={{height: 60, width: 60}} onClick={() => console.log(store.getState())}> show state</button>
-            <button style={{height: 60, width: 60}} onClick={() => localStorage.clear()}>clear local storage</button>
+            {/* <button style={{height: 60, width: 60}} onClick={() => console.log(store.getState())}> show state</button>
+            <button style={{height: 60, width: 60}} onClick={() => localStorage.clear()}>clear local storage</button> */}
         </div>)})
         : null}
         </>  

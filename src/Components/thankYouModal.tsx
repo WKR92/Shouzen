@@ -22,7 +22,11 @@ const ThankYouModal = (props: PaymentProps) => {
     const handleEndOfOrder = () => {
         props.listOfProductsInCart!.forEach(e => props.removeProduct(e));
         history.push("/");
-        window.scrollTo(0, 0);
+        window.scroll({
+            top: 0, 
+            left: 0, 
+            behavior: 'auto'
+          });
         props.setShowModal(false);
     }
 

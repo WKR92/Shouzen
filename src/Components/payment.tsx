@@ -29,14 +29,15 @@ const Payment = (props: PaymentProps) => {
         props.setOrder(order);
     }
 
-    const goBackToUserTable = () => {
+    const goBackToUserTable = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
         const userInfoTableSubmitBtn = document.querySelector('.userInfoTableSubmitBtn') as HTMLButtonElement;
         const paymentOuterContainer = document.querySelector('.paymentOuterContainer') as HTMLDivElement;
         const goBackToCartBtn = document.querySelector('.goBackToCartBtn') as HTMLButtonElement;
         const inputList = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
         inputList.forEach(e => e.disabled = false)
         goBackToCartBtn.style['display'] = "";
-        window.scrollBy(0, -(paymentOuterContainer.scrollHeight + 100));
+        window.scrollBy(0, -(paymentOuterContainer.scrollHeight + 50));
         userInfoTableSubmitBtn.style['display'] = '';
         paymentOuterContainer.style['transform'] = 'translateY(-100%)'
         paymentOuterContainer.style['opacity'] = '0'
@@ -49,18 +50,24 @@ const Payment = (props: PaymentProps) => {
     return (
         <div className="paymentOuterContainer">
             <div className="paymentInnerContainer">
-                <button onClick={goBackToUserTable} className="goBackToCartBtn">Change provided information</button>
                 <h2>Please choose the form of payment you prefer:</h2>
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <input defaultChecked type="radio" id="cash" />
                     <label htmlFor="cash">Cash to courier 
                         <span className="inLabelSpan"> (this is the only available option for now)</span>
                     </label>
-                    <button 
-                        type="submit" 
-                        className="finalizeOrderBtn">
-                        Finalize order
-                    </button>
+                    <div className="btnsContainer">
+                        <button 
+                            onClick={(event: React.MouseEvent<HTMLButtonElement>) => goBackToUserTable(event)} 
+                            className="goBackToCartBtn">
+                                Change address
+                        </button>
+                        <button 
+                            type="submit" 
+                            className="finalizeOrderBtn">
+                            Finalize order
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

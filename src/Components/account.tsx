@@ -37,7 +37,7 @@ const Account = (props: PropsPassedToAccount) => {
             <main>
                 <button className="resetPasswordBtn" onClick={sendResetPasswordEmail}>Reset password</button>
                 <button className="deleteAccountBtn" onClick={deleteAccount}>Delete account</button>
-                <button onClick={doPost}>doPost</button>
+                <button onClick={doPost}>post to database</button>
             </main>
         </section>
     )

@@ -41,6 +41,8 @@ $auroraLayout: radial-gradient(
   rgba(255, 255, 255, 1) 100%
 );
 
+$differentRed: rgba(180, 61, 67, 0.8);
+
 $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 
 @mixin flex-centered {
@@ -769,11 +771,11 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
     transform: translateY(-100%);
     position: relative;
 
-    .goBackToCartBtn {
-      position: absolute;
-      top: 25%;
-      right: 20%;
-    }
+    // .goBackToCartBtn {
+    //   position: absolute;
+    //   top: 25%;
+    //   right: 20%;
+    // }
 
     .userInfoTableForm {
       display: flex;
@@ -806,15 +808,27 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
         margin-top: 20px;
       }
 
-      button {
-        height: 35px;
-        background-color: orange;
-        margin-bottom: 30px;
-        cursor: pointer;
-        outline: none;
+      .btnsContainer{
+        display: flex;
 
-        &:hover {
-          text-decoration: underline;
+        .goBackToCartBtn {
+          width: 30%;
+          color: $differentRed;
+        }
+        .userInfoTableSubmitBtn {
+          width: 70%;
+        }
+
+        button {
+          height: 35px;
+          background-color: orange;
+          margin-bottom: 30px;
+          cursor: pointer;
+          outline: none;
+  
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
 
@@ -855,6 +869,32 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
       margin-right: 40px;
       margin-left: 40px;
 
+      .btnsContainer{
+        display: flex;
+
+        .goBackToCartBtn {
+          width: 30%;
+          color: $differentRed;
+        }
+
+        .finalizeOrderBtn {
+          width: 70%;
+        }
+
+        button {
+          height: 35px;
+          background-color: orange;
+          margin-bottom: 30px;
+          cursor: pointer;
+          outline: none;
+          margin-top: 20px;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
       h2 {
         text-align: center;
       }
@@ -865,20 +905,6 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 
         .inLabelSpan {
           color: rgba(180, 61, 67, 0.8);
-        }
-      }
-
-      .finalizeOrderBtn {
-        height: 35px;
-        background-color: orange;
-        margin-bottom: 30px;
-        cursor: pointer;
-        outline: none;
-        width: 100%;
-        margin-top: 20px;
-
-        &:hover {
-          text-decoration: underline;
         }
       }
     }
@@ -941,16 +967,16 @@ $primaryShadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 footer {
   @include flex-centered;
   background-color: rgb(83, 32, 75);
-  max-height: 30vh;
-  gap: 10px;
+  max-height: 12vh;
+  gap: 20px;
 
   .logoHolder {
     @include flex-centered;
     height: 6vh;
-    margin-left: 22px;
 
     h4 {
       color: white;
+      margin-right: 10px;
     }
   
     i {
@@ -959,7 +985,6 @@ footer {
   }
 
   .contact {
-    align-items: center;
     color: white;
   }
 }
@@ -967,9 +992,12 @@ footer {
 @media only screen and (max-width: 650px) {
   footer{
     flex-direction: column;
+    gap: 0px;
 
     .logoHolder {
-      margin-top: 15px;
+      margin-top: 10px;
+      text-align: center;
+      margin-bottom: 5px;
     }
 
     .contact {
