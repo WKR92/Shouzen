@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import {RootState} from '../store/store';
 import * as orderAction from '../store/orderActions';
-import {Products, UserInfo, PaymentProps, Order} from '../store/interfaces'
+import {PaymentProps, Order} from '../store/interfaces'
 
 const Payment = (props: PaymentProps) => {
 
@@ -35,13 +35,17 @@ const Payment = (props: PaymentProps) => {
         const paymentOuterContainer = document.querySelector('.paymentOuterContainer') as HTMLDivElement;
         const goBackToCartBtn = document.querySelector('.goBackToCartBtn') as HTMLButtonElement;
         const inputList = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+        const userInfoTable = document.getElementById('userInfoTable') as HTMLDivElement;
+        const startLineOfUserInfoTableBlock = userInfoTable.offsetTop;
         inputList.forEach(e => e.disabled = false)
         goBackToCartBtn.style['display'] = "";
-        window.scrollBy(0, -(paymentOuterContainer.scrollHeight + 50));
         userInfoTableSubmitBtn.style['display'] = '';
         paymentOuterContainer.style['transform'] = 'translateY(-100%)'
         paymentOuterContainer.style['opacity'] = '0'
         paymentOuterContainer.style['transition'] = 'all 800ms'
+
+        window.scrollTo(0, startLineOfUserInfoTableBlock - 20)
+        window.scrollTo()
         setTimeout(() => {
             props.setShowPaymentForm(false);
         }, 800) 

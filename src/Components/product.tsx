@@ -3,7 +3,7 @@ import products from './products';
 import { connect } from 'react-redux';
 import * as productAction from '../store/productsActions';
 import {Products, PropsFromStateForBoots} from '../store/interfaces'
-import {store} from '../store/store'
+// import {store} from '../store/store'
 
 const Boots = (props: PropsFromStateForBoots) => {
 
@@ -30,10 +30,15 @@ const Boots = (props: PropsFromStateForBoots) => {
                         <h2><span className="headlineSpan">{elem.name}.</span> {elem.headline}</h2>
                         <p>{elem.description}</p>
                         <p>price: {elem.price}$</p>
-                        <div className="btnAndLoaderContainer">{elem.callToAction} <button onClick={() => addProductToCart(elem)} className="cartBtn">Add</button> 
+                        <p>{elem.callToAction}</p>
+                        <div className="callToActionHolder">
+                            <button onClick={() => addProductToCart(elem)} className="cartBtn">
+                                <i className="fas fa-cart-arrow-down cartIcon"></i>
+                                Add to cart.
+                            </button>
                             <div className="loaderHolder">
                                 <button className="loader"></button>
-                            </div> to cart.
+                            </div>
                         </div>
                     </div>
                     <img src={elem.picture} alt="nike_shoes"/>

@@ -38,7 +38,7 @@ input[type=checkbox] {
   margin: auto;
   width: 100%;
   max-width: 520px;
-  min-height: 600px;
+  min-height: 65vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -176,7 +176,7 @@ input[type=checkbox] {
   transition: transform 2s;
 }
 
-.productBg .productContainer .Blue_Nikes__container p, .productBg .productContainer .Blue_Nikes__container .btnAndLoaderContainer {
+.productBg .productContainer .Blue_Nikes__container p, .productBg .productContainer .Blue_Nikes__container .callToActionHolder {
   transform: translateX(-100px);
   visibility: none;
   opacity: 0;
@@ -187,27 +187,42 @@ input[type=checkbox] {
   color: #4400ff;
 }
 
-.productBg .productContainer .Blue_Nikes__container .btnAndLoaderContainer .cartBtn {
+.productBg .productContainer .Blue_Nikes__container .callToActionHolder .cartBtn {
   cursor: pointer;
   font-weight: bold;
-  height: 30px;
-  width: 50px;
+  height: 40px;
+  width: 150px;
   outline: none;
   background: none;
   font-size: 16px;
   color: red;
+  border-radius: 30px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 
-.productBg .productContainer .Blue_Nikes__container .btnAndLoaderContainer .loaderHolder {
+.productBg .productContainer .Blue_Nikes__container .callToActionHolder .cartBtn .cartIcon {
+  color: black;
+  margin-right: 10px;
+}
+
+.productBg .productContainer .Blue_Nikes__container .callToActionHolder .cartBtn:hover {
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+.productBg .productContainer .Blue_Nikes__container .callToActionHolder .loaderHolder {
   display: none;
-  width: 50px;
-  height: 30px;
+  width: 150px;
+  height: 40px;
   text-align: center;
+  margin-top: 5px;
+  padding-top: 3px;
+  margin-bottom: 20px;
 }
 
-.productBg .productContainer .Blue_Nikes__container .btnAndLoaderContainer .loaderHolder .loader {
-  height: 25px;
-  width: 25px;
+.productBg .productContainer .Blue_Nikes__container .callToActionHolder .loaderHolder .loader {
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   border: 5px solid transparent;
   border-top: 5px solid #4400ff;
@@ -237,7 +252,7 @@ input[type=checkbox] {
   transition: transform 1s;
 }
 
-.productBg .productContainer .Blue_Nikes__container:hover p, .productBg .productContainer .Blue_Nikes__container:hover .btnAndLoaderContainer {
+.productBg .productContainer .Blue_Nikes__container:hover p, .productBg .productContainer .Blue_Nikes__container:hover .callToActionHolder {
   transform: translateX(0px);
   visibility: visible;
   opacity: 1;
@@ -287,7 +302,7 @@ input[type=checkbox] {
   transition: transform 2s;
 }
 
-.productBg .productContainer .Orange_Nikes__container p, .productBg .productContainer .Orange_Nikes__container .btnAndLoaderContainer {
+.productBg .productContainer .Orange_Nikes__container p, .productBg .productContainer .Orange_Nikes__container .callToActionHolder {
   transform: translateX(-100px);
   visibility: none;
   opacity: 0;
@@ -298,27 +313,42 @@ input[type=checkbox] {
   color: #ff8800;
 }
 
-.productBg .productContainer .Orange_Nikes__container .btnAndLoaderContainer .cartBtn {
+.productBg .productContainer .Orange_Nikes__container .callToActionHolder .cartBtn {
   cursor: pointer;
   font-weight: bold;
-  height: 30px;
-  width: 50px;
+  height: 40px;
+  width: 150px;
   outline: none;
   background: none;
   font-size: 16px;
   color: red;
+  border-radius: 30px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 
-.productBg .productContainer .Orange_Nikes__container .btnAndLoaderContainer .loaderHolder {
+.productBg .productContainer .Orange_Nikes__container .callToActionHolder .cartBtn .cartIcon {
+  color: black;
+  margin-right: 10px;
+}
+
+.productBg .productContainer .Orange_Nikes__container .callToActionHolder .cartBtn:hover {
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+.productBg .productContainer .Orange_Nikes__container .callToActionHolder .loaderHolder {
   display: none;
-  width: 50px;
-  height: 30px;
+  width: 150px;
+  height: 40px;
   text-align: center;
+  margin-top: 5px;
+  padding-top: 3px;
+  margin-bottom: 20px;
 }
 
-.productBg .productContainer .Orange_Nikes__container .btnAndLoaderContainer .loaderHolder .loader {
-  height: 25px;
-  width: 25px;
+.productBg .productContainer .Orange_Nikes__container .callToActionHolder .loaderHolder .loader {
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   border: 5px solid transparent;
   border-top: 5px solid #ff8800;
@@ -348,7 +378,7 @@ input[type=checkbox] {
   transition: transform 1s;
 }
 
-.productBg .productContainer .Orange_Nikes__container:hover p, .productBg .productContainer .Orange_Nikes__container:hover .btnAndLoaderContainer {
+.productBg .productContainer .Orange_Nikes__container:hover p, .productBg .productContainer .Orange_Nikes__container:hover .callToActionHolder {
   transform: translateX(0px);
   visibility: visible;
   opacity: 1;
@@ -398,7 +428,7 @@ input[type=checkbox] {
   transition: transform 2s;
 }
 
-.productBg .productContainer .Black_and_White_Nikes__container p, .productBg .productContainer .Black_and_White_Nikes__container .btnAndLoaderContainer {
+.productBg .productContainer .Black_and_White_Nikes__container p, .productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder {
   transform: translateX(-100px);
   visibility: none;
   opacity: 0;
@@ -409,27 +439,42 @@ input[type=checkbox] {
   color: white;
 }
 
-.productBg .productContainer .Black_and_White_Nikes__container .btnAndLoaderContainer .cartBtn {
+.productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder .cartBtn {
   cursor: pointer;
   font-weight: bold;
-  height: 30px;
-  width: 50px;
+  height: 40px;
+  width: 150px;
   outline: none;
   background: none;
   font-size: 16px;
   color: red;
+  border-radius: 30px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 
-.productBg .productContainer .Black_and_White_Nikes__container .btnAndLoaderContainer .loaderHolder {
+.productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder .cartBtn .cartIcon {
+  color: black;
+  margin-right: 10px;
+}
+
+.productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder .cartBtn:hover {
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+.productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder .loaderHolder {
   display: none;
-  width: 50px;
-  height: 30px;
+  width: 150px;
+  height: 40px;
   text-align: center;
+  margin-top: 5px;
+  padding-top: 3px;
+  margin-bottom: 20px;
 }
 
-.productBg .productContainer .Black_and_White_Nikes__container .btnAndLoaderContainer .loaderHolder .loader {
-  height: 25px;
-  width: 25px;
+.productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder .loaderHolder .loader {
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   border: 5px solid transparent;
   border-top: 5px solid white;
@@ -459,7 +504,7 @@ input[type=checkbox] {
   transition: transform 1s;
 }
 
-.productBg .productContainer .Black_and_White_Nikes__container:hover p, .productBg .productContainer .Black_and_White_Nikes__container:hover .btnAndLoaderContainer {
+.productBg .productContainer .Black_and_White_Nikes__container:hover p, .productBg .productContainer .Black_and_White_Nikes__container:hover .callToActionHolder {
   transform: translateX(0px);
   visibility: visible;
   opacity: 1;
@@ -509,7 +554,7 @@ input[type=checkbox] {
   transition: transform 2s;
 }
 
-.productBg .productContainer .Red_Nikes__container p, .productBg .productContainer .Red_Nikes__container .btnAndLoaderContainer {
+.productBg .productContainer .Red_Nikes__container p, .productBg .productContainer .Red_Nikes__container .callToActionHolder {
   transform: translateX(-100px);
   visibility: none;
   opacity: 0;
@@ -520,27 +565,42 @@ input[type=checkbox] {
   color: red;
 }
 
-.productBg .productContainer .Red_Nikes__container .btnAndLoaderContainer .cartBtn {
+.productBg .productContainer .Red_Nikes__container .callToActionHolder .cartBtn {
   cursor: pointer;
   font-weight: bold;
-  height: 30px;
-  width: 50px;
+  height: 40px;
+  width: 150px;
   outline: none;
   background: none;
   font-size: 16px;
   color: red;
+  border-radius: 30px;
+  margin-top: 5px;
+  margin-bottom: 20px;
 }
 
-.productBg .productContainer .Red_Nikes__container .btnAndLoaderContainer .loaderHolder {
+.productBg .productContainer .Red_Nikes__container .callToActionHolder .cartBtn .cartIcon {
+  color: black;
+  margin-right: 10px;
+}
+
+.productBg .productContainer .Red_Nikes__container .callToActionHolder .cartBtn:hover {
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+.productBg .productContainer .Red_Nikes__container .callToActionHolder .loaderHolder {
   display: none;
-  width: 50px;
-  height: 30px;
+  width: 150px;
+  height: 40px;
   text-align: center;
+  margin-top: 5px;
+  padding-top: 3px;
+  margin-bottom: 20px;
 }
 
-.productBg .productContainer .Red_Nikes__container .btnAndLoaderContainer .loaderHolder .loader {
-  height: 25px;
-  width: 25px;
+.productBg .productContainer .Red_Nikes__container .callToActionHolder .loaderHolder .loader {
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   border: 5px solid transparent;
   border-top: 5px solid red;
@@ -570,7 +630,7 @@ input[type=checkbox] {
   transition: transform 1s;
 }
 
-.productBg .productContainer .Red_Nikes__container:hover p, .productBg .productContainer .Red_Nikes__container:hover .btnAndLoaderContainer {
+.productBg .productContainer .Red_Nikes__container:hover p, .productBg .productContainer .Red_Nikes__container:hover .callToActionHolder {
   transform: translateX(0px);
   visibility: visible;
   opacity: 1;
@@ -638,7 +698,7 @@ input[type=checkbox] {
   align-items: center;
   justify-content: space-between;
   margin-right: .5rem;
-  padding-bottom: 2px;
+  padding-bottom: 5px;
   border-bottom: 1px solid transparent;
 }
 
@@ -708,7 +768,7 @@ input[type=checkbox] {
   list-style: none;
   color: white;
   text-align: center;
-  padding-bottom: 2px;
+  padding-bottom: 5px;
   border-bottom: 1px solid transparent;
 }
 
@@ -1053,6 +1113,24 @@ input[type=checkbox] {
   background-color: white;
 }
 
+.cartSection .userInfoTableOuterContainer .userInfoTableForm input:valid {
+  border: 2px solid green;
+}
+
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .telLabel {
+  display: none;
+  margin-top: -15px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .postCodeLabel {
+  display: none;
+  margin-top: 5px;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
 .cartSection .userInfoTableOuterContainer .userInfoTableForm h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -1084,9 +1162,23 @@ input[type=checkbox] {
   text-decoration: underline;
 }
 
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .postAndTownInputsContainer {
+  display: flex;
+}
+
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .postAndTownInputsContainer .postCodeHolder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .cartSection .userInfoTableOuterContainer .userInfoTableForm .postAndTownInputsContainer input {
-  width: 50%;
+  width: 100%;
   border: none;
+}
+
+.cartSection .userInfoTableOuterContainer .userInfoTableForm .postAndTownInputsContainer input:valid {
+  border: 2px solid green;
 }
 
 .cartSection .paymentOuterContainer {

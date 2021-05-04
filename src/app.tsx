@@ -3,7 +3,6 @@ import './styles/App.css';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import LoginPanel from './Components/login-panel';
 import Home from './Components/home';
-import Order from './Components/make-order';
 import Cart from './Components/cart'
 import Nav from'./Components/nav';
 import About from './Components/about';
@@ -16,7 +15,6 @@ function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/login" component={LoginPanel} />
-        <Route path="/make-order" component={Order} />
         <Route path="/cart" component={Cart} />
         <Route path="/about" component={About} />
       </Switch>

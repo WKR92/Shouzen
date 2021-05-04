@@ -1,0 +1,31 @@
+@import './style-components/colors-and-layouts/colors-and-layouts.scss';
+
+// account.tsx styles
+
+.accountSection {
+    width: 100%;
+    min-height: 100vh;
+    background: $primaryLayout;
+  
+    nav {
+      background: #603bbb;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  
+    h2 {
+      color: #fff;
+    }
+  
+    button {
+      width: 86px;
+      padding: 8px 0;
+      background: #3a2b58;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }

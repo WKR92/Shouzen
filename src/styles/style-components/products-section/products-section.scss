@@ -1,0 +1,62 @@
+@import './style-components/colors-and-layouts/colors-and-layouts.scss';
+
+// product - home.tsx
+
+.homeSection {
+  min-height: 92vh;
+  background: $primaryLayout;
+}
+
+.productBg{
+  height: 90vh;
+  width: 100%;
+  @include flex-centered;
+
+  .productContainer {
+    @include flex-centered;
+
+    .Blue_Nikes__container {
+      @include shoes("../photos/sky.jpg", "../photos/water.jpg", rgb(68, 0, 255), black);
+    }
+    @media only screen and (max-width: 1200px) {
+      .Blue_Nikes__container {
+        @include mediaQueryForProduct(rgb(68, 0, 255))
+      } 
+    }
+
+    .Orange_Nikes__container {
+      @include shoes("../photos/cityBg.jpg", "../photos/orangeCity.jpg", rgb(255, 136, 0), white);
+    }
+    @media only screen and (max-width: 1200px) {
+      .Orange_Nikes__container {
+        @include mediaQueryForProduct(rgb(255, 136, 0))
+      } 
+    }
+
+    .Black_and_White_Nikes__container {
+      @include shoes("../photos/cityCenter.jpg", "../photos/city.jpg", white, white);
+    }
+    @media only screen and (max-width: 1200px) {
+      .Black_and_White_Nikes__container {
+        @include mediaQueryForProduct(white)
+      } 
+    }
+
+    .Red_Nikes__container {
+      @include shoes("../photos/darkCity.jpg", "../photos/redConcert.jpg", red, white);
+    }
+    @media only screen and (max-width: 1200px) {
+      .Red_Nikes__container {
+        @include mediaQueryForProduct(rgb(255, 0, 0))
+      } 
+    }
+
+    @media only screen and (max-width: 500px) {
+      .Red_Nikes__container, .Black_and_White_Nikes__container, .Orange_Nikes__container, .Blue_Nikes__container {
+        .product__info {
+          width: 70vw;
+        }
+      } 
+    }
+  }
+}

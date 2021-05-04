@@ -28,24 +28,23 @@ const Cart = (props: PropsFromStateForCart) => {
         if(showUserInfoTable){
             const continueBtn = document.querySelector('.continueBtn') as HTMLButtonElement;
             const userInfoTable = document.getElementById('userInfoTable') as HTMLDivElement;
+            const userInfoTableTopLine = userInfoTable.offsetTop;
             userInfoTable.style['transform'] = 'translateY(0)'
             userInfoTable.style['opacity'] = '1'
             userInfoTable.style['transition'] = 'all 800ms'
-            window.scrollBy(0, (userInfoTable.scrollHeight + 50));
             continueBtn.style['display'] = 'none';
+            window.scrollTo({ top: userInfoTableTopLine - 20, behavior: 'smooth'});   
         }      
     }, [showUserInfoTable])
 
     // open Payment on state change
     useEffect(() => {
         if(showPaymentForm){
-            const userInfoTableSubmitBtn = document.querySelector('.userInfoTableSubmitBtn') as HTMLButtonElement;
-            const paymentOuterContainer = document.querySelector('.paymentOuterContainer') as HTMLDivElement;
-            window.scrollBy(0, (paymentOuterContainer.scrollHeight + 50));
-            userInfoTableSubmitBtn.style['display'] = 'none';
+            const paymentOuterContainer = document.querySelector('.paymentOuterContainer') as HTMLDivElement;    
             paymentOuterContainer.style['transform'] = 'translateY(0)'
             paymentOuterContainer.style['opacity'] = '1'
             paymentOuterContainer.style['transition'] = 'all 800ms'
+            window.scrollTo(0, document.body.scrollHeight);   
         }      
     }, [showPaymentForm])
 
@@ -132,7 +131,7 @@ const Cart = (props: PropsFromStateForCart) => {
         }
 
         const checkedProductsIds = checkedProductsNodeList.map(e => e.id);
-        const checkedProducts: any[] = [];
+        const checkedProducts: Products[] = [];
         
         for (let i of checkedProductsIds) {
             checkedProducts.push(props.listOfProductsInCart.filter(e => e.id === i)[0]);
@@ -165,7 +164,7 @@ const Cart = (props: PropsFromStateForCart) => {
         const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
         const checkedProductsNodeList = Object.values(checkboxList).filter(e => e.checked === true);
         const checkedProductsIds = checkedProductsNodeList.map(e => e.id);
-        const checkedProducts: any[] = [];
+        const checkedProducts: Products[] = [];
 
         for (let i of checkedProductsIds) {
             checkedProducts.push(props.listOfProductsInCart.filter(e => e.id === i)[0]);

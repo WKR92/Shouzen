@@ -1,0 +1,144 @@
+@mixin flex-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+@mixin flex-center-spaceBetween {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+  
+  // product mixin
+  
+@mixin shoes($firstBackgroundImg, $secondBackgroundImg, $headlineColor, $textColor){
+    position: relative;
+    padding: 60px;
+    width: 80vw;
+    height: 80vh;
+    background: url($firstBackgroundImg) no-repeat center fixed;
+    box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: $textColor;
+    line-height: 35px;
+    transition: background 1s ease-in;
+        
+    h2 {
+        transform: translateY(50px);
+        transition: transform 2s;
+    }
+
+    p, .callToActionHolder {
+        transform: translateX(-100px);
+        visibility: none;
+        opacity: 0;
+        transition: visibility 3s, opacity 1s, transform 1s;
+    }
+
+    .headlineSpan {
+        color: $headlineColor;
+    }
+
+    .callToActionHolder {
+
+        .cartBtn {
+        cursor: pointer;
+        font-weight: bold;
+        height: 40px;
+        width: 150px;
+        outline: none;
+        background: none;
+        font-size: 16px;
+        color: red;
+        border-radius: 30px;
+        margin-top: 5px;
+        margin-bottom: 20px;
+
+            .cartIcon {
+                color: black;
+                margin-right: 10px;
+            }
+
+            &:hover {
+                box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        .loaderHolder {
+        display: none;
+        width: 150px;
+        height: 40px;
+        text-align: center;
+        margin-top: 5px;
+        padding-top: 3px;
+        margin-bottom: 20px;
+
+        .loader {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top: 5px solid $headlineColor; 
+            border-bottom: 5px solid $headlineColor;
+            background-color: transparent;
+
+            animation-name: circle;
+            animation-duration: 1.5s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        }
+    }
+
+    img {
+        max-height: 100%;
+        margin-left: 5%;
+        transform: rotateX(13deg) rotateY(-20deg) rotateZ(10deg);
+        box-shadow: 50px 50px 70px -20px rgba(0, 0, 0, 0.8);
+        transition: transform 1s, box-shadow 1s;
+    }
+
+    &:hover {
+        background: url($secondBackgroundImg) no-repeat center fixed;
+        transition: background 1s ease-in;
+
+        h2 {
+        transform: translateY(0px);
+        transition: transform 1s;
+        }
+
+        p, .callToActionHolder {
+        transform: translateX(0px);
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 3s, opacity 3s, transform 2s;
+        }
+
+        img{
+        transform: rotateZ(-5deg);
+        box-shadow: none;
+        }
+    }
+}
+  
+@mixin mediaQueryForProduct($headlineColor) {
+    flex-direction: column;
+    line-height: 24px;
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
+    .headlineSpan {
+        color: $headlineColor;
+    }
+
+    img{
+        max-height: 60%;
+        margin-left: 0%;
+        max-width: 100%;
+    }
+}

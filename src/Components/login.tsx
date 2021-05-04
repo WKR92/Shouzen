@@ -1,4 +1,3 @@
-import React from 'react';
 import {PropsPassedToLogin} from '../store/interfaces'
 
 

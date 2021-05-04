@@ -2,11 +2,9 @@ import React, {useState, useEffect, useCallback } from 'react';
 import fire from '../fire';
 import Login from './login';
 import Account from './account';
-import { connect } from 'react-redux';
-import * as userActions from '../store/userActions';
 
 
-function LoginPanel(props: any) {
+function LoginPanel() {
     const [user, setUser] = useState({} as any);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -138,10 +136,4 @@ function LoginPanel(props: any) {
         </div>
     );
 }
-// const mapDispatchToProps = (dispatch: Function) => {
-//     return {
-//         getUser: (user: object) => dispatch(userActions.addUserToStore(user))
-//     }
-// }; 
-
-export default connect(null, null)(LoginPanel);
+export default LoginPanel;

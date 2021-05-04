@@ -1,0 +1,456 @@
+
+
+
+
+// cart section cart.tsx
+
+  .cartSection {
+    background: $primaryLayout;
+    min-height: 92vh;
+    // @include flex-centered;
+    display: inline-block;
+    position: relative;
+  
+    .cartOuterContainer {
+      width: 80vw; 
+      min-height: 80vh;
+      background: $primaryLayout;
+      box-shadow: $primaryShadow;
+      @include flex-centered;
+      color: white;
+      margin-top: 6vh;
+      margin-bottom: 6vh;
+      margin-left: 10vw;
+      margin-right: 10vw;
+  
+      .cartInnerContainer {
+        width: 60vw; 
+        min-height: 60vh;
+        max-height: 90%;
+        margin-top: auto;
+        color: white;
+        margin-top: 20px;
+  
+        .removeItemsBox {
+          display: flex;
+          flex-wrap: wrap;
+          float: right;
+          gap: 20px;
+          padding-bottom: 20px;
+          margin-bottom: 20px;
+          height: 100%;
+  
+          .radioHolder {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+  
+            input[type=radio]:checked ~ label{
+              color: orange;
+            }
+  
+            label, input {
+              cursor: pointer;
+            }
+          }
+  
+          button {
+            height: 25px;
+            width: 80px;
+            background-color: orange;
+            outline: none;
+            cursor: pointer;
+  
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+  
+        h2 {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+  
+        .proceedToPayment {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 40px;
+          float: right;
+          height: 30px;
+  
+          div {
+            padding-top: 4px;
+          }
+          
+          button {
+            height: 100%;
+            width: 120px;
+            background-color: orange;
+            outline: none;
+            cursor: pointer;
+  
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+  
+        .productContainer {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          margin-right: 20px;
+          margin-bottom: 20px;
+          border-bottom: 1px solid red;
+  
+          button {
+            margin-left: auto;
+          }
+  
+          .removeProductBtnHolder {
+            margin-left: auto;
+  
+            img {
+              height: 40px;
+              cursor: pointer;
+              margin-left: -40px;
+  
+              &:hover {
+                animation: shake 1s linear;
+              }
+            }
+            
+          }
+  
+          @media only screen and (max-width: 500px) {
+            .removeProductBtnHolder {
+              display: none;
+            }
+          }
+  
+          .productInnerContainer {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            gap: 15px;
+  
+            .imgHolder {
+              width: 200px;
+              display: flex;
+              justify-content: center;            
+  
+              img {
+                height: 60px;
+              }
+            }
+  
+            .headlineHolder {
+              width: 200px;
+  
+                h3 {
+                  width: 200px;
+                }
+              
+                @media only screen and (max-width: 1000px) {
+                  #headlineSpanToHideOnResize {
+                    display: none;
+                  }
+                  h3 {
+                    text-align: center;
+                  }
+  
+                }
+            }
+  
+            .priceHolder {
+              width: 200px;
+              text-align: center;
+            }
+            
+            .amountToOderHolder {
+              @include flex-centered;
+              width: 200px;
+              gap: 10px;
+  
+              .loader{
+                display: none;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                border: 5px solid transparent;
+                border-top: 5px solid orange; 
+                border-bottom: 5px solid orange;
+                background-color: transparent;
+          
+                animation-name: circle;
+                animation-duration: 1.5s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+              }
+  
+              .amountToOder {
+                // margin-left: 10px;
+                // margin-right: 10px;
+                font-size: 18px;
+              }
+  
+              img {
+                height: 20px;
+                cursor: pointer;
+              }
+  
+              button {
+                width: 40px;
+                border: none;
+                outline: none;
+                background: transparent;
+                cursor: pointer;
+  
+                img {
+                  height: 25px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .userInfoTableOuterContainer {
+      width: 80vw; 
+      min-height: 80vh;
+      background: $primaryLayout;
+      box-shadow: $primaryShadow;
+      @include flex-centered;
+      color: white;
+      margin-top: 6vh;
+      margin-bottom: 6vh;
+      margin-left: 10vw;
+      margin-right: 10vw;
+      opacity: 0;
+      transform: translateY(-100%);
+      position: relative;
+  
+      // .goBackToCartBtn {
+      //   position: absolute;
+      //   top: 25%;
+      //   right: 20%;
+      // }
+  
+      .userInfoTableForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 450px;
+        min-height: 60vh;
+        max-height: 90%;
+        color: white;
+        margin-top: 20px;
+        gap: 20px;
+        margin-right: 40px;
+        margin-left: 40px;
+        margin-bottom: 40px;
+  
+        input {
+          height: 35px;
+          text-indent: 20px;
+          outline: none;
+  
+          &:disabled {
+            opacity: 0.5;
+            background-color: white;
+          }
+
+          &:valid{
+            border: 2px solid green
+          }
+        }
+
+        .telLabel {
+          display: none;
+          margin-top: -15px;
+          font-size: 12px;
+          margin-left: 5px;
+        }
+
+        .postCodeLabel{
+          display: none;
+          margin-top: 5px;
+          font-size: 12px;
+          margin-left: 5px;
+        }
+  
+        h2 {
+          text-align: center;
+          margin-bottom: 20px;
+          margin-top: 20px;
+        }
+  
+        .btnsContainer{
+          display: flex;
+  
+          .goBackToCartBtn {
+            width: 30%;
+            color: $differentRed;
+          }
+          .userInfoTableSubmitBtn {
+            width: 70%;
+          }
+  
+          button {
+            height: 35px;
+            background-color: orange;
+            margin-bottom: 30px;
+            cursor: pointer;
+            outline: none;
+    
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+  
+        .postAndTownInputsContainer {
+          display: flex;
+
+          .postCodeHolder{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+          }
+  
+          input {
+            width: 100%;
+            border: none;
+
+            &:valid{
+              border: 2px solid green
+            }
+          }
+        }
+      }
+    }
+  
+    .paymentOuterContainer {
+      width: 80vw; 
+      min-height: 80vh;
+      background: $primaryLayout;
+      box-shadow: $primaryShadow;
+      @include flex-centered;
+      color: white;
+      margin-top: 6vh;
+      margin-bottom: 6vh;
+      margin-left: 10vw;
+      margin-right: 10vw;
+      opacity: 0;
+      transform: translateY(-100%);
+  
+      .paymentInnerContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 450px;
+        min-height: 60vh;
+        max-height: 90%;
+        color: white;
+        margin-top: 20px;
+        gap: 20px;
+        margin-right: 40px;
+        margin-left: 40px;
+  
+        .btnsContainer{
+          display: flex;
+  
+          .goBackToCartBtn {
+            width: 30%;
+            color: $differentRed;
+          }
+  
+          .finalizeOrderBtn {
+            width: 70%;
+          }
+  
+          button {
+            height: 35px;
+            background-color: orange;
+            margin-bottom: 30px;
+            cursor: pointer;
+            outline: none;
+            margin-top: 20px;
+    
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+  
+        h2 {
+          text-align: center;
+        }
+  
+        label {
+          margin-left: 20px;
+          color: orange;
+  
+          .inLabelSpan {
+            color: rgba(180, 61, 67, 0.8);
+          }
+        }
+      }
+    }
+  
+    .modal {
+      position: fixed;
+      height: 100%;
+      width: 100vw;
+      top: 0px;
+      left: 0px;
+      border: none;
+      background-color: rgba(0, 0, 0, .6);
+      z-index: 9999;
+      @include flex-centered;
+  
+      .innerModalContainer {
+        padding: 40px;
+        max-width: 90vw;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: $primaryLayout;
+        box-shadow: $primaryShadow;
+        text-align: center;
+        gap: 20px;
+        color: white;
+  
+        h3 {
+          margin-bottom: 20px;
+        }
+  
+        .endBtn {
+          height: 35px;
+          background-color: orange;
+          margin-bottom: 30px;
+          cursor: pointer;
+          outline: none;
+          width: 100%;
+          margin-top: 20px;
+          opacity: 1;
+  
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  
+  @media only screen and (max-width: 335px) {
+    input[type=checkbox] {
+      margin-right: -10px;
+    }
+  }

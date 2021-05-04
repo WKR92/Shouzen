@@ -1,4 +1,3 @@
-import React from 'react';
 import Boots from './product';
 
 const Home = () => {

@@ -31,7 +31,7 @@ export interface ChangeUnitsInStoreInterface {
 
 export interface ProductActionInterface {
     type: string,
-    payload: Products | ChangeUnitsInStoreInterface
+    payload: Products
 }
 
 export interface PropsPassedToLogin {
@@ -85,8 +85,13 @@ export interface OrderAction {
 
 export interface UserInfoTableProps {
     setShowPaymentForm: Function,
-    userInfo: any,
+    userInfo: UserInfo[],
     getUserInfo: Function,
     setShowUserInfoTable: Function
+}
+
+export interface RemoveProductAction {
+    type: string,
+    payload: Products
 }
 

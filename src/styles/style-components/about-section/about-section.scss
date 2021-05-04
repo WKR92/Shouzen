@@ -1,0 +1,32 @@
+@import './style-components/colors-and-layouts/colors-and-layouts.scss';
+
+//about about.tsx 
+
+.aboutSection {
+    background: $primaryLayout;
+    height: 100vh;
+  
+    .aboutContainer {
+      padding-top: 10vh;
+      color: white;
+      min-width: 250px;
+      max-width: 30vw;
+      max-height: 60vh;
+      margin: auto;
+  
+      p {
+        font-size: 18px;
+      }
+      
+      h1 {
+        margin-bottom: 10px;
+        margin-left: -50px;
+      }
+  
+      @media only screen and (max-width: 400px) {
+        h1 {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
