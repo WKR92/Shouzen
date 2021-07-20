@@ -17,32 +17,61 @@
     padding: 60px;
     width: 80vw;
     height: 80vh;
-    background: url($firstBackgroundImg) no-repeat center fixed;
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: space-around;
     color: $textColor;
     line-height: 35px;
-    transition: background 1s ease-in;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: url($firstBackgroundImg) no-repeat center fixed;
+        transition: opacity 1s ease-in;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: url($secondBackgroundImg) no-repeat center fixed;
+        opacity: 0;
+        transition: opacity 0.75s ease-in;
+    }
         
     h2 {
         transform: translateY(50px);
-        transition: transform 2s;
+        transition: transform 1.25s;
+        position: relative;
+        z-index: 2;
     }
 
     p, .callToActionHolder {
-        transform: translateX(-100px);
+        transform: translateX(-50px);
         visibility: none;
         opacity: 0;
-        transition: visibility 3s, opacity 1s, transform 1s;
+        transition: visibility 1.5s, opacity 1.5s, transform 1.5s;
+        position: relative;
+        z-index: 2;
     }
 
     .headlineSpan {
         color: $headlineColor;
+        position: relative;
+        z-index: 2;
     }
 
     .callToActionHolder {
+        position: relative;
+        z-index: 2;
 
         .cartBtn {
         cursor: pointer;
@@ -76,20 +105,20 @@
         padding-top: 3px;
         margin-bottom: 20px;
 
-        .loader {
-            height: 30px;
-            width: 30px;
-            border-radius: 50%;
-            border: 5px solid transparent;
-            border-top: 5px solid $headlineColor; 
-            border-bottom: 5px solid $headlineColor;
-            background-color: transparent;
+            .loader {
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+                border: 5px solid transparent;
+                border-top: 5px solid $headlineColor; 
+                border-bottom: 5px solid $headlineColor;
+                background-color: transparent;
 
-            animation-name: circle;
-            animation-duration: 1.5s;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-        }
+                animation-name: circle;
+                animation-duration: 1.5s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+            }
         }
     }
 
@@ -99,22 +128,28 @@
         transform: rotateX(13deg) rotateY(-20deg) rotateZ(10deg);
         box-shadow: 50px 50px 70px -20px rgba(0, 0, 0, 0.8);
         transition: transform 1s, box-shadow 1s;
+        z-index: 2;
     }
 
     &:hover {
-        background: url($secondBackgroundImg) no-repeat center fixed;
-        transition: background 1s ease-in;
+
+        &::before {
+            opacity: 0;
+        }
+
+        &::after {
+            opacity: 1;
+        }
+
 
         h2 {
         transform: translateY(0px);
-        transition: transform 1s;
         }
 
         p, .callToActionHolder {
         transform: translateX(0px);
         visibility: visible;
         opacity: 1;
-        transition: visibility 3s, opacity 3s, transform 2s;
         }
 
         img{

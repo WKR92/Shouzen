@@ -22,6 +22,7 @@ export interface PropsFromStateForCart {
 
 export interface PropsForLinks {
     listOfProductsInCart?: Products[],
+    activateToggle: Function;
 }
 
 export interface ChangeUnitsInStoreInterface {
@@ -94,4 +95,3 @@ export interface RemoveProductAction {
     type: string,
     payload: Products
 }
-

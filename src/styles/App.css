@@ -24,6 +24,11 @@ input[type=checkbox] {
   transform: scale(2);
 }
 
+.stop-scrolling {
+  height: 100vh;
+  overflow: hidden;
+}
+
 .loginSection {
   width: 100%;
   height: 92vh;
@@ -161,30 +166,62 @@ input[type=checkbox] {
   padding: 60px;
   width: 80vw;
   height: 80vh;
-  background: url("../photos/sky.jpg") no-repeat center fixed;
   box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-around;
   color: black;
   line-height: 35px;
-  transition: background 1s ease-in;
+}
+
+.productBg .productContainer .Blue_Nikes__container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: url("../photos/sky.jpg") no-repeat center fixed;
+  transition: opacity 1s ease-in;
+}
+
+.productBg .productContainer .Blue_Nikes__container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: url("../photos/water.jpg") no-repeat center fixed;
+  opacity: 0;
+  transition: opacity 0.75s ease-in;
 }
 
 .productBg .productContainer .Blue_Nikes__container h2 {
   transform: translateY(50px);
-  transition: transform 2s;
+  transition: transform 1.25s;
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Blue_Nikes__container p, .productBg .productContainer .Blue_Nikes__container .callToActionHolder {
-  transform: translateX(-100px);
+  transform: translateX(-50px);
   visibility: none;
   opacity: 0;
-  transition: visibility 3s, opacity 1s, transform 1s;
+  transition: visibility 1.5s, opacity 1.5s, transform 1.5s;
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Blue_Nikes__container .headlineSpan {
   color: #4400ff;
+  position: relative;
+  z-index: 2;
+}
+
+.productBg .productContainer .Blue_Nikes__container .callToActionHolder {
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Blue_Nikes__container .callToActionHolder .cartBtn {
@@ -240,23 +277,25 @@ input[type=checkbox] {
   transform: rotateX(13deg) rotateY(-20deg) rotateZ(10deg);
   box-shadow: 50px 50px 70px -20px rgba(0, 0, 0, 0.8);
   transition: transform 1s, box-shadow 1s;
+  z-index: 2;
 }
 
-.productBg .productContainer .Blue_Nikes__container:hover {
-  background: url("../photos/water.jpg") no-repeat center fixed;
-  transition: background 1s ease-in;
+.productBg .productContainer .Blue_Nikes__container:hover::before {
+  opacity: 0;
+}
+
+.productBg .productContainer .Blue_Nikes__container:hover::after {
+  opacity: 1;
 }
 
 .productBg .productContainer .Blue_Nikes__container:hover h2 {
   transform: translateY(0px);
-  transition: transform 1s;
 }
 
 .productBg .productContainer .Blue_Nikes__container:hover p, .productBg .productContainer .Blue_Nikes__container:hover .callToActionHolder {
   transform: translateX(0px);
   visibility: visible;
   opacity: 1;
-  transition: visibility 3s, opacity 3s, transform 2s;
 }
 
 .productBg .productContainer .Blue_Nikes__container:hover img {
@@ -287,30 +326,62 @@ input[type=checkbox] {
   padding: 60px;
   width: 80vw;
   height: 80vh;
-  background: url("../photos/cityBg.jpg") no-repeat center fixed;
   box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-around;
   color: white;
   line-height: 35px;
-  transition: background 1s ease-in;
+}
+
+.productBg .productContainer .Orange_Nikes__container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: url("../photos/cityBg.jpg") no-repeat center fixed;
+  transition: opacity 1s ease-in;
+}
+
+.productBg .productContainer .Orange_Nikes__container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: url("../photos/orangeCity.jpg") no-repeat center fixed;
+  opacity: 0;
+  transition: opacity 0.75s ease-in;
 }
 
 .productBg .productContainer .Orange_Nikes__container h2 {
   transform: translateY(50px);
-  transition: transform 2s;
+  transition: transform 1.25s;
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Orange_Nikes__container p, .productBg .productContainer .Orange_Nikes__container .callToActionHolder {
-  transform: translateX(-100px);
+  transform: translateX(-50px);
   visibility: none;
   opacity: 0;
-  transition: visibility 3s, opacity 1s, transform 1s;
+  transition: visibility 1.5s, opacity 1.5s, transform 1.5s;
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Orange_Nikes__container .headlineSpan {
   color: #ff8800;
+  position: relative;
+  z-index: 2;
+}
+
+.productBg .productContainer .Orange_Nikes__container .callToActionHolder {
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Orange_Nikes__container .callToActionHolder .cartBtn {
@@ -366,23 +437,25 @@ input[type=checkbox] {
   transform: rotateX(13deg) rotateY(-20deg) rotateZ(10deg);
   box-shadow: 50px 50px 70px -20px rgba(0, 0, 0, 0.8);
   transition: transform 1s, box-shadow 1s;
+  z-index: 2;
 }
 
-.productBg .productContainer .Orange_Nikes__container:hover {
-  background: url("../photos/orangeCity.jpg") no-repeat center fixed;
-  transition: background 1s ease-in;
+.productBg .productContainer .Orange_Nikes__container:hover::before {
+  opacity: 0;
+}
+
+.productBg .productContainer .Orange_Nikes__container:hover::after {
+  opacity: 1;
 }
 
 .productBg .productContainer .Orange_Nikes__container:hover h2 {
   transform: translateY(0px);
-  transition: transform 1s;
 }
 
 .productBg .productContainer .Orange_Nikes__container:hover p, .productBg .productContainer .Orange_Nikes__container:hover .callToActionHolder {
   transform: translateX(0px);
   visibility: visible;
   opacity: 1;
-  transition: visibility 3s, opacity 3s, transform 2s;
 }
 
 .productBg .productContainer .Orange_Nikes__container:hover img {
@@ -413,30 +486,62 @@ input[type=checkbox] {
   padding: 60px;
   width: 80vw;
   height: 80vh;
-  background: url("../photos/cityCenter.jpg") no-repeat center fixed;
   box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-around;
   color: white;
   line-height: 35px;
-  transition: background 1s ease-in;
+}
+
+.productBg .productContainer .Black_and_White_Nikes__container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: url("../photos/bnwBG1.jpg") no-repeat center fixed;
+  transition: opacity 1s ease-in;
+}
+
+.productBg .productContainer .Black_and_White_Nikes__container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: url("../photos/bnwBG2.jpg") no-repeat center fixed;
+  opacity: 0;
+  transition: opacity 0.75s ease-in;
 }
 
 .productBg .productContainer .Black_and_White_Nikes__container h2 {
   transform: translateY(50px);
-  transition: transform 2s;
+  transition: transform 1.25s;
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Black_and_White_Nikes__container p, .productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder {
-  transform: translateX(-100px);
+  transform: translateX(-50px);
   visibility: none;
   opacity: 0;
-  transition: visibility 3s, opacity 1s, transform 1s;
+  transition: visibility 1.5s, opacity 1.5s, transform 1.5s;
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Black_and_White_Nikes__container .headlineSpan {
-  color: white;
+  color: black;
+  position: relative;
+  z-index: 2;
+}
+
+.productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder {
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Black_and_White_Nikes__container .callToActionHolder .cartBtn {
@@ -477,8 +582,8 @@ input[type=checkbox] {
   width: 30px;
   border-radius: 50%;
   border: 5px solid transparent;
-  border-top: 5px solid white;
-  border-bottom: 5px solid white;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
   background-color: transparent;
   animation-name: circle;
   animation-duration: 1.5s;
@@ -492,23 +597,25 @@ input[type=checkbox] {
   transform: rotateX(13deg) rotateY(-20deg) rotateZ(10deg);
   box-shadow: 50px 50px 70px -20px rgba(0, 0, 0, 0.8);
   transition: transform 1s, box-shadow 1s;
+  z-index: 2;
 }
 
-.productBg .productContainer .Black_and_White_Nikes__container:hover {
-  background: url("../photos/city.jpg") no-repeat center fixed;
-  transition: background 1s ease-in;
+.productBg .productContainer .Black_and_White_Nikes__container:hover::before {
+  opacity: 0;
+}
+
+.productBg .productContainer .Black_and_White_Nikes__container:hover::after {
+  opacity: 1;
 }
 
 .productBg .productContainer .Black_and_White_Nikes__container:hover h2 {
   transform: translateY(0px);
-  transition: transform 1s;
 }
 
 .productBg .productContainer .Black_and_White_Nikes__container:hover p, .productBg .productContainer .Black_and_White_Nikes__container:hover .callToActionHolder {
   transform: translateX(0px);
   visibility: visible;
   opacity: 1;
-  transition: visibility 3s, opacity 3s, transform 2s;
 }
 
 .productBg .productContainer .Black_and_White_Nikes__container:hover img {
@@ -525,7 +632,7 @@ input[type=checkbox] {
     margin-bottom: 10px;
   }
   .productBg .productContainer .Black_and_White_Nikes__container .headlineSpan {
-    color: white;
+    color: black;
   }
   .productBg .productContainer .Black_and_White_Nikes__container img {
     max-height: 60%;
@@ -539,30 +646,62 @@ input[type=checkbox] {
   padding: 60px;
   width: 80vw;
   height: 80vh;
-  background: url("../photos/darkCity.jpg") no-repeat center fixed;
   box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-around;
   color: white;
   line-height: 35px;
-  transition: background 1s ease-in;
+}
+
+.productBg .productContainer .Red_Nikes__container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: url("../photos/darkCity.jpg") no-repeat center fixed;
+  transition: opacity 1s ease-in;
+}
+
+.productBg .productContainer .Red_Nikes__container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: url("../photos/redConcert.jpg") no-repeat center fixed;
+  opacity: 0;
+  transition: opacity 0.75s ease-in;
 }
 
 .productBg .productContainer .Red_Nikes__container h2 {
   transform: translateY(50px);
-  transition: transform 2s;
+  transition: transform 1.25s;
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Red_Nikes__container p, .productBg .productContainer .Red_Nikes__container .callToActionHolder {
-  transform: translateX(-100px);
+  transform: translateX(-50px);
   visibility: none;
   opacity: 0;
-  transition: visibility 3s, opacity 1s, transform 1s;
+  transition: visibility 1.5s, opacity 1.5s, transform 1.5s;
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Red_Nikes__container .headlineSpan {
   color: red;
+  position: relative;
+  z-index: 2;
+}
+
+.productBg .productContainer .Red_Nikes__container .callToActionHolder {
+  position: relative;
+  z-index: 2;
 }
 
 .productBg .productContainer .Red_Nikes__container .callToActionHolder .cartBtn {
@@ -618,23 +757,25 @@ input[type=checkbox] {
   transform: rotateX(13deg) rotateY(-20deg) rotateZ(10deg);
   box-shadow: 50px 50px 70px -20px rgba(0, 0, 0, 0.8);
   transition: transform 1s, box-shadow 1s;
+  z-index: 2;
 }
 
-.productBg .productContainer .Red_Nikes__container:hover {
-  background: url("../photos/redConcert.jpg") no-repeat center fixed;
-  transition: background 1s ease-in;
+.productBg .productContainer .Red_Nikes__container:hover::before {
+  opacity: 0;
+}
+
+.productBg .productContainer .Red_Nikes__container:hover::after {
+  opacity: 1;
 }
 
 .productBg .productContainer .Red_Nikes__container:hover h2 {
   transform: translateY(0px);
-  transition: transform 1s;
 }
 
 .productBg .productContainer .Red_Nikes__container:hover p, .productBg .productContainer .Red_Nikes__container:hover .callToActionHolder {
   transform: translateX(0px);
   visibility: visible;
   opacity: 1;
-  transition: visibility 3s, opacity 3s, transform 2s;
 }
 
 .productBg .productContainer .Red_Nikes__container:hover img {
@@ -673,6 +814,7 @@ input[type=checkbox] {
   top: 0;
   z-index: 9999;
   white-space: nowrap;
+  width: 100vw;
 }
 
 .mainNavBar .preResize {
@@ -698,8 +840,21 @@ input[type=checkbox] {
   align-items: center;
   justify-content: space-between;
   margin-right: .5rem;
-  padding-bottom: 5px;
-  border-bottom: 1px solid transparent;
+  padding: 8px 12px;
+  position: relative;
+}
+
+.mainNavBar .preResize .linkHolder:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 98%;
+  bottom: 0;
+  background-color: rgba(128, 28, 33, 0.4);
+  transition: all .25s ease;
+  transform-origin: left;
+  border-radius: 10px;
 }
 
 .mainNavBar .preResize .linkHolder .foot-prints-icon {
@@ -707,8 +862,8 @@ input[type=checkbox] {
   color: black;
 }
 
-.mainNavBar .preResize .linkHolder:hover {
-  border-bottom: 1px solid rgba(180, 61, 67, 0.8);
+.mainNavBar .preResize .linkHolder:hover:after {
+  right: 0;
 }
 
 .mainNavBar .preResize .linkHolder li {
@@ -749,8 +904,9 @@ input[type=checkbox] {
   display: none;
   align-items: center;
   justify-content: center;
-  max-width: 100vw;
-  min-height: 6vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 92vh;
+  width: 100%;
 }
 
 .mainNavBar .afterResize .nav_links {
@@ -768,12 +924,24 @@ input[type=checkbox] {
   list-style: none;
   color: white;
   text-align: center;
-  padding-bottom: 5px;
-  border-bottom: 1px solid transparent;
+  padding: 8px 9px;
+  position: relative;
 }
 
-.mainNavBar .afterResize .nav_links .linkHolder:hover {
-  border-bottom: 1px solid rgba(180, 61, 67, 0.8);
+.mainNavBar .afterResize .nav_links .linkHolder:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(128, 28, 33, 0.4);
+  transition: all .25s ease;
+  border-radius: 50%;
+}
+
+.mainNavBar .afterResize .nav_links .linkHolder:hover:after {
+  top: 0;
 }
 
 .mainNavBar .afterResize .nav_links .linkHolder li {
@@ -799,13 +967,14 @@ input[type=checkbox] {
   max-height: 2.5vh;
 }
 
+.mainNavBar .afterResize .nav_links .cartLink {
+  padding: 8px 0px;
+}
+
 @media only screen and (max-width: 650px) {
-  .mainNavBar {
-    display: grid;
-    justify-content: center;
-  }
   .mainNavBar .preResize {
     justify-content: space-between;
+    margin: auto;
     width: 80vw;
   }
   .mainNavBar .preResize .navToggle {
@@ -874,6 +1043,8 @@ input[type=checkbox] {
   margin-bottom: 6vh;
   margin-left: 10vw;
   margin-right: 10vw;
+  z-index: 5;
+  position: relative;
 }
 
 .cartSection .cartOuterContainer .cartInnerContainer {
@@ -1085,6 +1256,7 @@ input[type=checkbox] {
   opacity: 0;
   transform: translateY(-100%);
   position: relative;
+  z-index: 4;
 }
 
 .cartSection .userInfoTableOuterContainer .userInfoTableForm {
@@ -1196,6 +1368,7 @@ input[type=checkbox] {
   margin-right: 10vw;
   opacity: 0;
   transform: translateY(-100%);
+  z-index: 3;
 }
 
 .cartSection .paymentOuterContainer .paymentInnerContainer {
@@ -1331,6 +1504,7 @@ footer .logoHolder i {
 
 footer .contact {
   color: white;
+  font-size: 80%;
 }
 
 @media only screen and (max-width: 650px) {
@@ -1339,7 +1513,7 @@ footer .contact {
     gap: 0px;
   }
   footer .logoHolder {
-    margin-top: 10px;
+    margin-top: 12px;
     text-align: center;
     margin-bottom: 5px;
   }
@@ -1370,27 +1544,27 @@ footer .contact {
     border-radius: 50%;
     background-color: 10%;
     border-radius: 50%;
-    background-color: #b43d43;
+    background-color: rgba(128, 28, 33, 0.4);
     opacity: 0.8;
   }
   25% {
     width: 15px;
     transform: scale(1.2);
     border-radius: 50%;
-    background-color: #b43d43;
+    background-color: rgba(128, 28, 33, 0.4);
   }
   50% {
     width: 20px;
     transform: scale(1.3);
     border-radius: 50%;
-    background-color: #b43d43;
+    background-color: rgba(128, 28, 33, 0.4);
     opacity: 1;
   }
   75% {
     width: 15px;
     transform: scale(1.1);
     border-radius: 50%;
-    background-color: #b43d43;
+    background-color: rgba(128, 28, 33, 0.4);
     opacity: 0.8;
   }
   100% {

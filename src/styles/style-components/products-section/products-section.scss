@@ -34,11 +34,11 @@
     }
 
     .Black_and_White_Nikes__container {
-      @include shoes("../photos/cityCenter.jpg", "../photos/city.jpg", white, white);
+      @include shoes("../photos/bnwBG1.jpg", "../photos/bnwBG2.jpg", black, white);
     }
     @media only screen and (max-width: 1200px) {
       .Black_and_White_Nikes__container {
-        @include mediaQueryForProduct(white)
+        @include mediaQueryForProduct(black)
       } 
     }
 
@@ -47,7 +47,7 @@
     }
     @media only screen and (max-width: 1200px) {
       .Red_Nikes__container {
-        @include mediaQueryForProduct(rgb(255, 0, 0))
+        @include mediaQueryForProduct(red)
       } 
     }
 

@@ -22,6 +22,8 @@
       margin-bottom: 6vh;
       margin-left: 10vw;
       margin-right: 10vw;
+      z-index: 5;
+      position: relative;
   
       .cartInnerContainer {
         width: 60vw; 
@@ -234,6 +236,7 @@
       opacity: 0;
       transform: translateY(-100%);
       position: relative;
+      z-index: 4;
   
       // .goBackToCartBtn {
       //   position: absolute;
@@ -348,6 +351,7 @@
       margin-right: 10vw;
       opacity: 0;
       transform: translateY(-100%);
+      z-index: 3;
   
       .paymentInnerContainer {
         display: flex;

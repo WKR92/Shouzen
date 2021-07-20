@@ -36,15 +36,15 @@ const Links = (props: PropsForLinks) => {
 
     return (
         <ul className="nav_links">
-            <Link className="linkHolder" to={"/about"} >
+            <Link className="linkHolder" to={"/about"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="info_icon" src={infoIcon} />
                 <li>About</li>
             </Link>
-            <Link className="linkHolder" to={"/login"} >
+            <Link className="linkHolder" to={"/login"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="logIn_icon" src={logInIcon} />
                 <li>Log In</li>
             </Link>
-            <Link className="linkHolder cartLink" to={"/cart"} >
+            <Link className="linkHolder cartLink" to={"/cart"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="cart_icon" src={cartIcon} />
                 <li>Cart (<span className="preAnimationCartSpan">{itemsInCart}</span>)</li>
             </Link>

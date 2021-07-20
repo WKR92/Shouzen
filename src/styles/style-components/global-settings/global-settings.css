@@ -23,3 +23,8 @@ input::-webkit-inner-spin-button {
 input[type=checkbox] {
   transform: scale(2);
 }
+
+.stop-scrolling {
+  height: 100vh;
+  overflow: hidden;
+}
