@@ -9,6 +9,8 @@ import {RootState} from '../store/store';
 import UserInfoTable from './userInfoTable';
 import Payment from './payment';
 import ThankYouModal from './thankYouModal';
+import fire from '../fire';
+import LoginModal from './loginModal';
 
 const Cart = (props: PropsFromStateForCart) => {
 
@@ -16,6 +18,22 @@ const Cart = (props: PropsFromStateForCart) => {
     const [showUserInfoTable, setShowUserInfoTable] = useState(false);
     const [showPaymentForm, setShowPaymentForm] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [showLoginModal, setShowLoginModal]  = useState(false);
+    const [user, setUser] = useState({} as any);
+
+    const authListener = useCallback(() => {
+        fire.auth().onAuthStateChanged((user) => {
+            if (user) {
+                setUser(user);          
+            } else {
+                setUser(null);
+            }
+        })
+    }, [])
+
+    useEffect(() => {
+        authListener();
+    }, [authListener, user])
 
     const closeNextSteps = () => {
         setShowUserInfoTable(false)
@@ -56,15 +74,19 @@ const Cart = (props: PropsFromStateForCart) => {
 
     const openUserInfoTable = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        setShowUserInfoTable(!showUserInfoTable);
-        const removeItemsBox = document.querySelector('.removeItemsBox') as HTMLDivElement;
-        const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
-        const removeProductBtnHolderList = document.querySelectorAll('.removeProductBtnHolder') as NodeListOf<HTMLDivElement>;
-        const amountToOderHolderList = document.querySelectorAll('.amountToOderHolder') as NodeListOf<HTMLDivElement>;
-        removeItemsBox.style['display'] = 'none';
-        checkboxList.forEach(e => e.disabled = true)
-        removeProductBtnHolderList.forEach(e => e.style['display'] = 'none')
-        amountToOderHolderList.forEach(e => e.style['display'] = 'none')
+        if(user){
+            setShowUserInfoTable(!showUserInfoTable);
+            const removeItemsBox = document.querySelector('.removeItemsBox') as HTMLDivElement;
+            const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
+            const removeProductBtnHolderList = document.querySelectorAll('.removeProductBtnHolder') as NodeListOf<HTMLDivElement>;
+            const amountToOderHolderList = document.querySelectorAll('.amountToOderHolder') as NodeListOf<HTMLDivElement>;
+            removeItemsBox.style['display'] = 'none';
+            checkboxList.forEach(e => e.disabled = true)
+            removeProductBtnHolderList.forEach(e => e.style['display'] = 'none')
+            amountToOderHolderList.forEach(e => e.style['display'] = 'none')
+        } else {
+            setShowLoginModal(true);
+        }
     }
 
     const removeProductFromCart = (product: Products) => {
@@ -238,6 +260,9 @@ const Cart = (props: PropsFromStateForCart) => {
                     : null}
                 </form>
             </div>
+            {showLoginModal
+            ? <LoginModal setShowLoginModal={setShowLoginModal}/>
+            : null}
             {showUserInfoTable
             ? <UserInfoTable setShowPaymentForm={setShowPaymentForm} setShowUserInfoTable={setShowUserInfoTable} />
             : null}

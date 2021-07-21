@@ -41,7 +41,7 @@ function LoginPanel() {
                     break;
                 default:
                     break;
-            }
+                }
             });
         
         clearInput();
@@ -98,7 +98,7 @@ function LoginPanel() {
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
                 clearInput();
-                setUser(user);                
+                setUser(user);          
             } else {
                 setUser("");
             }

@@ -3,29 +3,167 @@
 // account.tsx styles
 
 .accountSection {
-    width: 100%;
-    min-height: 100vh;
-    background: $primaryLayout;
-  
-    nav {
-      background: #603bbb;
-      width: 100%;
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-  
-    h2 {
-      color: #fff;
-    }
-  
-    button {
-      width: 86px;
-      padding: 8px 0;
-      background: #3a2b58;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
+  width: 100%;
+  background: url('../photos/accountBG.jpg') fixed center;
+  min-height: 92vh;
+
+  h2 {
+    color: #fff;
+    font-size: 90%;
+  }
+
+  button {
+    width: 86px;
+    padding: 8px 0;
+    @include flex-centered;
+    background-color: rgba(0,0,0, 0.2);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 10px 10px rgba(0,0,0, 0.6);
     }
   }
+
+  header {
+    // background: #603bbb;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 100%;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6vh;
+
+    .header__btnsHolder {
+      @include flex-centered;
+      gap: 10px;
+
+      button {
+        width: 125px;
+        height: 4vh;
+        font-size: 80%;
+      }
+    }
+  }
+
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+
+      &:hover {
+        box-shadow: 0px 10px 10px rgba(0,0,0, 0.6);
+      }
+    }
+
+    .blocksHolder {
+      width: 90vw;
+      min-height: 86vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      .infoBlock {
+        width: 90%;
+        min-height: 70vh;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .ordersHistoryBlock {
+        width: 90%;
+        min-height: 70vh;
+        background-color: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .ordersHistory {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          width: 80%;
+          height: 90%;
+          position: relative;
+
+          h2 {
+            color: #fff;
+            font-size: 26px;
+            margin-bottom: 20px;
+          }
+
+          input {
+            color: white !important;
+          }
+
+          button {
+            margin-top: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  } 
+}
+
+@media screen and (max-width: 700px) {
+  .blocksHolder {
+    flex-direction: column;
+
+    .infoBlock {
+      margin-bottom: 20px;
+      width: 90vw;
+    }
+
+    .ordersHistoryBlock {
+      width: 90vw;
+    }
+  }
+
+  .accountSection {
+
+    h2{
+      text-align: center;
+    }
+
+    header {
+      display: block;
+      height: auto;
+      padding: 10px 0px;
+
+      .header__btnsHolder {
+
+        button {
+          margin-top: 12px;
+          padding: 12px 0;
+        }
+      }      
+    }
+  }
+}
+
+@media screen and (max-width: 432px) {
+  .accountSection {
+
+    header {
+
+      .header__btnsHolder {
+        max-width: 95%;
+        margin: auto;
+        gap: 5px;
+
+        button {
+          width: 150px;
+        }
+      } 
+    }
+  }
+}

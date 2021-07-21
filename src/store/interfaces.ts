@@ -95,3 +95,7 @@ export interface RemoveProductAction {
     type: string,
     payload: Products
 }
+
+export interface LoginModalProps {
+    setShowLoginModal: Function
+}

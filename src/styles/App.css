@@ -29,6 +29,10 @@ input[type=checkbox] {
   overflow: hidden;
 }
 
+[transition="in:circle:hesitate"] {
+  --transition__duration: .5s;
+}
+
 .loginSection {
   width: 100%;
   height: 92vh;
@@ -116,30 +120,151 @@ input[type=checkbox] {
 
 .accountSection {
   width: 100%;
-  min-height: 100vh;
-  background: radial-gradient(ellipse at left bottom, #941d23 0%, #261448 59%, #111b4b 100%);
-}
-
-.accountSection nav {
-  background: #603bbb;
-  width: 100%;
-  padding: 20px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  background: url("../photos/accountBG.jpg") fixed center;
+  min-height: 92vh;
+  --transition__duration: 1.5s;
 }
 
 .accountSection h2 {
   color: #fff;
+  font-size: 90%;
 }
 
 .accountSection button {
   width: 86px;
   padding: 8px 0;
-  background: #3a2b58;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
+}
+
+.accountSection button:hover {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.6);
+}
+
+.accountSection header {
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 6vh;
+}
+
+.accountSection header .header__btnsHolder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.accountSection header .header__btnsHolder button {
+  width: 125px;
+  height: 4vh;
+  font-size: 80%;
+}
+
+.accountSection main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.accountSection main button:hover {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.6);
+}
+
+.accountSection main .blocksHolder {
+  width: 90vw;
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.accountSection main .blocksHolder .infoBlock {
+  width: 90%;
+  min-height: 70vh;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock {
+  width: 90%;
+  min-height: 70vh;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  height: 90%;
+  position: relative;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory h2 {
+  color: #fff;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory input {
+  color: white !important;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory button {
+  margin-top: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .blocksHolder {
+    flex-direction: column;
+  }
+  .blocksHolder .infoBlock {
+    margin-bottom: 20px;
+    width: 90vw;
+  }
+  .blocksHolder .ordersHistoryBlock {
+    width: 90vw;
+  }
+  .accountSection h2 {
+    text-align: center;
+  }
+  .accountSection header {
+    display: block;
+    height: auto;
+    padding: 10px 0px;
+  }
+  .accountSection header .header__btnsHolder button {
+    margin-top: 12px;
+    padding: 12px 0;
+  }
+}
+
+@media screen and (max-width: 432px) {
+  .accountSection header .header__btnsHolder {
+    max-width: 95%;
+    margin: auto;
+    gap: 5px;
+  }
+  .accountSection header .header__btnsHolder button {
+    width: 150px;
+  }
 }
 
 .homeSection {
@@ -907,6 +1032,7 @@ input[type=checkbox] {
   background-color: rgba(0, 0, 0, 0.2);
   height: 92vh;
   width: 100%;
+  --transition__duration: 1.5s;
 }
 
 .mainNavBar .afterResize .nav_links {
@@ -1424,6 +1550,72 @@ input[type=checkbox] {
   color: rgba(180, 61, 67, 0.8);
 }
 
+.cartSection .loginModal {
+  position: fixed;
+  height: 100%;
+  width: 100vw;
+  top: 0px;
+  left: 0px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartSection .loginModal .loginModalInnerContainer {
+  padding: 40px;
+  max-width: 90vw;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: radial-gradient(ellipse at left bottom, #941d23 0%, #261448 59%, #111b4b 100%);
+  box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  gap: 40px;
+  color: white;
+  --transition__duration: 1.5s;
+}
+
+.cartSection .loginModal .loginModalInnerContainer p {
+  margin-bottom: -5px;
+}
+
+.cartSection .loginModal .loginModalInnerContainer .loginModalInnerContainer_btns {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  white-space: nowrap;
+}
+
+.cartSection .loginModal .loginModalInnerContainer .loginModalInnerContainer_btns .goToLogInPageBtn {
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  color: orange;
+}
+
+.cartSection .loginModal .loginModalInnerContainer .loginModalInnerContainer_btns .goToLogInPageBtn:hover {
+  text-decoration: underline;
+  color: #24bb24;
+}
+
+.cartSection .loginModal .loginModalInnerContainer .loginModalInnerContainer_btns .resignBtn {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 105%;
+  color: steelblue;
+}
+
+.cartSection .loginModal .loginModalInnerContainer .loginModalInnerContainer_btns .resignBtn:hover {
+  text-decoration: underline;
+  color: red;
+}
+
 .cartSection .modal {
   position: fixed;
   height: 100%;
@@ -1450,6 +1642,7 @@ input[type=checkbox] {
   text-align: center;
   gap: 20px;
   color: white;
+  --transition__duration: 1.5s;
 }
 
 .cartSection .modal .innerModalContainer h3 {

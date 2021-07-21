@@ -1,6 +1,7 @@
 * {
   font-family: "Nunito", sans-serif;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -21,10 +22,16 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=checkbox] {
-  transform: scale(2);
+  -webkit-transform: scale(2);
+          transform: scale(2);
 }
 
 .stop-scrolling {
   height: 100vh;
   overflow: hidden;
 }
+
+[transition="in:circle:hesitate"] {
+  --transition__duration: .5s;
+}
+/*# sourceMappingURL=global-settings.css.map */

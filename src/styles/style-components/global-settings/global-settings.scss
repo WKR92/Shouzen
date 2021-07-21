@@ -31,3 +31,8 @@ input[type=checkbox] {
   height: 100vh;
   overflow: hidden;
 }
+
+
+[transition="in:circle:hesitate"] {
+  --transition__duration: .5s;
+}

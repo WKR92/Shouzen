@@ -32,7 +32,7 @@ const ThankYouModal = (props: PaymentProps) => {
 
     return (
         <div className="modal">
-            <div className="innerModalContainer">
+            <div className="innerModalContainer" transition-style="in:circle:hesitate">
                 <h2>Thank You, your order has been made and now will be realized.</h2>
                 <h3>Expect your shoes from Shouzen in few days.</h3>
                 <p>You can check your order at your profile page.</p>

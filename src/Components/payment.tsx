@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import {RootState} from '../store/store';
 import * as orderAction from '../store/orderActions';
-import {PaymentProps, Order} from '../store/interfaces'
+import {PaymentProps, Order} from '../store/interfaces';
+import fire from '../fire';
 
 const Payment = (props: PaymentProps) => {
 
@@ -19,14 +20,22 @@ const Payment = (props: PaymentProps) => {
             return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
           }
 
+        const user = fire.auth().currentUser!;
+
         const order = {
-            'id'            : guidGenerator(),
-            'whatIsOrdered' : whatIsOrdered,
-            'whoIsOrdering' : props.userInfo,
-            'costOfOrder'   : props.total
+            user: user.uid,
+            order: {
+                id            : guidGenerator(),
+                data          : new Date().toLocaleString(),
+                whatIsOrdered : whatIsOrdered,
+                whoIsOrdering : props.userInfo,
+                costOfOrder   : props.total + '$'
+            }
         }
         
         props.setOrder(order);
+        const orderRef = fire.database().ref('Orders');
+        orderRef.push(order)
     }
 
     const goBackToUserTable = (event: React.MouseEvent<HTMLButtonElement>) => {

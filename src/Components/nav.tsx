@@ -1,4 +1,4 @@
-import React, {useState, useLayoutEffect, useRef} from 'react';
+import {useState, useLayoutEffect, useRef} from 'react';
 import menu from '../icons/menu.png'
 import {Link} from 'react-router-dom';
 import Links from './links'
