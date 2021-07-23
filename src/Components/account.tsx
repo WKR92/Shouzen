@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import OrdersHistory from './ordersHistory';
+import ProfileInformation from './profileInformation';
 import fire from '../fire';
+import { PropsPassedToAccount } from '../store/interfaces';
 
-interface PropsPassedToAccount {
-    handleLogout: Function;
-    email: string;
-    sendResetPasswordEmail: React.MouseEventHandler;
-    deleteAccount: React.MouseEventHandler
-}
+
 const Account = (props: PropsPassedToAccount) => {
 
     const {
+        userUid,
         handleLogout,
         email,
         sendResetPasswordEmail,
@@ -20,12 +18,12 @@ const Account = (props: PropsPassedToAccount) => {
     const [showOrdersHistory, setshowOrdersHistory] = useState(false);
     const [showProfileInfo, setShowProfileInfo] = useState(false);
 
-    const user = fire.auth().currentUser!;
+    // const user = fire.auth().currentUser!;
     const getOrdersHistory = () => {
         const ordersHistoryRef = fire.database().ref('Orders');
         ordersHistoryRef.on('value', (snapshot) => {
             const snaps = snapshot.val();
-            const userSnaps = Object.values(snaps).filter((e: any) => e.user === user.uid);
+            const userSnaps = Object.values(snaps).filter((e: any) => e.user === userUid);
             console.log(userSnaps)
         })
     }
@@ -44,10 +42,9 @@ const Account = (props: PropsPassedToAccount) => {
             <main>
                 <div className="blocksHolder">
                     <div className="infoBlock">
-                        <button>Update your profile information</button>
+                        <ProfileInformation />
                     </div>
                     <div className="ordersHistoryBlock">
-                        {/* <button onClick={getOrdersHistory}>Display orders history</button> */}
                         <OrdersHistory />
                     </div>
                 </div>

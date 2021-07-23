@@ -118,11 +118,73 @@ input[type=checkbox] {
   color: #fff;
 }
 
+@keyframes shake {
+  10%, 90% {
+    transform: translateX(1px);
+  }
+  20%, 80% {
+    transform: translateX(-2px);
+  }
+  30%, 50%, 70% {
+    transform: translateX(3px);
+  }
+  40%, 60% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes scale {
+  10% {
+    width: 10px;
+    transform: scale(1.1);
+    border-radius: 50%;
+    background-color: 10%;
+    border-radius: 50%;
+    background-color: rgba(128, 28, 33, 0.4);
+    opacity: 0.8;
+  }
+  25% {
+    width: 15px;
+    transform: scale(1.2);
+    border-radius: 50%;
+    background-color: rgba(128, 28, 33, 0.4);
+  }
+  50% {
+    width: 20px;
+    transform: scale(1.3);
+    border-radius: 50%;
+    background-color: rgba(128, 28, 33, 0.4);
+    opacity: 1;
+  }
+  75% {
+    width: 15px;
+    transform: scale(1.1);
+    border-radius: 50%;
+    background-color: rgba(128, 28, 33, 0.4);
+    opacity: 0.8;
+  }
+  100% {
+    width: 10px;
+    transform: scale(1);
+    border-radius: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes circle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .accountSection {
   width: 100%;
   background: url("../photos/accountBG.jpg") fixed center;
   min-height: 92vh;
-  --transition__duration: 1.5s;
+  --transition__duration: .5s;
 }
 
 .accountSection h2 {
@@ -181,7 +243,7 @@ input[type=checkbox] {
 
 .accountSection main .blocksHolder {
   width: 90vw;
-  min-height: 86vh;
+  min-height: 82vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,18 +256,13 @@ input[type=checkbox] {
   width: 90%;
   min-height: 70vh;
   background-color: rgba(255, 255, 255, 0.2);
-}
-
-.accountSection main .blocksHolder .ordersHistoryBlock {
-  width: 90%;
-  min-height: 70vh;
-  background-color: rgba(255, 255, 255, 0.2);
+  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory {
+.accountSection main .blocksHolder .infoBlock .profileInformation {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,20 +272,64 @@ input[type=checkbox] {
   position: relative;
 }
 
-.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory h2 {
+.accountSection main .blocksHolder .infoBlock .profileInformation h2 {
   color: #fff;
   font-size: 26px;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory input {
+.accountSection main .blocksHolder .infoBlock .profileInformation form {
+  width: 100%;
+}
+
+.accountSection main .blocksHolder .infoBlock .profileInformation form input {
   color: white !important;
 }
 
-.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory button {
+.accountSection main .blocksHolder .infoBlock .profileInformation form button {
   margin-top: 10px;
   width: 100%;
   margin-bottom: 10px;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock {
+  width: 90%;
+  height: 70vh;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory {
+  gap: 20px;
+  max-width: 90%;
+  height: auto;
+  text-align: center;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory h2 {
+  color: #fff;
+  font-size: 26px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory .loader {
+  display: inline-block;
+  transform: translateZ(1px);
+  margin-top: 30vh;
+}
+
+.accountSection main .blocksHolder .ordersHistoryBlock .ordersHistory .loader .loaderInnerDiv {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  background: #fff;
+  animation: loader 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
 @media screen and (max-width: 700px) {
@@ -264,6 +365,22 @@ input[type=checkbox] {
   }
   .accountSection header .header__btnsHolder button {
     width: 150px;
+  }
+}
+
+@keyframes loader {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(3600deg);
   }
 }
 

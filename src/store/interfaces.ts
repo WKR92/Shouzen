@@ -99,3 +99,38 @@ export interface RemoveProductAction {
 export interface LoginModalProps {
     setShowLoginModal: Function
 }
+
+export interface UserProfile {
+    id: string,
+    information: Object,
+    user: string
+}
+
+export interface UserSnap {
+    information: {
+        name: string
+        surname: string,
+        town: string,
+        country: string
+        phone: string,
+        postCode: string,
+        address: string
+    },
+    user: string
+}
+
+export interface PropsPassedToAccount {
+    userUid: string,
+    handleLogout: Function;
+    email: string;
+    sendResetPasswordEmail: React.MouseEventHandler;
+    deleteAccount: React.MouseEventHandler
+}
+
+export interface PropsForProfileInformation {
+    userUid: String
+}
+
+export interface LooseObject {
+    [key: string]: any
+}

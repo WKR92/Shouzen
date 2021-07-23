@@ -94,26 +94,29 @@ function LoginPanel() {
 
     }
 
-    const authListener = useCallback(() => {
+    
+    const authListener = useCallback(async () => {
         fire.auth().onAuthStateChanged((user) => {
             if (user) {
                 clearInput();
-                setUser(user);          
+                setUser(user);
+                localStorage.setItem('user', JSON.stringify(user));          
             } else {
-                setUser("");
+                setUser(null);
             }
         })
     }, [])
 
     useEffect(() => {
         authListener();
-    }, [authListener, user])
+    }, [authListener])
 
     return (
         <div className="LoginPanel">
 
             {user ? (
                 <Account
+                userUid={user.uid}
                 handleLogout={handleLogout}
                 email={user.email}
                 sendResetPasswordEmail={sendResetPasswordEmail}

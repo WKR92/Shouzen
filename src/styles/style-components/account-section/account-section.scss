@@ -1,4 +1,5 @@
 @import './style-components/colors-and-layouts/colors-and-layouts.scss';
+@import './style-components/animations/keyframes.scss';
 
 // account.tsx styles
 
@@ -6,6 +7,7 @@
   width: 100%;
   background: url('../photos/accountBG.jpg') fixed center;
   min-height: 92vh;
+  --transition__duration: .5s;
 
   h2 {
     color: #fff;
@@ -62,7 +64,7 @@
 
     .blocksHolder {
       width: 90vw;
-      min-height: 86vh;
+      min-height: 82vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -74,17 +76,12 @@
         width: 90%;
         min-height: 70vh;
         background-color: rgba(255, 255, 255, 0.2);
-      }
-
-      .ordersHistoryBlock {
-        width: 90%;
-        min-height: 70vh;
-        background-color: rgba(255, 255, 255, 0.2);
+        position: relative;
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
 
-        .ordersHistory {
+        .profileInformation {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -92,21 +89,67 @@
           width: 80%;
           height: 90%;
           position: relative;
-
+  
           h2 {
             color: #fff;
             font-size: 26px;
             margin-bottom: 20px;
+            margin-top: 20px;
           }
 
-          input {
-            color: white !important;
-          }
-
-          button {
-            margin-top: 10px;
+          form {
             width: 100%;
-            margin-bottom: 10px;
+
+            input {
+              color: white !important;
+            }
+  
+            button {
+              margin-top: 10px;
+              width: 100%;
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+
+      .ordersHistoryBlock {
+        width: 90%;
+        height: 70vh;
+        background-color: rgba(255, 255, 255, 0.2);
+        display: flex;
+        justify-content: center;
+        overflow-y: auto;
+        
+
+        .ordersHistory {
+          gap: 20px;
+          max-width: 90%;
+          height: auto;
+          text-align: center;
+          
+          
+          h2 {
+            color: #fff;
+            font-size: 26px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+          }
+
+          .loader {
+            display: inline-block;
+            transform: translateZ(1px);
+            margin-top: 30vh;
+
+            .loaderInnerDiv {
+              display: inline-block;
+              width: 64px;
+              height: 64px;
+              margin: 8px;
+              border-radius: 50%;
+              background: #fff;
+              animation: loader 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+            }
           }
         }
       }
@@ -165,5 +208,21 @@
         }
       } 
     }
+  }
+}
+
+@keyframes loader {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+  }
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  100% {
+    transform: rotateY(3600deg);
   }
 }
