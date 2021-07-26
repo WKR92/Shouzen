@@ -1,38 +1,21 @@
-import { useState } from 'react';
 import OrdersHistory from './ordersHistory';
 import ProfileInformation from './profileInformation';
-import fire from '../fire';
 import { PropsPassedToAccount } from '../store/interfaces';
+import { getUserFromLocalStorage } from '../utils/functions';
 
 
 const Account = (props: PropsPassedToAccount) => {
 
     const {
-        userUid,
         handleLogout,
-        email,
         sendResetPasswordEmail,
         deleteAccount
     } = props;
 
-    const [showOrdersHistory, setshowOrdersHistory] = useState(false);
-    const [showProfileInfo, setShowProfileInfo] = useState(false);
-
-    // const user = fire.auth().currentUser!;
-    const getOrdersHistory = () => {
-        const ordersHistoryRef = fire.database().ref('Orders');
-        ordersHistoryRef.on('value', (snapshot) => {
-            const snaps = snapshot.val();
-            const userSnaps = Object.values(snaps).filter((e: any) => e.user === userUid);
-            console.log(userSnaps)
-        })
-    }
-
     return(
-        <section className="accountSection" transition-style="in:wipe:bottom-left">
+        <section className="accountSection">
             <header>
-                <h2>Welcome {email}</h2>
-                
+                <h2>Welcome {getUserFromLocalStorage().email}</h2>
                 <div className="header__btnsHolder">
                     <button onClick={() => handleLogout()}>Logout</button>
                     <button className="resetPasswordBtn" onClick={sendResetPasswordEmail}>Reset password</button>
@@ -42,7 +25,14 @@ const Account = (props: PropsPassedToAccount) => {
             <main>
                 <div className="blocksHolder">
                     <div className="infoBlock">
-                        <ProfileInformation />
+                        <ProfileInformation 
+                        title={'Profile information: '}
+                        btnText={'Update profile information'}
+                        backgroundColor={"rgba(0, 0, 0, 0.5)"}
+                        textColor={'#fff'}
+                        submitBtnInitialValue={true}
+                        isFormDisabled={false}
+                        />
                     </div>
                     <div className="ordersHistoryBlock">
                         <OrdersHistory />

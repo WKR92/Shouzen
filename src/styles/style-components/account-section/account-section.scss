@@ -7,7 +7,7 @@
   width: 100%;
   background: url('../photos/accountBG.jpg') fixed center;
   min-height: 92vh;
-  --transition__duration: .5s;
+  // --transition__duration: .5s;
 
   h2 {
     color: #fff;
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 6vh;
+    height: 7vh;
 
     .header__btnsHolder {
       @include flex-centered;
@@ -58,13 +58,13 @@
     button {
 
       &:hover {
-        box-shadow: 0px 10px 10px rgba(0,0,0, 0.6);
+        box-shadow: 2px 4px 8px rgba(0,0,0, 0.6);
       }
     }
 
     .blocksHolder {
       width: 90vw;
-      min-height: 82vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -115,19 +115,15 @@
 
       .ordersHistoryBlock {
         width: 90%;
-        height: 70vh;
+        height: 72vh;
         background-color: rgba(255, 255, 255, 0.2);
         display: flex;
         justify-content: center;
-        overflow-y: auto;
-        
 
         .ordersHistory {
-          gap: 20px;
-          max-width: 90%;
-          height: auto;
+          max-width: 100%;
           text-align: center;
-          
+          overflow: auto;
           
           h2 {
             color: #fff;
@@ -150,6 +146,13 @@
               background: #fff;
               animation: loader 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
             }
+          }
+
+          .emptyHistoryDiv {
+            height: 72vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         }
       }
@@ -175,6 +178,7 @@
 
     h2{
       text-align: center;
+      margin-top: 5px;
     }
 
     header {

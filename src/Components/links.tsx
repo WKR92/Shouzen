@@ -1,18 +1,26 @@
-import {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import cartIcon from '../icons/shopping-cart.png';
 import logInIcon from '../icons/log-in.png';
 import infoIcon from '../icons/information-button.png';
-import { connect } from 'react-redux';
-import {RootState} from '../store/store'
-import {PropsForLinks} from '../store/interfaces';
+import { RootState } from '../store/store'
+import { PropsForLinks, LooseObject } from '../store/interfaces';
+import { useSelector } from 'react-redux';
 
 const Links = (props: PropsForLinks) => {
+
+    const listOfProductsInCart = useSelector((state: RootState) => state.cartReducer);
     let amountOfProductsInCart = 0
-    props.listOfProductsInCart?.forEach(e => amountOfProductsInCart = amountOfProductsInCart + e.amountToOrder)
+    listOfProductsInCart?.forEach(e => amountOfProductsInCart = amountOfProductsInCart + e.amountToOrder)
     
     const [itemsInCart, setItemsInCart] = useState(0);
     const [prevState, setPrevState] = useState(amountOfProductsInCart);
+    const user = useSelector((state: LooseObject) => state.loggedUserReducer);
+
+    useEffect(() => {
+        console.log(user)
+ 
+    }, [user])
 
     // for animation of adding new item to cart:
     useEffect(() => {
@@ -42,7 +50,7 @@ const Links = (props: PropsForLinks) => {
             </Link>
             <Link className="linkHolder" to={"/login"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="logIn_icon" src={logInIcon} />
-                <li>Log In</li>
+                <li>{Object.values(user).length !== 0 ? "Profile" : "Log In"}</li>
             </Link>
             <Link className="linkHolder cartLink" to={"/cart"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="cart_icon" src={cartIcon} />
@@ -51,9 +59,4 @@ const Links = (props: PropsForLinks) => {
         </ul>
     )
 }
-const mapStateToProps = (state: RootState) => {
-    return {
-        listOfProductsInCart: state.cartReducer
-    }
-}
-export default connect(mapStateToProps, null)(Links);
+export default Links;

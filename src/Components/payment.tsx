@@ -1,17 +1,22 @@
-import { connect } from 'react-redux';
-import {RootState} from '../store/store';
-import * as orderAction from '../store/orderActions';
-import {PaymentProps, Order} from '../store/interfaces';
-import fire from '../fire';
+import { RootState } from '../store/store';
+import { setOrder } from '../store/orderActions';
+import { PaymentProps } from '../store/interfaces';
+import fire from '../utils/fire';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Payment = (props: PaymentProps) => {
+
+    const dispatch = useDispatch();
+    const listOfProductsInCart = useSelector((state: RootState) => state.cartReducer);
+    const userInfo = useSelector((state: RootState) => state.userReducer);
 
     const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
         props.setShowModal(true);
 
         const whatIsOrdered: [string, number][] = [];
-        props.listOfProductsInCart.forEach(e => whatIsOrdered.push([e.name, e.amountToOrder]))
+        listOfProductsInCart.forEach(e => whatIsOrdered.push([e.name, e.amountToOrder]))
 
         function guidGenerator() {
             var S4 = function() {
@@ -28,30 +33,25 @@ const Payment = (props: PaymentProps) => {
                 id            : guidGenerator(),
                 data          : new Date().toLocaleString(),
                 whatIsOrdered : whatIsOrdered,
-                whoIsOrdering : props.userInfo,
+                whoIsOrdering : userInfo,
                 costOfOrder   : props.total + '$'
             }
         }
         
-        props.setOrder(order);
+        dispatch(setOrder(order));
         const orderRef = fire.database().ref('Orders');
         orderRef.push(order)
     }
 
     const goBackToUserTable = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        const userInfoTableSubmitBtn = document.querySelector('.userInfoTableSubmitBtn') as HTMLButtonElement;
         const paymentOuterContainer = document.querySelector('.paymentOuterContainer') as HTMLDivElement;
-        const goBackToCartBtn = document.querySelector('.goBackToCartBtn') as HTMLButtonElement;
-        const inputList = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
         const userInfoTable = document.getElementById('userInfoTable') as HTMLDivElement;
         const startLineOfUserInfoTableBlock = userInfoTable.offsetTop;
-        inputList.forEach(e => e.disabled = false)
-        goBackToCartBtn.style['display'] = "";
-        userInfoTableSubmitBtn.style['display'] = '';
-        paymentOuterContainer.style['transform'] = 'translateY(-100%)'
-        paymentOuterContainer.style['opacity'] = '0'
-        paymentOuterContainer.style['transition'] = 'all 800ms'
+        paymentOuterContainer.style['transform'] = 'translateY(-100%)';
+        paymentOuterContainer.style['opacity'] = '0';
+        paymentOuterContainer.style['transition'] = 'all 800ms';
+        props.setIsFormDisabled(false);
 
         window.scrollTo(0, startLineOfUserInfoTableBlock - 20)
         window.scrollTo()
@@ -59,6 +59,14 @@ const Payment = (props: PaymentProps) => {
             props.setShowPaymentForm(false);
         }, 800) 
     }
+
+    useEffect(() => {
+        const paymentOuterContainer = document.querySelector('.paymentOuterContainer') as HTMLDivElement;    
+        paymentOuterContainer.style['transform'] = 'translateY(0)'
+        paymentOuterContainer.style['opacity'] = '1'
+        paymentOuterContainer.style['transition'] = 'all 800ms'
+        window.scrollTo(0, document.body.scrollHeight);   
+    }, [])
 
     return (
         <div className="paymentOuterContainer">
@@ -72,7 +80,7 @@ const Payment = (props: PaymentProps) => {
                     <div className="btnsContainer">
                         <button 
                             onClick={(event: React.MouseEvent<HTMLButtonElement>) => goBackToUserTable(event)} 
-                            className="goBackToCartBtn">
+                            className="goBackToForm">
                                 Change address
                         </button>
                         <button 
@@ -86,17 +94,4 @@ const Payment = (props: PaymentProps) => {
         </div>
     )
 }
-const mapStateToProps = (state: RootState) => {
-    return {
-        listOfProductsInCart: state.cartReducer,
-        userInfo: state.userReducer
-    }
-};
-
-const mapDispatchToProps = (dispatch: Function) => {
-    return {
-        setOrder: (order: Order) => dispatch(orderAction.setOrder(order))
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Payment);
+export default Payment;

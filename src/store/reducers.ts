@@ -1,5 +1,13 @@
 import * as actionTypes from './actionTypes';
-import {Products, UserInfo, UserInfoAction, Order, OrderAction, ChangeUnitsInStoreInterface} from './interfaces'
+import {Products, 
+  UserInfo, 
+  UserInfoAction, 
+  Order, 
+  OrderAction, 
+  ChangeUnitsInStoreInterface, 
+  LoggedUserInfoAction,
+  LooseObject
+} from './interfaces'
 
 export const cartReducer = (state: Products[] = [], action: any) => {
     switch(action.type) {
@@ -35,6 +43,16 @@ export const userReducer = (state: UserInfo[] = [], action: UserInfoAction) => {
     case actionTypes.MANAGE_USER_INFO:
       state = [action.payload]
       return [...state]
+    default:
+      return state;
+  }
+};
+
+export const loggedUserReducer = (state: LooseObject = {}, action: LoggedUserInfoAction) => {
+  switch(action.type) {
+    case actionTypes.GET_LOGGED_USER:
+      state = action.payload
+      return {...state}
     default:
       return state;
   }

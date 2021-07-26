@@ -1,14 +1,17 @@
-import React, {} from 'react';
 import products from './products';
-import { connect } from 'react-redux';
-import * as productAction from '../store/productsActions';
-import {Products, PropsFromStateForBoots} from '../store/interfaces'
-// import {store} from '../store/store'
+import { Products } from '../store/interfaces';
+import { useDispatch } from 'react-redux';
+import { addProductToCart } from '../store/productsActions';
+// import {store} from '../store/store';
 
-const Boots = (props: PropsFromStateForBoots) => {
+const Boots = () => {
 
-    const addProductToCart = (product: Products) => {     
-        props.getProduct(product);
+    const dispatch = useDispatch();
+
+    const putProductInCart = (product: Products) => {     
+        dispatch(addProductToCart(product));
+
+        // for adding item to cart animation
         const cartBtn = document.querySelectorAll('.cartBtn') as NodeListOf<HTMLButtonElement>;
         const loader = document.querySelectorAll('.loaderHolder') as NodeListOf<HTMLDivElement>;
         Object.values(cartBtn).map(e => e.style['display'] = "none");
@@ -24,7 +27,7 @@ const Boots = (props: PropsFromStateForBoots) => {
         {products.length > 0
         ? products.map(elem => {return (
         <div key={elem.id} className="productBg">
-            <div className="productContainer">
+            <div className="productContainer" transition-style="in:circle:top-right">
                 <div className={`${elem.id}__container`}>
                     <div className="product__info">
                         <h2><span className="headlineSpan">{elem.name}.</span> {elem.headline}</h2>
@@ -32,7 +35,7 @@ const Boots = (props: PropsFromStateForBoots) => {
                         <p>price: {elem.price}$</p>
                         <p>{elem.callToAction}</p>
                         <div className="callToActionHolder">
-                            <button onClick={() => addProductToCart(elem)} className="cartBtn">
+                            <button onClick={() => putProductInCart(elem)} className="cartBtn">
                                 <i className="fas fa-cart-arrow-down cartIcon"></i>
                                 Add to cart.
                             </button>
@@ -52,11 +55,4 @@ const Boots = (props: PropsFromStateForBoots) => {
         </>  
     )
 }
-
-const mapDispatchToProps = (dispatch: Function) => {
-    return {
-        getProduct: (product: Products) => dispatch(productAction.addProductToCart(product))
-    }
-};
-
-export default connect(undefined , mapDispatchToProps)(Boots);
+export default Boots;

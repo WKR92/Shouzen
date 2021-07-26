@@ -10,10 +10,6 @@ export interface Products {
     callToAction: string
 }
 
-export interface PropsFromStateForBoots {
-    getProduct: Function,
-}
-
 export interface PropsFromStateForCart {
     removeProduct: Function,
     listOfProductsInCart: Products[],
@@ -63,13 +59,16 @@ export interface UserInfoAction {
     payload: UserInfo
 }
 
+export interface LoggedUserInfoAction {
+    type: string,
+    payload: LooseObject
+}
+
 export interface PaymentProps {
     setShowModal: Function,
     total: number,
-    listOfProductsInCart: Products[],
-    userInfo: UserInfo[],
-    setOrder: Function,
-    setShowPaymentForm: Function
+    setShowPaymentForm: Function,
+    setIsFormDisabled: Function,
 }
 
 export interface Order {
@@ -86,9 +85,9 @@ export interface OrderAction {
 
 export interface UserInfoTableProps {
     setShowPaymentForm: Function,
-    userInfo: UserInfo[],
-    getUserInfo: Function,
-    setShowUserInfoTable: Function
+    setShowUserInfoTable: Function,
+    setIsFormDisabled: Function,
+    isFormDisabled: boolean
 }
 
 export interface RemoveProductAction {
@@ -112,7 +111,7 @@ export interface UserSnap {
         surname: string,
         town: string,
         country: string
-        phone: string,
+        telephone: string,
         postCode: string,
         address: string
     },
@@ -120,17 +119,37 @@ export interface UserSnap {
 }
 
 export interface PropsPassedToAccount {
-    userUid: string,
     handleLogout: Function;
-    email: string;
     sendResetPasswordEmail: React.MouseEventHandler;
     deleteAccount: React.MouseEventHandler
 }
 
 export interface PropsForProfileInformation {
-    userUid: String
+    getUserFromLocalStorage: Function
 }
 
 export interface LooseObject {
     [key: string]: any
+}
+
+export interface ProfileInformationProps {
+    dispachFnc?: boolean,
+    goToPayment?: Function,
+    title: string,
+    btnText: string,
+    backgroundColor: string,
+    textColor: string,
+    submitBtnInitialValue: boolean,
+    isFormDisabled: boolean
+}
+
+export interface TYModalProps {
+    setShowModal: Function,
+}
+
+export interface ProductsTableProps {
+    total: number,
+    setTotal: Function,
+    closeNextSteps: Function,
+    openUserInfoTable: Function
 }

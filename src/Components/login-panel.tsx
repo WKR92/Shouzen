@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useCallback } from 'react';
-import fire from '../fire';
+import { useState } from 'react';
+import fire from '../utils/fire';
 import Login from './login';
 import Account from './account';
-
+import { useSelector } from 'react-redux';
+import { LooseObject } from '../store/interfaces';
 
 function LoginPanel() {
-    const [user, setUser] = useState({} as any);
+    const user = useSelector((state: LooseObject) => state.loggedUserReducer);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState('');
@@ -94,31 +95,12 @@ function LoginPanel() {
 
     }
 
-    
-    const authListener = useCallback(async () => {
-        fire.auth().onAuthStateChanged((user) => {
-            if (user) {
-                clearInput();
-                setUser(user);
-                localStorage.setItem('user', JSON.stringify(user));          
-            } else {
-                setUser(null);
-            }
-        })
-    }, [])
-
-    useEffect(() => {
-        authListener();
-    }, [authListener])
-
     return (
         <div className="LoginPanel">
 
-            {user ? (
+            {Object.values(user).length !== 0 ? (
                 <Account
-                userUid={user.uid}
                 handleLogout={handleLogout}
-                email={user.email}
                 sendResetPasswordEmail={sendResetPasswordEmail}
                 deleteAccount={deleteAccount}
             />

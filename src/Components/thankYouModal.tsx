@@ -1,26 +1,18 @@
-import {useEffect} from 'react';
-import { connect } from 'react-redux';
 import {RootState} from '../store/store';
-import {Order, Products} from '../store/interfaces';
-import * as productAction from '../store/productsActions';
+import { removeProductFromCart } from '../store/productsActions';
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { TYModalProps } from '../store/interfaces';
 
-interface PaymentProps {
-    setShowModal: Function,
-    order?: Order[],
-    removeProduct: Function,
-    listOfProductsInCart?: Products[]
-}
-const ThankYouModal = (props: PaymentProps) => {
+
+const ThankYouModal = (props: TYModalProps) => {
 
     const history = useHistory();
-
-    useEffect(() => {
-        console.log(props.order)
-    }, [props])
+    const dispatch = useDispatch();
+    const listOfProductsInCart = useSelector((state: RootState) => state.cartReducer);
 
     const handleEndOfOrder = () => {
-        props.listOfProductsInCart!.forEach(e => props.removeProduct(e));
+        listOfProductsInCart!.forEach(e => dispatch(removeProductFromCart(e)));
         history.push("/");
         window.scroll({
             top: 0, 
@@ -47,15 +39,4 @@ const ThankYouModal = (props: PaymentProps) => {
         </div>
     )
 }
-const mapStateToProps = (state: RootState) => {
-    return {
-        listOfProductsInCart: state.cartReducer,
-        order: state.orderReducer
-    }
-};
-const mapDispatchToProps = (dispatch: Function) => {
-    return {
-        removeProduct: (product: Products) => dispatch(productAction.removeProductFromCart(product)),
-    }
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ThankYouModal);
+export default ThankYouModal;

@@ -1,13 +1,14 @@
 import { createStore } from 'redux';
 import { combineReducers } from 'redux';
-import {cartReducer, userReducer, orderReducer} from './reducers';
+import {cartReducer, userReducer, orderReducer, loggedUserReducer} from './reducers';
 import {loadState, saveState} from './localStorage';
 import throttle from 'lodash.throttle';
 
 const recuders = combineReducers({
   cartReducer,
   userReducer,
-  orderReducer
+  orderReducer,
+  loggedUserReducer
 })
 
 const persistedState = loadState();
