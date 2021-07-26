@@ -45,7 +45,7 @@ const Links = (props: PropsForLinks) => {
             </Link>
             <Link className="linkHolder" to={"/login"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="logIn_icon" src={logInIcon} />
-                <li>{typeof Object.keys(user) !== 'undefined' && Object.keys(user).length > 0 ? "Profile" : "Log In"}</li>
+                <li>{typeof Object.keys(user) !== 'undefined' && Object.values(user[0]).length > 0 ? "Profile" : "Log In"}</li>
             </Link>
             <Link className="linkHolder cartLink" to={"/cart"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="cart_icon" src={cartIcon} />
