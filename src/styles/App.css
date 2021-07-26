@@ -129,41 +129,17 @@ input[type=checkbox] {
   }
 }
 
-@keyframes scale {
-  10% {
-    width: 10px;
-    transform: scale(1.1);
-    border-radius: 50%;
-    background-color: 10%;
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 0.8;
-  }
-  25% {
-    width: 15px;
-    transform: scale(1.2);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
+@keyframes paintRed {
+  0% {
+    color: white;
+    transform: rotateY(0deg);
   }
   50% {
-    width: 20px;
-    transform: scale(1.3);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 1;
-  }
-  75% {
-    width: 15px;
-    transform: scale(1.1);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 0.8;
+    color: red;
   }
   100% {
-    width: 10px;
-    transform: scale(1);
-    border-radius: 50%;
-    opacity: 1;
+    color: white;
+    transform: rotateY(360deg);
   }
 }
 
@@ -1125,7 +1101,7 @@ input[type=checkbox] {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: scale 2s linear;
+  animation: paintRed 2s ease-out;
 }
 
 .mainNavBar .preResize .linkHolder .icon {
@@ -1204,7 +1180,7 @@ input[type=checkbox] {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: scale 1.5s linear;
+  animation: paintRed 2s ease-out;
 }
 
 .mainNavBar .afterResize .nav_links .linkHolder .icon {
@@ -1330,10 +1306,14 @@ input[type=checkbox] {
   background-color: orange;
   outline: none;
   cursor: pointer;
+  outline: 2px solid orange;
+  border: 2px solid orange;
+  outline-offset: -2px;
+  transition: all 250ms;
 }
 
 .cartSection .cartOuterContainer .cartInnerContainer .removeItemsBox button:hover {
-  text-decoration: underline;
+  outline-offset: 2px;
 }
 
 .cartSection .cartOuterContainer .cartInnerContainer h2 {
@@ -1356,14 +1336,19 @@ input[type=checkbox] {
 
 .cartSection .cartOuterContainer .cartInnerContainer .proceedToPayment button {
   height: 100%;
-  width: 120px;
+  width: 110px;
   background-color: orange;
   outline: none;
   cursor: pointer;
+  outline: 2px solid orange;
+  border: 2px solid orange;
+  outline-offset: -2px;
+  transition: all 250ms;
+  margin-left: 10px;
 }
 
 .cartSection .cartOuterContainer .cartInnerContainer .proceedToPayment button:hover {
-  text-decoration: underline;
+  outline-offset: 2px;
 }
 
 .cartSection .cartOuterContainer .cartInnerContainer .productContainer {
@@ -1579,15 +1564,6 @@ input[type=checkbox] {
   display: flex;
 }
 
-.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer .goBackToForm {
-  width: 30%;
-  color: red;
-}
-
-.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer .finalizeOrderBtn {
-  width: 70%;
-}
-
 .cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer button {
   height: 35px;
   background-color: orange;
@@ -1595,10 +1571,27 @@ input[type=checkbox] {
   cursor: pointer;
   outline: none;
   margin-top: 20px;
+  position: relative;
+  transition: box-shadow 350ms ease;
 }
 
-.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer button:hover {
-  text-decoration: underline;
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer .goBackToForm {
+  width: 30%;
+  box-shadow: inset 0 0 0 0 #8d0909;
+  background-color: steelblue;
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer .goBackToForm:hover {
+  box-shadow: inset -250px -100px 100px 0 #8d0909;
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer .finalizeOrderBtn {
+  width: 70%;
+  box-shadow: inset 0 0 0 0 #046822;
+}
+
+.cartSection .paymentOuterContainer .paymentInnerContainer .btnsContainer .finalizeOrderBtn:hover {
+  box-shadow: inset 250px -100px 100px 0 #046822;
 }
 
 .cartSection .paymentOuterContainer .paymentInnerContainer h2 {
@@ -1607,11 +1600,11 @@ input[type=checkbox] {
 
 .cartSection .paymentOuterContainer .paymentInnerContainer label {
   margin-left: 20px;
-  color: orange;
+  color: white;
 }
 
 .cartSection .paymentOuterContainer .paymentInnerContainer label .inLabelSpan {
-  color: red;
+  color: steelblue;
 }
 
 .cartSection .loginModal {
@@ -1794,41 +1787,17 @@ footer .contact {
   }
 }
 
-@keyframes scale {
-  10% {
-    width: 10px;
-    transform: scale(1.1);
-    border-radius: 50%;
-    background-color: 10%;
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 0.8;
-  }
-  25% {
-    width: 15px;
-    transform: scale(1.2);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
+@keyframes paintRed {
+  0% {
+    color: white;
+    transform: rotateY(0deg);
   }
   50% {
-    width: 20px;
-    transform: scale(1.3);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 1;
-  }
-  75% {
-    width: 15px;
-    transform: scale(1.1);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 0.8;
+    color: red;
   }
   100% {
-    width: 10px;
-    transform: scale(1);
-    border-radius: 50%;
-    opacity: 1;
+    color: white;
+    transform: rotateY(360deg);
   }
 }
 

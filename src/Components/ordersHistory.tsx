@@ -10,7 +10,9 @@ import Container from '@material-ui/core/Container';
 import Loader from './loader';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { getUserFromLocalStorage } from '../utils/functions';
+import { getUserFromLocalStorage } from '../store/localStorage';
+import { Orders, UserProfile } from '../store/interfaces';
+
 
 const OrdersHistory = () => {
 
@@ -23,7 +25,7 @@ const OrdersHistory = () => {
             const snaps = snapshot.val();
             if(snaps) {
               const userSnaps = Object.values(snaps).filter((e: any) => e.user === getUserFromLocalStorage().uid);
-              const userOrdersHistory = Object.values(userSnaps).map((e: any) => e.order);
+              const userOrdersHistory: Orders[] = Object.values(userSnaps).map((e: any) => e.order);
               setOrders(userOrdersHistory.reverse());
             }  
         })
@@ -38,13 +40,14 @@ const OrdersHistory = () => {
         profileInfoRef.once('value', (snapshot) => {
           const snaps = snapshot.val();
           if(snaps) {
-            const currentUserProfile: any[] = [];
+            const currentUserProfile: UserProfile[] = [];
             for (let id in snaps) {
                 currentUserProfile.push({id, ...snaps[id]})
             }
-            const currentUserProfileId = currentUserProfile.filter((e: any) => e.user === getUserFromLocalStorage().uid);
+            const currentUserProfileId = currentUserProfile.filter((e: UserProfile) => e.user === getUserFromLocalStorage().uid);
             const chosenOrderId = Object.values(currentUserProfileId).filter((e: any) => e.order.id === idOfOrder);
             if(currentUserProfileId.length > 0){
+              console.log(chosenOrderId)
               const removeProfileRef = fire.database().ref("Orders").child(chosenOrderId[0].id);
               removeProfileRef.remove();
             }
@@ -57,25 +60,22 @@ const OrdersHistory = () => {
     }
 
     useEffect(() => {
-        const ac = new AbortController();
         getOrdersHistory();
-        return () => {ac.abort();}
+        return () => {setOrders({} as any)}
     }, [getOrdersHistory])
 
     const historyIsEmpty = useCallback(() => {
-      const ac = new AbortController();
-      setTimeout(() => {
+      const timeOut = setTimeout(() => {
         if(Object.keys(orders).length === 0) {
           setIsHistoryEmpty(true);
         }
       }, 5000);
-      return () => {ac.abort();}
+      return () => {clearTimeout(timeOut)}
     }, [orders])
 
     useEffect(() => {
-        const ac = new AbortController();
         historyIsEmpty();
-        return () => {ac.abort();}
+        return () => {setIsHistoryEmpty(false)}
   }, [historyIsEmpty])
 
   return (

@@ -153,3 +153,19 @@ export interface ProductsTableProps {
     closeNextSteps: Function,
     openUserInfoTable: Function
 }
+
+export interface Orders {
+    costOfOrder: string,
+    data: string,
+    id: string,
+    whatIsOrdered: [[string, number]],
+    whoISOrdering: [
+      {name: string
+      surname: string,
+      town: string,
+      country: string
+      telephone: string,
+      postCode: string,
+      address: string}
+    ]
+}

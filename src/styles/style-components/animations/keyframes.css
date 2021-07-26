@@ -13,41 +13,17 @@
   }
 }
 
-@keyframes scale {
-  10% {
-    width: 10px;
-    transform: scale(1.1);
-    border-radius: 50%;
-    background-color: 10%;
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 0.8;
-  }
-  25% {
-    width: 15px;
-    transform: scale(1.2);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
+@keyframes paintRed {
+  0% {
+    color: white;
+    transform: rotateY(0deg);
   }
   50% {
-    width: 20px;
-    transform: scale(1.3);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 1;
-  }
-  75% {
-    width: 15px;
-    transform: scale(1.1);
-    border-radius: 50%;
-    background-color: rgba(128, 28, 33, 0.4);
-    opacity: 0.8;
+    color: red;
   }
   100% {
-    width: 10px;
-    transform: scale(1);
-    border-radius: 50%;
-    opacity: 1;
+    color: white;
+    transform: rotateY(360deg);
   }
 }
 

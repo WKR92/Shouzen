@@ -1,7 +1,7 @@
 import OrdersHistory from './ordersHistory';
 import ProfileInformation from './profileInformation';
 import { PropsPassedToAccount } from '../store/interfaces';
-import { getUserFromLocalStorage } from '../utils/functions';
+import { getUserFromLocalStorage } from '../store/localStorage';
 
 
 const Account = (props: PropsPassedToAccount) => {

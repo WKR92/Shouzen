@@ -38,7 +38,7 @@ const Cart = () => {
 
     const openUserInfoTable = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        if(Object.values(user).length !== 0){
+        if(Object.values(user[0]).length !== 0){
             setShowUserInfoTable(!showUserInfoTable);
             
             setTimeout(() => {
@@ -46,10 +46,10 @@ const Cart = () => {
                 const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
                 const removeProductBtnHolderList = document.querySelectorAll('.removeProductBtnHolder') as NodeListOf<HTMLDivElement>;
                 const amountToOderHolderList = document.querySelectorAll('.amountToOderHolder') as NodeListOf<HTMLDivElement>;
-                removeItemsBox.style['display'] = 'none';
+                removeItemsBox.style['visibility'] = 'hidden';
                 checkboxList.forEach(e => e.disabled = true)
-                removeProductBtnHolderList.forEach(e => e.style['display'] = 'none')
-                amountToOderHolderList.forEach(e => e.style['display'] = 'none')
+                removeProductBtnHolderList.forEach(e => e.style['visibility'] = 'hidden')
+                amountToOderHolderList.forEach(e => e.style['visibility'] = 'hidden')
             }, 800);
         } else {
             setShowLoginModal(true);

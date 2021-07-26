@@ -51,7 +51,7 @@ export const userReducer = (state: UserInfo[] = [], action: UserInfoAction) => {
 export const loggedUserReducer = (state: LooseObject = {}, action: LoggedUserInfoAction) => {
   switch(action.type) {
     case actionTypes.GET_LOGGED_USER:
-      state = action.payload
+      state = [action.payload]
       return {...state}
     default:
       return state;

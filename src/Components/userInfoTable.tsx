@@ -22,10 +22,10 @@ const UserInfoTable = (props: UserInfoTableProps) => {
         const checkboxList = document.querySelectorAll('.checkbox') as NodeListOf<HTMLInputElement>;
         const removeProductBtnHolderList = document.querySelectorAll('.removeProductBtnHolder') as NodeListOf<HTMLDivElement>;
         const amountToOderHolderList = document.querySelectorAll('.amountToOderHolder') as NodeListOf<HTMLDivElement>;
-        removeItemsBox.style['display'] = '';
+        removeItemsBox.style['visibility'] = 'visible';
         checkboxList.forEach(e => e.disabled = false)
-        removeProductBtnHolderList.forEach(e => e.style['display'] = '')
-        amountToOderHolderList.forEach(e => e.style['display'] = '') 
+        removeProductBtnHolderList.forEach(e => e.style['visibility'] = 'visible')
+        amountToOderHolderList.forEach(e => e.style['visibility'] = 'visible')
         userInfoTable.style['transform'] = 'translateY(-100%)'
         userInfoTable.style['opacity'] = '0'
         userInfoTable.style['transition'] = 'all 800ms'

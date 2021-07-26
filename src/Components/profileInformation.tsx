@@ -6,9 +6,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { UserProfile, UserSnap, ProfileInformationProps } from '../store/interfaces';
 import { useDispatch } from 'react-redux';
 import { manageUserInfo } from '../store/userActions';
-import { getUserFromLocalStorage } from '../utils/functions';
-
-
+import { getUserFromLocalStorage } from '../store/localStorage';
 
 const ProfileInformation = (props: ProfileInformationProps) => {
 
@@ -24,6 +22,7 @@ const ProfileInformation = (props: ProfileInformationProps) => {
 
     const getUserInfo = useCallback(() => {
         const profileInfoRef = fire.database().ref("Profiles");
+
         profileInfoRef.once('value', (snapshot) => {
             const snaps = snapshot.val();
             if(snaps) {
@@ -31,7 +30,7 @@ const ProfileInformation = (props: ProfileInformationProps) => {
                 for (let id in snaps) {
                     currentUserProfile.push({id, ...snaps[id]})
                 }
-                const currentUserProfileId = currentUserProfile.filter((e: any) => e.user === getUserFromLocalStorage().uid);
+                const currentUserProfileId = currentUserProfile.filter((e: UserSnap) => e.user === getUserFromLocalStorage().uid);
 
                 if(currentUserProfileId.length > 0) {
                     setName(currentUserProfileId[0].information.name);
@@ -48,6 +47,15 @@ const ProfileInformation = (props: ProfileInformationProps) => {
 
     useEffect(() => {
         getUserInfo();
+        return () => {
+            setName('');
+            setSurname('');
+            setTown('');
+            setPostCode('');
+            setCountry('');
+            setAddress('');
+            setTelephone('');
+        }
     }, [getUserInfo])
 
     const handleFormSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -75,7 +83,7 @@ const ProfileInformation = (props: ProfileInformationProps) => {
             for (let id in snaps) {
                 currentUserProfile.push({id, ...snaps[id]})
             }
-            const currentUserProfileId = currentUserProfile.filter((e: any) => e.user === getUserFromLocalStorage().uid);
+            const currentUserProfileId = currentUserProfile.filter((e: UserProfile) => e.user === getUserFromLocalStorage().uid);
             if(currentUserProfileId.length > 0){
                 const updateProfileRef = fire.database().ref("Profiles").child(currentUserProfileId[0].id);
                 updateProfileRef.update(profileInformation);

@@ -1,6 +1,13 @@
-// import {Products} from './storeInterfaces'
+import { LooseObject } from '../store/interfaces';
 
-// const state: Products[] = []
+export const getUserFromLocalStorage = () => {
+    let storedUser = localStorage.getItem('user');
+    let user: LooseObject = {}
+    if(storedUser){
+        user = JSON.parse(storedUser);
+    }
+    return user
+}
 
 export const loadState = () => {
     try {

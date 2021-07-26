@@ -17,11 +17,6 @@ const Links = (props: PropsForLinks) => {
     const [prevState, setPrevState] = useState(amountOfProductsInCart);
     const user = useSelector((state: LooseObject) => state.loggedUserReducer);
 
-    useEffect(() => {
-        console.log(user)
- 
-    }, [user])
-
     // for animation of adding new item to cart:
     useEffect(() => {
         if(prevState < itemsInCart){
@@ -50,7 +45,7 @@ const Links = (props: PropsForLinks) => {
             </Link>
             <Link className="linkHolder" to={"/login"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="logIn_icon" src={logInIcon} />
-                <li>{Object.values(user).length !== 0 ? "Profile" : "Log In"}</li>
+                <li>{Object.values(user[0]).length !== 0 ? "Profile" : "Log In"}</li>
             </Link>
             <Link className="linkHolder cartLink" to={"/cart"} onClick={() => props.activateToggle()}>
                 <img className="icon" alt="cart_icon" src={cartIcon} />

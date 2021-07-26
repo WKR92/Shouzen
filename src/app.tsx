@@ -21,7 +21,7 @@ function App() {
             dispatch(getLoggedUser(user))
             localStorage.setItem('user', JSON.stringify(user));    
         } else {
-          dispatch(getLoggedUser(null))
+          dispatch(getLoggedUser({}))
         }
     })
 }, [dispatch])

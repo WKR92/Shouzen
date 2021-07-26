@@ -68,7 +68,7 @@
     
           .itemsInCartNumber{
             @include flex-centered;
-            animation: scale 2s linear;
+            animation: paintRed 2s ease-out;
           }
         }
     
@@ -144,7 +144,7 @@
       
             .itemsInCartNumber{
               @include flex-centered;
-              animation: scale 1.5s linear;
+              animation: paintRed 2s ease-out;
             }
           }
       
@@ -162,8 +162,6 @@
   
   @media only screen and (max-width: 650px) {
     .mainNavBar {
-      // display: grid;
-      // justify-content: center;
   
       .preResize {
         justify-content: space-between;
