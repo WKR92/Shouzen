@@ -38,7 +38,7 @@ const Cart = () => {
 
     const openUserInfoTable = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-        if(Object.values(user[0]).length !== 0){
+        if(typeof Object.keys(user) !== 'undefined' && Object.keys(user).length > 0){
             setShowUserInfoTable(!showUserInfoTable);
             
             setTimeout(() => {
