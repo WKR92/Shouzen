@@ -22,6 +22,127 @@
       background: $primaryLayout;
       box-shadow: $primaryShadow;
 
+      .facebookLoginContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+
+        .facebookBtnContainer {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          background-color: rgba(255, 255, 255, 0.2);
+          width: 100%;
+          cursor: pointer;
+          border: none;
+          outline: none;
+          color: white;
+          position: relative;
+          z-index: 1;
+
+          &::after {
+            content: '';
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            right: 50%;
+            opacity: 0;
+            position: absolute;
+            background: steelblue;
+            transition: 0.5s all ease;
+          }
+
+          &:hover {
+            box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.8);
+
+            &::after {
+              left: 0;
+              right: 0;
+              opacity: 1;
+              z-index: -1;
+              transition: 0.5s all ease;
+            }
+          }
+
+          .facebookBtnText {
+            width: 75%;
+            z-index: 2;
+          }
+
+          .facebookBtnIconHolder {
+            width: 25%;
+            z-index: 2;
+
+            img {
+              height: 40px;
+              padding: 5px 5px;
+            }
+          }
+        }
+      }
+
+      .googleLoginContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+
+        .googleBtnContainer {
+          display: flex;
+          align-items: center;
+          background-color: rgba(255, 255, 255, 0.2);
+          width: 100%;
+          cursor: pointer;
+          border: none;
+          outline: none;
+          color: white;
+          position: relative;
+          z-index: 1;
+
+          &::after {
+            content: '';
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            right: 50%;
+            opacity: 0;
+            position: absolute;
+            background: steelblue;
+            transition: 0.5s all ease;
+          }
+
+          &:hover {
+            box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.8);
+
+            &::after {
+              left: 0;
+              right: 0;
+              opacity: 1;
+              z-index: -1;
+              transition: 0.5s all ease;
+            }
+          }
+
+          .googleBtnText {
+            width: 75%;
+            z-index: 2;
+          }
+
+          .googleBtnIconHolder {
+            width: 25%;
+
+            img {
+              height: 40px;
+              padding: 5px 5px;
+              z-index: 2;
+            }
+          }
+        }
+      }
+
     label{
       margin-top: 20px;
       color: white;
@@ -62,6 +183,10 @@
         letter-spacing: 1px;
         background: #603bbb;
         cursor: pointer;
+
+        &:hover {
+          box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.8);
+        }
       }
 
       span {

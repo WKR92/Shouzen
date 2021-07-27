@@ -1,4 +1,6 @@
 import {PropsPassedToLogin} from '../store/interfaces'
+import LogInWithGoogle from './logInWithGoogle';
+import LogInWithFB from './logInWithFB';
 
 
 const Login = (props: PropsPassedToLogin) => {
@@ -20,6 +22,8 @@ const Login = (props: PropsPassedToLogin) => {
     return (
         <section className="loginSection">
             <div className="loginContainer">
+                <LogInWithGoogle />
+                <LogInWithFB />
                 <label>Username</label>
                 <input 
                     type="text" 
