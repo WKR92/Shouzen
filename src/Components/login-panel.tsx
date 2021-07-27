@@ -76,10 +76,9 @@ function LoginPanel() {
     }
 
     const sendResetPasswordEmail = () => {
-        
         fire
             .auth()
-            .sendPasswordResetEmail(user.email)
+            .sendPasswordResetEmail(user[0].email)
             .then(() => {alert("Check your email box for password change message")})
             .catch(() => {alert("Something went wrong. Please try again.")})
     }
@@ -87,7 +86,7 @@ function LoginPanel() {
     const deleteAccount = () => {
 
         if(window.confirm('Are your sure you want to delete your account?')) {
-            user
+            user[0]
                 .delete()
                 .then(() => {alert("Your account has ben deleted")})
                 .catch(() => {alert("Something went wrong. Please try again.")})

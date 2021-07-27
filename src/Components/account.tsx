@@ -2,6 +2,8 @@ import OrdersHistory from './ordersHistory';
 import ProfileInformation from './profileInformation';
 import { PropsPassedToAccount } from '../store/interfaces';
 import { getUserFromLocalStorage } from '../store/localStorage';
+import { useSelector } from 'react-redux';
+import { LooseObject } from '../store/interfaces';
 
 
 const Account = (props: PropsPassedToAccount) => {
@@ -12,10 +14,12 @@ const Account = (props: PropsPassedToAccount) => {
         deleteAccount
     } = props;
 
+    const user = useSelector((state: LooseObject) => state.loggedUserReducer);
+
     return(
         <section className="accountSection">
             <header>
-                <h2>Welcome {getUserFromLocalStorage().email}</h2>
+                <h2>Welcome {user[0].email}</h2>
                 <div className="header__btnsHolder">
                     <button onClick={() => handleLogout()}>Logout</button>
                     <button className="resetPasswordBtn" onClick={sendResetPasswordEmail}>Reset password</button>
