@@ -10,7 +10,7 @@ const About = () => {
                     Redux, SASS, Material-UI, Firebase and Type Script. It is suppose to imitate real shop
                     without it's final chapter - paying console. I was hoping to make quite unique
                     user experience with easy and well understandable steps one have to make to
-                    order the product. Implementing database is not finished yet. Enjoy sightseeing.
+                    order the product. Enjoy sightseeing.
                 </p>
             </div>
         </section>

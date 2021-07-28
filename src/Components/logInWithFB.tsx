@@ -8,7 +8,13 @@ const LogInWithFB = () => {
 
     const openFacebookPopup = () => {
         fire.auth().signInWithPopup(facebookProvider)
-        .catch(err => console.log(err))
+        .catch( err => {
+            if(err?.code === "auth/account-exists-with-different-credential") {
+                alert("An account already exists with the same email address but different sign-in credentials. Sign in using a provider associated with this email address.")
+            } else {
+                 console.log(err);
+            }
+        })
     }
 
     return (
