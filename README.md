@@ -5,4 +5,4 @@ without it's final chapter - paying console. I was hoping to make quite unique
 user experience with easy and well understandable steps one have to make to
 order the product. Enjoy sightseeing.
 
-copy and npm start to run
+Copy and npm start to run or go https://wkr92.github.io/Shouzen/#/ to see live version.
