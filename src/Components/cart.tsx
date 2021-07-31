@@ -36,10 +36,6 @@ const Cart = () => {
         }
     }, [listOfProductsInCart])
 
-    useEffect(() => {
-        console.log(user)
-    }, [user])
-
     const openUserInfoTable = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         if(Object.keys(user[0]).length !== 0){

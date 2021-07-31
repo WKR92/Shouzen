@@ -37,10 +37,6 @@ const Links = (props: PropsForLinks) => {
         }
     }, [props, itemsInCart, prevState, amountOfProductsInCart])
 
-    useEffect(() => {
-        console.log(user)
-    }, [user])
-
     return (
         <ul className="nav_links">
             <Link className="linkHolder" to={"/about"} onClick={() => props.activateToggle()}>
