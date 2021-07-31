@@ -97,7 +97,7 @@ function LoginPanel() {
 
     return (
         <div className="LoginPanel">
-            {Object.keys(user[0]).length !== 0 ? (
+            {user[0] && Object.keys(user[0]).length !== 0 ? (
                 <Account
                 handleLogout={handleLogout}
                 sendResetPasswordEmail={sendResetPasswordEmail}

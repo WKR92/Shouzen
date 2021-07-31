@@ -21,7 +21,7 @@ const Account = (props: PropsPassedToAccount) => {
             <header>
                 <h2>Welcome {user[0].email}</h2>
                 <div className="header__btnsHolder">
-                    <button onClick={() => {console.log(user); handleLogout()}}>Logout</button>
+                    <button onClick={() => handleLogout()}>Logout</button>
                     <button className="resetPasswordBtn" onClick={sendResetPasswordEmail}>Reset password</button>
                     <button className="deleteAccountBtn" onClick={deleteAccount}>Delete account</button>
                 </div>
