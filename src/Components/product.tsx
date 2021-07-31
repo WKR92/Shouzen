@@ -2,7 +2,7 @@ import products from './products';
 import { Products } from '../store/interfaces';
 import { useDispatch } from 'react-redux';
 import { addProductToCart } from '../store/productsActions';
-// import {store} from '../store/store';
+import {store} from '../store/store';
 
 const Boots = () => {
 
@@ -48,8 +48,8 @@ const Boots = () => {
                 </div>
             </div>
             {/* to check state from localStore */}
-            {/* <button style={{height: 60, width: 60}} onClick={() => console.log(store.getState())}> show state</button>
-            <button style={{height: 60, width: 60}} onClick={() => localStorage.clear()}>clear local storage</button> */}
+            <button style={{height: 60, width: 60}} onClick={() => console.log(store.getState())}> show state</button>
+            <button style={{height: 60, width: 60}} onClick={() => localStorage.clear()}>clear local storage</button>
         </div>)})
         : null}
         </>  

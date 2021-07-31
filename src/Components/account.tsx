@@ -1,7 +1,6 @@
 import OrdersHistory from './ordersHistory';
 import ProfileInformation from './profileInformation';
 import { PropsPassedToAccount } from '../store/interfaces';
-import { getUserFromLocalStorage } from '../store/localStorage';
 import { useSelector } from 'react-redux';
 import { LooseObject } from '../store/interfaces';
 
