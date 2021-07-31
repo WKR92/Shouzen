@@ -54,7 +54,7 @@ export const loggedUserReducer = (state: LooseObject = {}, action: LoggedUserInf
       state = [action.payload]
       return {...state}
     default:
-      return state;
+      return {0 : {...state}};
   }
 };
 

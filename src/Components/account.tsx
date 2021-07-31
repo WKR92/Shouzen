@@ -1,6 +1,7 @@
 import OrdersHistory from './ordersHistory';
 import ProfileInformation from './profileInformation';
 import { PropsPassedToAccount } from '../store/interfaces';
+
 import { useSelector } from 'react-redux';
 import { LooseObject } from '../store/interfaces';
 
@@ -20,7 +21,7 @@ const Account = (props: PropsPassedToAccount) => {
             <header>
                 <h2>Welcome {user[0].email}</h2>
                 <div className="header__btnsHolder">
-                    <button onClick={() => handleLogout()}>Logout</button>
+                    <button onClick={() => {console.log(user); handleLogout()}}>Logout</button>
                     <button className="resetPasswordBtn" onClick={sendResetPasswordEmail}>Reset password</button>
                     <button className="deleteAccountBtn" onClick={deleteAccount}>Delete account</button>
                 </div>
