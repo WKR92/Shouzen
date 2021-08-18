@@ -1173,7 +1173,7 @@ input[type=checkbox] {
   align-items: center;
   justify-content: space-around;
   max-width: 100vw;
-  min-height: 8vh;
+  min-height: 12vh;
 }
 
 .mainNavBar .preResize .nav_links {

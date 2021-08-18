@@ -26,8 +26,7 @@ const Login = (props: PropsPassedToLogin) => {
                 <LogInWithFB />
                 <label>Username</label>
                 <input 
-                    type="text" 
-                    autoFocus 
+                    type="text"
                     required 
                     value={email} 
                     onChange={(event) => setEmail(event.target.value)}
