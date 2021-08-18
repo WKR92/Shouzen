@@ -240,6 +240,12 @@ input[type=checkbox] {
   color: #fff;
 }
 
+@media only screen and (max-width: 650px) {
+  .loginSection .loginContainer {
+    padding: 20px 40px 0px 40px;
+  }
+}
+
 @keyframes shake {
   10%, 90% {
     transform: translateX(1px);
@@ -1858,7 +1864,7 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: #53204b;
-  max-height: 12vh;
+  max-height: 10vh;
   gap: 20px;
 }
 
