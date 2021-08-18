@@ -31,7 +31,7 @@ input[type=checkbox] {
 
 .loginSection {
   width: 100%;
-  height: 92vh;
+  min-height: 92vh;
   padding: 0 20px;
   background: #e9e9e9;
   display: flex;
@@ -41,6 +41,7 @@ input[type=checkbox] {
 .loginSection .loginContainer {
   padding: 60px;
   margin: auto;
+  padding-bottom: 20px;
   width: 100%;
   max-width: 520px;
   min-height: 65vh;

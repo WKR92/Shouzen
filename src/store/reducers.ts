@@ -30,7 +30,7 @@ export const cartReducer = (state: Products[] = [], action: any) => {
           ...state.filter((elem: Products) => elem.name !== action.payload.name)
         ];
       case actionTypes.UPDATE_CART_UNITS:
-        const productToChange = state.filter((elem: ChangeUnitsInStoreInterface) => elem.name === action.payload.productName)
+        const productToChange = state.filter((elem: ChangeUnitsInStoreInterface) => elem.name === action.payload.name)
         productToChange[0].amountToOrder = action.payload.amountToOrder
         return [...state]
       default:
